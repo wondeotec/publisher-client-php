@@ -1,0 +1,14 @@
+EBC\PublisherClient\Campaign\Campaign:
+    properties:
+        id:
+            type: integer
+        name:
+            type: string
+        schedule:
+            type: EBC\PublisherClient\Campaign\Schedule
+        bid:
+            type: EBC\PublisherClient\Campaign\Bid
+        categories:
+            type: array
+        listApprovals:
+            type: array

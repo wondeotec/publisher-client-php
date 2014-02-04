@@ -1,0 +1,6 @@
+EBC\PublisherClient\Campaign\Schedule:
+    properties:
+        startDate:
+            type: DateTime<"Y-m-d H:i:s">
+        endDate:
+            type: DateTime<"Y-m-d H:i:s">

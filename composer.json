@@ -1,0 +1,30 @@
+{
+    "name": "emailbidding/publisher-client-php",
+    "type": "library",
+    "description": "Credential client",
+    "keywords": ["emailbidding", "publisher", "api", "client", "php", "library"],
+    "homepage": "http://github.com/emailbidding/publisher-client-php",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Emailbidding",
+            "email": "developers@emailbidding.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=5.4.0",
+        "ebidtech/fastc": "0.1.*",
+        "ebidtech/collection": "2.0.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*",
+        "squizlabs/php_codesniffer": "~1.5.0",
+        "phpmd/phpmd": "~1.5.0",
+        "satooshi/php-coveralls": "dev-master",
+        "jms/serializer": "0.14.0"
+    },
+    "autoload": {
+        "psr-0": { "EBC\\PublisherClient": "src/" }
+    }
+}

@@ -1,0 +1,6 @@
+EBC\PublisherClient\Campaign\Category:
+    properties:
+        id:
+            type: integer
+        name:
+            type: string

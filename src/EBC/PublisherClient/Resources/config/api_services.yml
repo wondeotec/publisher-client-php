@@ -1,0 +1,26 @@
+name: Publisher Client
+baseUrl: "{scheme}://{host}{+basePath}/{publisherId}"
+description: Publisher Client
+operations:
+    getCampaigns:
+        httpMethod: GET
+        uri: campaigns
+        responseClass: 'EBC\PublisherClient\Campaign\Campaigns'
+        summary: Returns campaigns that publisher have access
+        data:
+            acceptedStatusCodes: 200
+        parameters:
+            orderBy:
+                location: query
+                description: How to order the result set (created|updated)
+                type: string
+                minLength: 2
+                maxLength: 64
+                required: false
+            order:
+                location: query
+                description: Order asc|desc|ASC|DESC
+                type: string
+                minLength: 3
+                maxLength: 4
+                required: false
