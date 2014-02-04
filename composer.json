@@ -15,14 +15,15 @@
     "require": {
         "php": ">=5.4.0",
         "ebidtech/fastc": "0.1.*",
-        "ebidtech/collection": "2.0.*"
+        "ebidtech/collection": "2.0.*",
+        "ebidtech/ebdate": "0.1.*",
+        "jms/serializer": "0.14.0"
     },
     "require-dev": {
         "phpunit/phpunit": "3.7.*",
         "squizlabs/php_codesniffer": "~1.5.0",
         "phpmd/phpmd": "~1.5.0",
-        "satooshi/php-coveralls": "dev-master",
-        "jms/serializer": "0.14.0"
+        "satooshi/php-coveralls": "dev-master"
     },
     "autoload": {
         "psr-0": { "EBC\\PublisherClient": "src/" }

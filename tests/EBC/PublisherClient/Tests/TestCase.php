@@ -13,17 +13,39 @@ namespace EBC\PublisherClient\Tests;
 
 use PHPUnit_Framework_TestCase;
 use JMS\Serializer\SerializerBuilder;
+use JMS\Serializer\SerializerInterface;
+use JMS\Serializer\Handler\HandlerRegistry;
+use EBT\EBDate\Serializer\EBDateTimeHandler;
 
 /**
  * TestCase
  */
 abstract class TestCase extends PHPUnit_Framework_TestCase
 {
-    public function getSerializer()
+    /**
+     * @return SerializerInterface
+     */
+    protected function getSerializer()
     {
-        SerializerBuilder::create()->addMetadataDir(
-            '/var/www/publisher-client-php/src/EBC/PublisherClient/Resources/config/serializer/',
-            'EBC\PublisherClient'
-        )->build();
+        return SerializerBuilder::create()
+            ->addMetadataDir(
+                __DIR__ . '/../../../../src/EBC/PublisherClient/Resources/config/serializer/',
+                'EBC\PublisherClient'
+            )->configureHandlers(
+                function (HandlerRegistry $registry) {
+                    $registry->registerSubscribingHandler(new EBDateTimeHandler());
+                }
+            )->build();
+    }
+
+    /**
+     * @param array  $data
+     * @param string $class
+     *
+     * @return object
+     */
+    protected function deserialize(array $data, $class)
+    {
+        return $this->getSerializer()->deserialize(json_encode($data), $class, 'json');
     }
 }

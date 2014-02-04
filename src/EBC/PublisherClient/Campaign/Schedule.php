@@ -11,18 +11,36 @@
 
 namespace EBC\PublisherClient\Campaign;
 
+use EBT\EBDate\EBDateTime;
+
 /**
  * Schedule
  */
 class Schedule
 {
     /**
-     * @var \DateTime
+     * @var EBDateTime
      */
     protected $startDate;
 
     /**
-     * @var \DateTime
+     * @var EBDateTime
      */
     protected $endDate;
+
+    /**
+     * @return EBDateTime
+     */
+    public function getStartDate()
+    {
+        return $this->startDate;
+    }
+
+    /**
+     * @return EBDateTime
+     */
+    public function getEndDate()
+    {
+        return $this->endDate;
+    }
 }

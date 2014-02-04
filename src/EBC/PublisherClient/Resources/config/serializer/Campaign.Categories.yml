@@ -1,0 +1,5 @@
+EBC\PublisherClient\Campaign\Categories:
+    properties:
+        items:
+            type: array<EBC\PublisherClient\Campaign\Category>
+

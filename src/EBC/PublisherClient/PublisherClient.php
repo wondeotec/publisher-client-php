@@ -14,6 +14,10 @@ namespace EBC\PublisherClient;
 use EBT\Fastc\Client as FastcClient;
 use EBT\Fastc\Listener\StatusCodeListener;
 use EBT\Fastc\Listener\ParseResponseListener;
+use JMS\Serializer\SerializerBuilder;
+use JMS\Serializer\SerializerInterface;
+use JMS\Serializer\Handler\HandlerRegistry;
+use EBT\EBDate\Serializer\EBDateTimeHandler;
 
 /**
  * PublisherClient
@@ -36,6 +40,21 @@ class PublisherClient extends FastcClient
                 $this->getSerializer(__DIR__ . '/Resources/config/serializer', 'EBC\PublisherClient')
             )
         );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getSerializer($dir, $namespacePrefix = '')
+    {
+        return SerializerBuilder::create()
+            ->addMetadataDir($dir, $namespacePrefix)
+            ->configureHandlers(
+                function (HandlerRegistry $registry) {
+                    $registry->registerSubscribingHandler(new EBDateTimeHandler());
+                }
+            )
+            ->build();
     }
 
     /**
