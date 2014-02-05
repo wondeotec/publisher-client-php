@@ -19,17 +19,19 @@ use EBC\PublisherClient\Campaign\Campaigns;
 interface PublisherClientInterface
 {
     /**
-     * Choose the publisher
+     * Choose the publisher on behalf the requests will be done.
      *
-     * @param int    $publisherId
-     * @param string $key
-     * @param string $secret
+     * @param int    $publisherId Publisher ID
+     * @param string $key         The key of publisher
+     * @param string $secret      The secret of publisher
      *
      * @return $this
      */
     public function setPublisher($publisherId, $key, $secret);
 
     /**
+     * Returns all accessible campaigns for the current publisher.
+     *
      * @param string|null $orderBy created|updated|null
      * @param string|null $order   asc|desc|ASC|DESC|null
      *
