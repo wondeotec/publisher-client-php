@@ -31,13 +31,11 @@ class CategoriesTest extends TestCase
 
         /** @var Categories $categories */
         $categories = $this->deserialize(
-            array(
-                'items' => $categoriesArr
-            ),
+            array('items' => $categoriesArr),
             self::CLASS_NAME
         );
 
-        $this->assertInstanceOf('EBC\PublisherClient\Campaign\Categories', $categories);
+        $this->assertInstanceOf(self::CLASS_NAME, $categories);
         $this->assertCount(2, $categories);
 
         $pos = 0;

@@ -36,8 +36,61 @@ class Campaign
      */
     protected $bid;
 
-    protected $categories;
-
+    /**
+     * @var ListApprovals
+     */
     protected $listApprovals;
 
+    /**
+     * @var Categories
+     */
+    protected $categories;
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @return Schedule
+     */
+    public function getSchedule()
+    {
+        return $this->schedule;
+    }
+
+    /**
+     * @return Bid
+     */
+    public function getBid()
+    {
+        return $this->bid;
+    }
+
+    /**
+     * @return ListApprovals|ListApproval[]
+     */
+    public function getListApprovals()
+    {
+        return $this->listApprovals;
+    }
+
+    /**
+     * @return Categories|Category[]
+     */
+    public function getCategories()
+    {
+        return $this->categories;
+    }
 }

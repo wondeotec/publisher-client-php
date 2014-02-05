@@ -29,7 +29,7 @@ class ScheduleTest extends TestCase
             self::CLASS_NAME
         );
 
-        $this->assertInstanceOf('EBC\PublisherClient\Campaign\Schedule', $schedule);
+        $this->assertInstanceOf(self::CLASS_NAME, $schedule);
 
         $this->assertInstanceOf('EBT\EBDate\EBDateTime', $schedule->getStartDate());
         $this->assertEquals('2014-01-09 19:20:30', $schedule->getStartDate()->formatAsString());

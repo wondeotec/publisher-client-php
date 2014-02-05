@@ -26,7 +26,7 @@ class BidTest extends TestCase
         /** @var Bid $bid */
         $bid = $this->deserialize(array('type' => 'cpc', 'value' => 20.9), self::CLASS_NAME);
 
-        $this->assertInstanceOf('EBC\PublisherClient\Campaign\Bid', $bid);
+        $this->assertInstanceOf(self::CLASS_NAME, $bid);
         $this->assertEquals('cpc', $bid->getType());
         $this->assertEquals(20.9, $bid->getValue());
     }

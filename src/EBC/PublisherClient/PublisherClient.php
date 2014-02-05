@@ -15,9 +15,9 @@ use EBT\Fastc\Client as FastcClient;
 use EBT\Fastc\Listener\StatusCodeListener;
 use EBT\Fastc\Listener\ParseResponseListener;
 use JMS\Serializer\SerializerBuilder;
-use JMS\Serializer\SerializerInterface;
 use JMS\Serializer\Handler\HandlerRegistry;
 use EBT\EBDate\Serializer\EBDateTimeHandler;
+use EBC\PublisherClient\Campaign\Campaigns;
 
 /**
  * PublisherClient
@@ -77,7 +77,7 @@ class PublisherClient extends FastcClient
      * @param null $orderBy
      * @param null $order
      *
-     * @return mixed
+     * @return Campaigns
      */
     public function getCampaigns($orderBy = null, $order = null)
     {
