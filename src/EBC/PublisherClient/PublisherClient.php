@@ -22,7 +22,7 @@ use EBC\PublisherClient\Campaign\Campaigns;
 /**
  * PublisherClient
  */
-class PublisherClient extends FastcClient
+class PublisherClient extends FastcClient implements PublisherClientInterface
 {
     /**
      * @param array $config
@@ -58,13 +58,9 @@ class PublisherClient extends FastcClient
     }
 
     /**
-     * @param int    $publisherId
-     * @param string $key
-     * @param string $secret
-     *
-     * @return $this
+     * {@inheritdoc}
      */
-    public function publisher($publisherId, $key, $secret)
+    public function setPublisher($publisherId, $key, $secret)
     {
         $this->client->getConfig()->setPath('publisherId', $publisherId)
                                   ->setPath('request.options/query/key', $key)
@@ -74,10 +70,7 @@ class PublisherClient extends FastcClient
     }
 
     /**
-     * @param null $orderBy
-     * @param null $order
-     *
-     * @return Campaigns
+     * {@inheritdoc}
      */
     public function getCampaigns($orderBy = null, $order = null)
     {
