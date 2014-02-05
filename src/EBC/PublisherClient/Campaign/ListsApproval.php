@@ -19,9 +19,9 @@ use EBT\Collection\CountableTrait;
 use EBT\Collection\GetItemsTrait;
 
 /**
- * ListApprovals
+ * ListsApproval
  */
-class ListApprovals implements CollectionInterface
+class ListsApproval implements CollectionInterface
 {
     use EmptyTrait;
     use IterableTrait;

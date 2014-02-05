@@ -12,19 +12,19 @@
 namespace EBC\PublisherClient\Tests\Campaign;
 
 use EBC\PublisherClient\Tests\TestCase;
-use EBC\PublisherClient\Campaign\ListApprovals;
+use EBC\PublisherClient\Campaign\ListsApproval;
 use EBC\PublisherClient\Campaign\ListApproval;
 
 /**
- * ListApprovalsTest
+ * ListsApprovalTest
  */
-class ListApprovalsTest extends TestCase
+class ListsApprovalTest extends TestCase
 {
-    const CLASS_NAME = 'EBC\PublisherClient\Campaign\ListApprovals';
+    const CLASS_NAME = 'EBC\PublisherClient\Campaign\ListsApproval';
 
     public function testDeserialize()
     {
-        $listApprovalsArr = array(
+        $listsApprovalArr = array(
             array(
                 'list_id' => 9,
                 'approval' => array(
@@ -41,26 +41,26 @@ class ListApprovalsTest extends TestCase
             )
         );
 
-        /** @var ListApprovals $listApprovals */
-        $listApprovals = $this->deserialize(
-            array('items' => $listApprovalsArr),
+        /** @var ListsApproval $listsApproval */
+        $listsApproval = $this->deserialize(
+            array('items' => $listsApprovalArr),
             self::CLASS_NAME
         );
 
-        $this->assertInstanceOf(self::CLASS_NAME, $listApprovals);
-        $this->assertCount(2, $listApprovals);
+        $this->assertInstanceOf(self::CLASS_NAME, $listsApproval);
+        $this->assertCount(2, $listsApproval);
 
         $pos = 0;
         /** @var ListApproval $listApproval */
-        foreach ($listApprovals as $listApproval) {
-            $this->assertEquals($listApprovalsArr[$pos]['list_id'], $listApproval->getListId());
+        foreach ($listsApproval as $listApproval) {
+            $this->assertEquals($listsApprovalArr[$pos]['list_id'], $listApproval->getListId());
             $this->assertInstanceOf('EBC\PublisherClient\Campaign\Approval', $listApproval->getApproval());
             $this->assertEquals(
-                $listApprovalsArr[$pos]['approval']['approved'],
+                $listsApprovalArr[$pos]['approval']['approved'],
                 $listApproval->getApproval()->isApproved()
             );
             $this->assertEquals(
-                $listApprovalsArr[$pos]['approval']['type'],
+                $listsApprovalArr[$pos]['approval']['type'],
                 $listApproval->getApproval()->getType()
             );
             ++$pos;

@@ -1,4 +1,4 @@
-EBC\PublisherClient\Campaign\ListApprovals:
+EBC\PublisherClient\Campaign\ListsApproval:
     properties:
         items:
             type: array<EBC\PublisherClient\Campaign\ListApproval>

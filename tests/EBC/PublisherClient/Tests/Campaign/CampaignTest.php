@@ -56,16 +56,16 @@ class CampaignTest extends TestCase
         $this->assertEquals(20.9, $campaign->getBid()->getValue());
 
         // list approvals
-        $listApprovals = $campaign->getListApprovals();
-        $this->assertInstanceOf('EBC\PublisherClient\Campaign\ListApprovals', $listApprovals);
-        $this->assertCount(2, $campaign->getListApprovals());
+        $listsApproval = $campaign->getListsApproval();
+        $this->assertInstanceOf('EBC\PublisherClient\Campaign\ListsApproval', $listsApproval);
+        $this->assertCount(2, $listsApproval);
         $pos = 0;
-        foreach ($listApprovals as $listApproval) {
-            $listApprovalArr = $campaignArr['list_approvals']['items'][$pos];
-            $this->assertEquals($listApprovalArr['list_id'], $listApproval->getListId());
+        foreach ($listsApproval as $listApproval) {
+            $listsApprovalArr = $campaignArr['lists_approval']['items'][$pos];
+            $this->assertEquals($listsApprovalArr['list_id'], $listApproval->getListId());
             $this->assertInstanceOf('EBC\PublisherClient\Campaign\Approval', $listApproval->getApproval());
-            $this->assertEquals($listApprovalArr['approval']['approved'], $listApproval->getApproval()->isApproved());
-            $this->assertEquals($listApprovalArr['approval']['type'], $listApproval->getApproval()->getType());
+            $this->assertEquals($listsApprovalArr['approval']['approved'], $listApproval->getApproval()->isApproved());
+            $this->assertEquals($listsApprovalArr['approval']['type'], $listApproval->getApproval()->getType());
             ++$pos;
         }
 
@@ -99,7 +99,7 @@ class CampaignTest extends TestCase
                 'type' => 'cpc',
                 'value' => 20.9
             ),
-            'list_approvals' => array(
+            'lists_approval' => array(
                 'items' => array(
                     array(
                         'list_id' => 8,

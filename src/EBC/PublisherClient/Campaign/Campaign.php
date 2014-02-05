@@ -37,9 +37,9 @@ class Campaign
     protected $bid;
 
     /**
-     * @var ListApprovals
+     * @var ListsApproval
      */
-    protected $listApprovals;
+    protected $listsApproval;
 
     /**
      * @var Categories
@@ -79,11 +79,11 @@ class Campaign
     }
 
     /**
-     * @return ListApprovals|ListApproval[]
+     * @return ListsApproval|ListApproval[]
      */
-    public function getListApprovals()
+    public function getListsApproval()
     {
-        return $this->listApprovals;
+        return $this->listsApproval;
     }
 
     /**

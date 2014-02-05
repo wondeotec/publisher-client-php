@@ -8,7 +8,7 @@ EBC\PublisherClient\Campaign\Campaign:
             type: EBC\PublisherClient\Campaign\Schedule
         bid:
             type: EBC\PublisherClient\Campaign\Bid
-        listApprovals:
-            type: EBC\PublisherClient\Campaign\ListApprovals
+        listsApproval:
+            type: EBC\PublisherClient\Campaign\ListsApproval
         categories:
             type: EBC\PublisherClient\Campaign\Categories

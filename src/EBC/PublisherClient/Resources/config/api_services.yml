@@ -17,6 +17,7 @@ operations:
                 minLength: 2
                 maxLength: 64
                 required: false
+                sentAs: order_by
             order:
                 location: query
                 description: Order asc|desc|ASC|DESC
