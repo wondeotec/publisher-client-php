@@ -41,7 +41,6 @@ class CategoriesTest extends TestCase
         $pos = 0;
         /** @var Category $category */
         foreach ($categories as $category) {
-            $this->assertEquals($categoriesArr[$pos]['id'], $category->getId());
             $this->assertEquals($categoriesArr[$pos]['name'], $category->getName());
             ++$pos;
         }

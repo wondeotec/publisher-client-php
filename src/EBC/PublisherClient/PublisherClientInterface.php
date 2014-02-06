@@ -12,6 +12,7 @@
 namespace EBC\PublisherClient;
 
 use EBC\PublisherClient\Campaign\Campaigns;
+use EBC\PublisherClient\Campaign\Campaign;
 
 /**
  * PublisherClientInterface
@@ -25,7 +26,7 @@ interface PublisherClientInterface
      * @param string $key         The key of publisher
      * @param string $secret      The secret of publisher
      *
-     * @return $this
+     * @return PublisherClientInterface
      */
     public function setPublisher($publisherId, $key, $secret);
 
@@ -35,7 +36,7 @@ interface PublisherClientInterface
      * @param string|null $orderBy created|updated|null
      * @param string|null $order   asc|desc|ASC|DESC|null
      *
-     * @return Campaigns
+     * @return Campaign[]
      */
     public function getCampaigns($orderBy = null, $order = null);
 }

@@ -24,10 +24,9 @@ class CategoryTest extends TestCase
     public function testDeserialize()
     {
         /** @var Category $category */
-        $category = $this->deserialize(array('id' => 20, 'name' => 'test'), self::CLASS_NAME);
+        $category = $this->deserialize(array('name' => 'test'), self::CLASS_NAME);
 
         $this->assertInstanceOf(self::CLASS_NAME, $category);
-        $this->assertEquals(20, $category->getId());
         $this->assertEquals('test', $category->getName());
     }
 }

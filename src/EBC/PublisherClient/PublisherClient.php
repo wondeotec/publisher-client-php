@@ -17,7 +17,6 @@ use EBT\Fastc\Listener\ParseResponseListener;
 use JMS\Serializer\SerializerBuilder;
 use JMS\Serializer\Handler\HandlerRegistry;
 use EBT\EBDate\Serializer\EBDateTimeHandler;
-use EBC\PublisherClient\Campaign\Campaigns;
 
 /**
  * PublisherClient

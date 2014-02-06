@@ -19,7 +19,7 @@ class ListApproval
     /**
      * @var int
      */
-    protected $listId;
+    protected $listExternalId;
 
     /**
      * @var Approval
@@ -29,9 +29,9 @@ class ListApproval
     /**
      * @return int
      */
-    public function getListId()
+    public function getListExternalId()
     {
-        return $this->listId;
+        return $this->listExternalId;
     }
 
     /**
