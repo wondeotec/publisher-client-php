@@ -79,6 +79,10 @@ class PublisherClientTest extends TestCase
             $this->assertEquals($campaignArr['id'], $campaign->getId());
             $this->assertEquals($campaignArr['name'], $campaign->getName());
 
+            // advertiser
+            $this->assertInstanceOf('EBC\PublisherClient\Advertiser\Advertiser', $campaign->getAdvertiser());
+            $this->assertEquals($campaignArr['advertiser']['name'], $campaign->getAdvertiser()->getName());
+
             // schedule
             $this->assertInstanceOf('EBC\PublisherClient\Campaign\Schedule', $campaign->getSchedule());
             $this->assertInstanceOf('EBT\EBDate\EBDateTime', $campaign->getSchedule()->getStartDate());

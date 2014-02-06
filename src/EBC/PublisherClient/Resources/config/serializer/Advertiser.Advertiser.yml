@@ -1,0 +1,4 @@
+EBC\PublisherClient\Advertiser\Advertiser:
+    properties:
+        name:
+            type: string

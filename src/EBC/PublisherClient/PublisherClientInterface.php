@@ -11,13 +11,14 @@
 
 namespace EBC\PublisherClient;
 
+use EBT\Fastc\ClientInterface;
 use EBC\PublisherClient\Campaign\Campaigns;
 use EBC\PublisherClient\Campaign\Campaign;
 
 /**
  * PublisherClientInterface
  */
-interface PublisherClientInterface
+interface PublisherClientInterface extends ClientInterface
 {
     /**
      * Choose the publisher on behalf the requests will be done.
@@ -36,7 +37,7 @@ interface PublisherClientInterface
      * @param string|null $orderBy created|updated|null
      * @param string|null $order   asc|desc|ASC|DESC|null
      *
-     * @return Campaign[]
+     * @return Campaigns|Campaign[]
      */
     public function getCampaigns($orderBy = null, $order = null);
 }

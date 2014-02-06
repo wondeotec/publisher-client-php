@@ -45,6 +45,9 @@ class CampaignsTest extends TestCase
                 array(
                     'id' => 2,
                     'name' => 'just a test2',
+                    'advertiser' => array(
+                        'name' => 'advertiser 1'
+                    ),
                     'schedule' => array('start_date' => '2014-01-09 19:20:30', 'end_date' => '2014-01-28 09:18:05'),
                     'bid' => array('type' => 'cpc', 'value' => 20.9),
                     'list_approvals' => array(
@@ -70,6 +73,9 @@ class CampaignsTest extends TestCase
                 array(
                     'id' => 3,
                     'name' => 'just a test3',
+                    'advertiser' => array(
+                        'name' => 'advertiser 1'
+                    ),
                     'schedule' => array('start_date' => '2014-01-09 19:20:30', 'end_date' => '2014-01-28 09:18:05'),
                     'bid' => array('type' => 'cpc', 'value' => 20.9),
                     'list_approvals' => array(

@@ -4,6 +4,8 @@ EBC\PublisherClient\Campaign\Campaign:
             type: integer
         name:
             type: string
+        advertiser:
+            type: EBC\PublisherClient\Advertiser\Advertiser
         schedule:
             type: EBC\PublisherClient\Campaign\Schedule
         bid:

@@ -11,6 +11,8 @@
 
 namespace EBC\PublisherClient\Campaign;
 
+use EBC\PublisherClient\Advertiser\Advertiser;
+
 /**
  * Campaign
  */
@@ -25,6 +27,11 @@ class Campaign
      * @var string
      */
     protected $name;
+
+    /**
+     * @var Advertiser
+     */
+    protected $advertiser;
 
     /**
      * @var Schedule
@@ -60,6 +67,14 @@ class Campaign
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * @return Advertiser
+     */
+    public function getAdvertiser()
+    {
+        return $this->advertiser;
     }
 
     /**

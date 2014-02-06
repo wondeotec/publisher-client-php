@@ -37,6 +37,10 @@ class CampaignTest extends TestCase
         $this->assertEquals(2, $campaign->getId());
         $this->assertEquals('just a test', $campaign->getName());
 
+        // advertiser
+        $this->assertInstanceOf('EBC\PublisherClient\Advertiser\Advertiser', $campaign->getAdvertiser());
+        $this->assertEquals('advertiser 1', $campaign->getAdvertiser()->getName());
+
         // schedule
         $this->assertInstanceOf('EBC\PublisherClient\Campaign\Schedule', $campaign->getSchedule());
         $this->assertInstanceOf('EBT\EBDate\EBDateTime', $campaign->getSchedule()->getStartDate());
@@ -90,6 +94,9 @@ class CampaignTest extends TestCase
         return array(
             'id' => 2,
             'name' => 'just a test',
+            'advertiser' => array(
+                'name' => 'advertiser 1'
+            ),
             'schedule' => array(
                 'start_date' => '2014-01-09 19:20:30',
                 'end_date' => '2014-01-28 09:18:05'
