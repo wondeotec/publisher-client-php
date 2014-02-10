@@ -1,4 +1,4 @@
-EBC\PublisherClient\Campaign\Country:
+EBC\PublisherClient\Locale\Country:
     # exclude everything except what is explicitly exposed
     exclusion_policy: ALL
     properties:

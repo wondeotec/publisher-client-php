@@ -12,6 +12,7 @@
 namespace EBC\PublisherClient\Campaign;
 
 use EBC\PublisherClient\Advertiser\Advertiser;
+use EBC\PublisherClient\Locale\Country;
 use EBT\EBDate\EBDateTime;
 
 /**

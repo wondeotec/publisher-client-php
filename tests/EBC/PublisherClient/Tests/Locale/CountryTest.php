@@ -9,17 +9,17 @@
  * file that was distributed with this source code.
  */
 
-namespace EBC\PublisherClient\Tests\Campaign;
+namespace EBC\PublisherClient\Tests\Locale;
 
 use EBC\PublisherClient\Tests\TestCase;
-use EBC\PublisherClient\Campaign\Country;
+use EBC\PublisherClient\Locale\Country;
 
 /**
  * CountryTest
  */
 class CountryTest extends TestCase
 {
-    const CLASS_NAME = 'EBC\PublisherClient\Campaign\Country';
+    const CLASS_NAME = 'EBC\PublisherClient\Locale\Country';
 
     public function testDeserialize()
     {
@@ -30,4 +30,4 @@ class CountryTest extends TestCase
         $this->assertEquals('PT', $country->getCode());
         $this->assertEquals('Portugal', $country->getName());
     }
-} 
+}

@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace EBC\PublisherClient\Campaign;
+namespace EBC\PublisherClient\Locale;
 
 /**
  * Country

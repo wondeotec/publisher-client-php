@@ -7,7 +7,7 @@ EBC\PublisherClient\Campaign\Campaign:
         advertiser:
             type: EBC\PublisherClient\Advertiser\Advertiser
         country:
-            type: EBC\PublisherClient\Campaign\Country
+            type: EBC\PublisherClient\Locale\Country
         schedule:
             type: EBC\PublisherClient\Campaign\Schedule
         bid:

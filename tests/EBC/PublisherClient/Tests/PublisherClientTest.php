@@ -72,7 +72,7 @@ class PublisherClientTest extends TestCase
         $pos = 0;
 
         $campaigns = $client->getCampaigns();
-        $this->assertCount(6, $campaigns);
+        $this->assertCount(7, $campaigns);
 
         foreach ($campaigns as $campaign) {
             $campaignArr =  $campaignsArr[$pos];
@@ -85,7 +85,7 @@ class PublisherClientTest extends TestCase
             $this->assertEquals($campaignArr['advertiser']['name'], $campaign->getAdvertiser()->getName());
 
             // country
-            $this->assertInstanceOf('EBC\PublisherClient\Campaign\Country', $campaign->getCountry());
+            $this->assertInstanceOf('EBC\PublisherClient\Locale\Country', $campaign->getCountry());
             $this->assertEquals($campaignArr['country']['code'], $campaign->getCountry()->getCode());
             $this->assertEquals($campaignArr['country']['name'], $campaign->getCountry()->getName());
 
@@ -169,7 +169,7 @@ class PublisherClientTest extends TestCase
         $client->addSubscriber($plugin);
 
         $campaigns = $client->getCampaigns('updated', 'desc');
-        $this->assertCount(6, $campaigns);
+        $this->assertCount(7, $campaigns);
 
         /** @var Request $request */
         $request = $plugin->getReceivedRequests()[0];
