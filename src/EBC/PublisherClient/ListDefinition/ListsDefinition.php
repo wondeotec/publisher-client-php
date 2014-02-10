@@ -1,10 +1,6 @@
 <?php
 
 /**
- * ListsDefinition.
- *
- * Collection of API Lists object.
- *
  * LICENSE: [EMAILBIDDING_DESCRIPTION_LICENSE_HERE]
  *
  * @author     Rui Ribeiro <rui.ribeiro@emailbidding.com>
