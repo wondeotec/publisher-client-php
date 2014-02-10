@@ -78,4 +78,14 @@ class PublisherClient extends FastcClient implements PublisherClientInterface
             array('orderBy' => $orderBy, 'order' => $order)
         )->execute();
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getLists()
+    {
+        return $this->client->getCommand(
+            'getLists'
+        )->execute();
+    }
 }

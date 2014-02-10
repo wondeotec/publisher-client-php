@@ -1,0 +1,6 @@
+EBC\PublisherClient\ListDefinition\ListDefinition:
+    properties:
+        externalId:
+            type: string
+        name:
+            type: string

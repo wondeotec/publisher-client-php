@@ -14,6 +14,8 @@ namespace EBC\PublisherClient;
 use EBT\Fastc\ClientInterface;
 use EBC\PublisherClient\Campaign\Campaigns;
 use EBC\PublisherClient\Campaign\Campaign;
+use EBC\PublisherClient\ListDefinition\ListDefinition;
+use EBC\PublisherClient\ListDefinition\ListsDefinition;
 
 /**
  * PublisherClientInterface
@@ -40,4 +42,11 @@ interface PublisherClientInterface extends ClientInterface
      * @return Campaigns|Campaign[]
      */
     public function getCampaigns($orderBy = null, $order = null);
+
+    /**
+     * Returns publisher lists.
+     *
+     * @return ListsDefinition|ListDefinition[]
+     */
+    public function getLists();
 }
