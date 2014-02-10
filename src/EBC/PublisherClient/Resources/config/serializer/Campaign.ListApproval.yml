@@ -1,6 +1,6 @@
 EBC\PublisherClient\Campaign\ListApproval:
     properties:
         listExternalId:
-            type: integer
+            type: string
         approval:
             type: EBC\PublisherClient\Campaign\Approval

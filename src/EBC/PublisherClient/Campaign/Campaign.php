@@ -12,6 +12,7 @@
 namespace EBC\PublisherClient\Campaign;
 
 use EBC\PublisherClient\Advertiser\Advertiser;
+use EBT\EBDate\EBDateTime;
 
 /**
  * Campaign
@@ -34,6 +35,11 @@ class Campaign
     protected $advertiser;
 
     /**
+     * @var Country
+     */
+    protected $country;
+
+    /**
      * @var Schedule
      */
     protected $schedule;
@@ -52,6 +58,11 @@ class Campaign
      * @var Categories
      */
     protected $categories;
+
+    /**
+     * @var EBDateTime
+     */
+    protected $updatedAt;
 
     /**
      * @return int
@@ -75,6 +86,14 @@ class Campaign
     public function getAdvertiser()
     {
         return $this->advertiser;
+    }
+
+    /**
+     * @return Country
+     */
+    public function getCountry()
+    {
+        return $this->country;
     }
 
     /**
@@ -107,5 +126,13 @@ class Campaign
     public function getCategories()
     {
         return $this->categories;
+    }
+
+    /**
+     * @return EBDateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
     }
 }

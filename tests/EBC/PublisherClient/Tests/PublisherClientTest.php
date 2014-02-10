@@ -72,7 +72,8 @@ class PublisherClientTest extends TestCase
         $pos = 0;
 
         $campaigns = $client->getCampaigns();
-        $this->assertCount(7, $campaigns);
+        $this->assertCount(6, $campaigns);
+
         foreach ($campaigns as $campaign) {
             $campaignArr =  $campaignsArr[$pos];
             // top level stuff
@@ -82,6 +83,11 @@ class PublisherClientTest extends TestCase
             // advertiser
             $this->assertInstanceOf('EBC\PublisherClient\Advertiser\Advertiser', $campaign->getAdvertiser());
             $this->assertEquals($campaignArr['advertiser']['name'], $campaign->getAdvertiser()->getName());
+
+            // country
+            $this->assertInstanceOf('EBC\PublisherClient\Campaign\Country', $campaign->getCountry());
+            $this->assertEquals($campaignArr['country']['code'], $campaign->getCountry()->getCode());
+            $this->assertEquals($campaignArr['country']['name'], $campaign->getCountry()->getName());
 
             // schedule
             $this->assertInstanceOf('EBC\PublisherClient\Campaign\Schedule', $campaign->getSchedule());
@@ -129,6 +135,13 @@ class PublisherClientTest extends TestCase
                 ++$posCategory;
             }
 
+            // updated at
+            $this->assertInstanceOf('EBT\EBDate\EBDateTime', $campaign->getUpdatedAt());
+            $this->assertEquals(
+                $campaignArr['updated_at'],
+                $campaign->getUpdatedAt()->formatAsString()
+            );
+
             ++$pos;
         }
 
@@ -156,7 +169,7 @@ class PublisherClientTest extends TestCase
         $client->addSubscriber($plugin);
 
         $campaigns = $client->getCampaigns('updated', 'desc');
-        $this->assertCount(7, $campaigns);
+        $this->assertCount(6, $campaigns);
 
         /** @var Request $request */
         $request = $plugin->getReceivedRequests()[0];

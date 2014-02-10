@@ -6,6 +6,8 @@ EBC\PublisherClient\Campaign\Campaign:
             type: string
         advertiser:
             type: EBC\PublisherClient\Advertiser\Advertiser
+        country:
+            type: EBC\PublisherClient\Campaign\Country
         schedule:
             type: EBC\PublisherClient\Campaign\Schedule
         bid:
@@ -14,3 +16,5 @@ EBC\PublisherClient\Campaign\Campaign:
             type: EBC\PublisherClient\Campaign\ListsApproval
         categories:
             type: EBC\PublisherClient\Campaign\Categories
+        updatedAt:
+            type: EBT\EBDate\EBDateTime

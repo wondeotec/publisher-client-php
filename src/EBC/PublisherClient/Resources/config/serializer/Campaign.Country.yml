@@ -1,0 +1,10 @@
+EBC\PublisherClient\Campaign\Country:
+    # exclude everything except what is explicitly exposed
+    exclusion_policy: ALL
+    properties:
+        code:
+            expose: true
+            type: string
+        name:
+            expose: true
+            type: string
