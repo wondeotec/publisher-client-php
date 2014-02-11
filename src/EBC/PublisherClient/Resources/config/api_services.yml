@@ -25,3 +25,10 @@ operations:
                 minLength: 3
                 maxLength: 4
                 required: false
+    getLists:
+        httpMethod: GET
+        uri: lists
+        responseClass: 'EBC\PublisherClient\ListDefinition\ListsDefinition'
+        summary: Returns publisher lists
+        data:
+            acceptedStatusCodes: 200

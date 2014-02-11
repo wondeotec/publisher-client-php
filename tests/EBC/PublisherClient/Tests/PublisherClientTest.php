@@ -137,10 +137,7 @@ class PublisherClientTest extends TestCase
 
             // updated at
             $this->assertInstanceOf('EBT\EBDate\EBDateTime', $campaign->getUpdatedAt());
-            $this->assertEquals(
-                $campaignArr['updated_at'],
-                $campaign->getUpdatedAt()->formatAsString()
-            );
+            $this->assertEquals($campaignArr['updated_at'], $campaign->getUpdatedAt()->formatAsString());
 
             ++$pos;
         }
