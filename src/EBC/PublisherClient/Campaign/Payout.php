@@ -12,9 +12,9 @@
 namespace EBC\PublisherClient\Campaign;
 
 /**
- * Bid
+ * Payout
  */
-class Bid
+class Payout
 {
     /**
      * @var string

@@ -49,7 +49,7 @@ class CampaignsTest extends TestCase
                         'name' => 'advertiser 1'
                     ),
                     'schedule' => array('start_date' => '2014-01-09 19:20:30', 'end_date' => '2014-01-28 09:18:05'),
-                    'bid' => array('type' => 'cpc', 'value' => 20.9),
+                    'payout' => array('type' => 'cpc', 'value' => 20.9),
                     'list_approvals' => array(
                         'items' => array(
                             array(

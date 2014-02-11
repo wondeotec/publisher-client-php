@@ -54,10 +54,15 @@ class CampaignTest extends TestCase
             $campaign->getSchedule()->getEndDate()->formatAsString()
         );
 
-        // bid
-        $this->assertInstanceOf('EBC\PublisherClient\Campaign\Bid', $campaign->getBid());
-        $this->assertEquals('cpc', $campaign->getBid()->getType());
-        $this->assertEquals(20.9, $campaign->getBid()->getValue());
+        // country
+        $this->assertInstanceOf('EBC\PublisherClient\Locale\Country', $campaign->getCountry());
+        $this->assertEquals('PT', $campaign->getCountry()->getCode());
+        $this->assertEquals('Portugal', $campaign->getCountry()->getName());
+
+        // payout
+        $this->assertInstanceOf('EBC\PublisherClient\Campaign\Payout', $campaign->getPayout());
+        $this->assertEquals('cpc', $campaign->getPayout()->getType());
+        $this->assertEquals(20.9, $campaign->getPayout()->getValue());
 
         // list approvals
         $listsApproval = $campaign->getListsApproval();
@@ -84,6 +89,11 @@ class CampaignTest extends TestCase
             ++$pos;
         }
 
+        $this->assertInstanceOf('EBT\EBDate\EBDateTime', $campaign->getUpdatedAt());
+        $this->assertEquals(
+            '2014-01-09 19:20:30',
+            $campaign->getUpdatedAt()->formatAsString()
+        );
     }
 
     /**
@@ -101,9 +111,13 @@ class CampaignTest extends TestCase
                 'start_date' => '2014-01-09 19:20:30',
                 'end_date' => '2014-01-28 09:18:05'
             ),
-            'bid' => array(
+            'payout' => array(
                 'type' => 'cpc',
                 'value' => 20.9
+            ),
+            'country' => array(
+                'code' => 'PT',
+                'name' => 'Portugal'
             ),
             'lists_approval' => array(
                 'items' => array(
@@ -138,7 +152,8 @@ class CampaignTest extends TestCase
                         'name' => 'category3'
                     )
                 )
-            )
+            ),
+            'updated_at' => '2014-01-09 19:20:30'
         );
     }
 }

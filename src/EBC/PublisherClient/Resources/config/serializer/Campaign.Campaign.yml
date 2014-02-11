@@ -10,8 +10,8 @@ EBC\PublisherClient\Campaign\Campaign:
             type: EBC\PublisherClient\Locale\Country
         schedule:
             type: EBC\PublisherClient\Campaign\Schedule
-        bid:
-            type: EBC\PublisherClient\Campaign\Bid
+        payout:
+            type: EBC\PublisherClient\Campaign\Payout
         listsApproval:
             type: EBC\PublisherClient\Campaign\ListsApproval
         categories:

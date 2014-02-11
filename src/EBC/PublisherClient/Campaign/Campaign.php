@@ -46,9 +46,9 @@ class Campaign
     protected $schedule;
 
     /**
-     * @var Bid
+     * @var Payout
      */
-    protected $bid;
+    protected $payout;
 
     /**
      * @var ListsApproval
@@ -106,11 +106,11 @@ class Campaign
     }
 
     /**
-     * @return Bid
+     * @return Payout
      */
-    public function getBid()
+    public function getPayout()
     {
-        return $this->bid;
+        return $this->payout;
     }
 
     /**

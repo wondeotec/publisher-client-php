@@ -1,4 +1,4 @@
-EBC\PublisherClient\Campaign\Bid:
+EBC\PublisherClient\Campaign\Payout:
     properties:
         type:
             type: string

@@ -103,9 +103,9 @@ class PublisherClientTest extends TestCase
             );
 
             // bid
-            $this->assertInstanceOf('EBC\PublisherClient\Campaign\Bid', $campaign->getBid());
-            $this->assertEquals($campaignArr['bid']['type'], $campaign->getBid()->getType());
-            $this->assertEquals($campaignArr['bid']['value'], $campaign->getBid()->getValue());
+            $this->assertInstanceOf('EBC\PublisherClient\Campaign\Payout', $campaign->getPayout());
+            $this->assertEquals($campaignArr['payout']['type'], $campaign->getPayout()->getType());
+            $this->assertEquals($campaignArr['payout']['value'], $campaign->getPayout()->getValue());
 
             // list approvals
             $listsApproval = $campaign->getListsApproval();
