@@ -29,4 +29,4 @@ class ListDefinitionTest extends TestCase
         $this->assertEquals('ccc12', $listDefinition->getExternalId());
         $this->assertEquals('list', $listDefinition->getName());
     }
-} 
+}

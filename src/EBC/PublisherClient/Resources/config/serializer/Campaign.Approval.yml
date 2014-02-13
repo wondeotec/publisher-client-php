@@ -1,6 +1,6 @@
 EBC\PublisherClient\Campaign\Approval:
     properties:
-        approved:
-            type: boolean
+        status:
+            type: string
         type:
             type: string

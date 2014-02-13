@@ -24,10 +24,10 @@ class ApprovalTest extends TestCase
     public function testDeserialize()
     {
         /** @var Approval $approval */
-        $approval = $this->deserialize(array('approved' => false, 'type' => 'auto'), self::CLASS_NAME);
+        $approval = $this->deserialize(array('status' => 'running', 'type' => 'auto'), self::CLASS_NAME);
 
         $this->assertInstanceOf(self::CLASS_NAME, $approval);
-        $this->assertEquals(false, $approval->isApproved());
+        $this->assertEquals('running', $approval->getStatus());
         $this->assertEquals('auto', $approval->getType());
     }
 }

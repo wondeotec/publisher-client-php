@@ -44,4 +44,4 @@ class ListsDefinitionTest extends TestCase
         $this->assertInstanceOf(self::CLASS_NAME, $lists);
         $this->assertCount(2, $lists);
     }
-} 
+}

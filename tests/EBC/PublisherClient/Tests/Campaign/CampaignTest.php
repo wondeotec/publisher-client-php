@@ -73,7 +73,7 @@ class CampaignTest extends TestCase
             $listsApprovalArr = $campaignArr['lists_approval']['items'][$pos];
             $this->assertEquals($listsApprovalArr['list_external_id'], $listApproval->getListExternalId());
             $this->assertInstanceOf('EBC\PublisherClient\Campaign\Approval', $listApproval->getApproval());
-            $this->assertEquals($listsApprovalArr['approval']['approved'], $listApproval->getApproval()->isApproved());
+            $this->assertEquals($listsApprovalArr['approval']['status'], $listApproval->getApproval()->getStatus());
             $this->assertEquals($listsApprovalArr['approval']['type'], $listApproval->getApproval()->getType());
             ++$pos;
         }
@@ -124,14 +124,14 @@ class CampaignTest extends TestCase
                     array(
                         'list_external_id' => 8,
                         'approval' => array(
-                            'approved' => true,
+                            'status' => 'low_bid',
                             'type' => 'auto'
                         )
                     ),
                     array(
                         'list_external_id' => 10,
                         'approval' => array(
-                            'approved' => false,
+                            'status' => 'rejected',
                             'type' => 'manual'
                         )
                     )

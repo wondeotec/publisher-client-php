@@ -54,11 +54,11 @@ class CampaignsTest extends TestCase
                         'items' => array(
                             array(
                                 'list_id' => 8,
-                                'approval' => array('approved' => true, 'type' => 'auto')
+                                'approval' => array('status' => 'rejected', 'type' => 'auto')
                             ),
                             array(
                                 'list_id' => 10,
-                                'approval' => array('approved' => false, 'type' => 'manual')
+                                'approval' => array('status' => 'running', 'type' => 'manual')
                             )
                         )
                     ),
@@ -82,11 +82,11 @@ class CampaignsTest extends TestCase
                         'items' => array(
                             array(
                                 'list_id' => 8,
-                                'approval' => array('approved' => true, 'type' => 'auto')
+                                'approval' => array('status' => 'running', 'type' => 'auto')
                             ),
                             array(
                                 'list_id' => 10,
-                                'approval' => array('approved' => false, 'type' => 'manual')
+                                'approval' => array('status' => 'running', 'type' => 'manual')
                             )
                         )
                     ),
