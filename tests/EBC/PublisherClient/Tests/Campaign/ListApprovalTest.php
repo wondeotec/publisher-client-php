@@ -28,7 +28,7 @@ class ListApprovalTest extends TestCase
             array(
                 'list_external_id' => 9,
                 'approval' => array(
-                    'approved' => true,
+                    'status' => 'rejected',
                     'type' => 'manual'
                 )
             ),
@@ -38,7 +38,7 @@ class ListApprovalTest extends TestCase
         $this->assertInstanceOf(self::CLASS_NAME, $listApproval);
         $this->assertEquals(9, $listApproval->getListExternalId());
         $this->assertInstanceOf('EBC\PublisherClient\Campaign\Approval', $listApproval->getApproval());
-        $this->assertEquals(true, $listApproval->getApproval()->isApproved());
+        $this->assertEquals('rejected', $listApproval->getApproval()->getStatus());
         $this->assertEquals('manual', $listApproval->getApproval()->getType());
     }
 }

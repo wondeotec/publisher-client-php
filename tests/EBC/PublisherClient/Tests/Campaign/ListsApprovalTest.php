@@ -28,14 +28,14 @@ class ListsApprovalTest extends TestCase
             array(
                 'list_external_id' => 9,
                 'approval' => array(
-                    'approved' => true,
+                    'status' => 'approved',
                     'type' => 'manual'
                 )
             ),
             array(
                 'list_external_id' => 7,
                 'approval' => array(
-                    'approved' => false,
+                    'status' => 'low_bid',
                     'type' => 'auto'
                 )
             )
@@ -56,8 +56,8 @@ class ListsApprovalTest extends TestCase
             $this->assertEquals($listsApprovalArr[$pos]['list_external_id'], $listApproval->getListExternalId());
             $this->assertInstanceOf('EBC\PublisherClient\Campaign\Approval', $listApproval->getApproval());
             $this->assertEquals(
-                $listsApprovalArr[$pos]['approval']['approved'],
-                $listApproval->getApproval()->isApproved()
+                $listsApprovalArr[$pos]['approval']['status'],
+                $listApproval->getApproval()->getStatus()
             );
             $this->assertEquals(
                 $listsApprovalArr[$pos]['approval']['type'],

@@ -117,8 +117,8 @@ class PublisherClientTest extends TestCase
                 $this->assertEquals($listsApprovalArr['list_external_id'], $listApproval->getListExternalId());
                 $this->assertInstanceOf('EBC\PublisherClient\Campaign\Approval', $listApproval->getApproval());
                 $this->assertEquals(
-                    $listsApprovalArr['approval']['approved'],
-                    $listApproval->getApproval()->isApproved()
+                    $listsApprovalArr['approval']['status'],
+                    $listApproval->getApproval()->getStatus()
                 );
                 $this->assertEquals($listsApprovalArr['approval']['type'], $listApproval->getApproval()->getType());
                 ++$posApproval;

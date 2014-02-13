@@ -17,9 +17,9 @@ namespace EBC\PublisherClient\Campaign;
 class Approval
 {
     /**
-     * @var
+     * @var string
      */
-    protected $approved;
+    protected $status;
 
     /**
      * @var string
@@ -29,9 +29,9 @@ class Approval
     /**
      * @return bool
      */
-    public function isApproved()
+    public function getStatus()
     {
-        return $this->approved;
+        return $this->status;
     }
 
     /**
