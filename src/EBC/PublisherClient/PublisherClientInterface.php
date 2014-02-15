@@ -37,8 +37,8 @@ interface PublisherClientInterface extends ClientInterface
     /**
      * Returns all accessible campaigns for the current publisher.
      *
-     * @param string|null       $orderBy created|updated|null
-     * @param string|null       $order   asc|desc|ASC|DESC|null
+     * @param string|null       $orderBy            created|updated|null
+     * @param string|null       $order              asc|desc|ASC|DESC|null
      * @param EBDateTime|null   $endDateGreaterThan
      * @param int|null          $country
      *

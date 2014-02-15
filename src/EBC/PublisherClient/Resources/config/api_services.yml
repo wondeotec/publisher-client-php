@@ -25,6 +25,18 @@ operations:
                 minLength: 3
                 maxLength: 4
                 required: false
+            endDateGreaterThan:
+                location: query
+                description: End date for campaign greater than
+                type: string
+                minLength: 10
+                maxLength: 10
+                required: false
+            country:
+                location: query
+                description: Campaigns' country
+                type: number
+                required: false
     getLists:
         httpMethod: GET
         uri: lists
