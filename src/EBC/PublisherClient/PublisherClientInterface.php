@@ -11,6 +11,7 @@
 
 namespace EBC\PublisherClient;
 
+use EBT\EBDate\EBDateTime;
 use EBT\Fastc\ClientInterface;
 use EBC\PublisherClient\Campaign\Campaigns;
 use EBC\PublisherClient\Campaign\Campaign;
@@ -36,12 +37,19 @@ interface PublisherClientInterface extends ClientInterface
     /**
      * Returns all accessible campaigns for the current publisher.
      *
-     * @param string|null $orderBy created|updated|null
-     * @param string|null $order   asc|desc|ASC|DESC|null
+     * @param string|null       $orderBy created|updated|null
+     * @param string|null       $order   asc|desc|ASC|DESC|null
+     * @param EBDateTime|null   $endDateGreaterThan
+     * @param int|null          $country
      *
      * @return Campaigns|Campaign[]
      */
-    public function getCampaigns($orderBy = null, $order = null);
+    public function getCampaigns(
+        $orderBy = null,
+        $order = null,
+        EBDateTime $endDateGreaterThan = null,
+        $country = null
+    );
 
     /**
      * Returns publisher lists.

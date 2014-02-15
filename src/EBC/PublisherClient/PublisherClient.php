@@ -11,6 +11,7 @@
 
 namespace EBC\PublisherClient;
 
+use EBT\EBDate\EBDateTime;
 use EBT\Fastc\Client as FastcClient;
 use EBT\Fastc\Listener\StatusCodeListener;
 use EBT\Fastc\Listener\ParseResponseListener;
@@ -71,11 +72,24 @@ class PublisherClient extends FastcClient implements PublisherClientInterface
     /**
      * {@inheritdoc}
      */
-    public function getCampaigns($orderBy = null, $order = null)
-    {
+    public function getCampaigns(
+        $orderBy = null,
+        $order = null,
+        EBDateTime $endDateGreaterThan = null,
+        $country = null
+    ) {
+        if ($endDateGreaterThan instanceof EBDateTime) {
+            $endDateGreaterThan = $endDateGreaterThan->formatAsDateString();
+        }
+
         return $this->client->getCommand(
             'getCampaigns',
-            array('orderBy' => $orderBy, 'order' => $order)
+            array(
+                'orderBy' => $orderBy,
+                'order' => $order,
+                'endDateGreaterThan' => $endDateGreaterThan,
+                'country' => $country
+            )
         )->execute();
     }
 

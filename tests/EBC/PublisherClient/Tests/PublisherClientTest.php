@@ -13,6 +13,7 @@ namespace EBC\PublisherClient\Tests;
 
 use EBC\PublisherClient\PublisherClient;
 use EBC\PublisherClient\PublisherClientInterface;
+use EBT\EBDate\EBDateTime;
 use Guzzle\Plugin\Mock\MockPlugin;
 use Guzzle\Http\Message\Response;
 use Guzzle\Http\Message\Request;
@@ -165,7 +166,7 @@ class PublisherClientTest extends TestCase
         $plugin->addResponse(new Response(200, null, file_get_contents(__DIR__ . '/Model/campaigns.json')));
         $client->addSubscriber($plugin);
 
-        $campaigns = $client->getCampaigns('updated', 'desc');
+        $campaigns = $client->getCampaigns('updated', 'desc', new EBDateTime(), 1);
         $this->assertCount(7, $campaigns);
 
         /** @var Request $request */
