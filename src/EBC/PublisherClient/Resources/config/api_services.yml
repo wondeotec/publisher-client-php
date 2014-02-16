@@ -33,7 +33,7 @@ operations:
         data:
             acceptedStatusCodes: 200
     updateListByPublisher:
-        httpMethod: POST
+        httpMethod: PATCH
         uri: lists/{externalId}
         summary: Update a list by a publisher
         data:
