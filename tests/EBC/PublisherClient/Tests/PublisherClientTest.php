@@ -167,7 +167,7 @@ class PublisherClientTest extends TestCase
         $client->addSubscriber($plugin);
 
         $date = EBDateTime::createFromFormat(EBDateTime::getDateFormat(), '2014-02-15');
-        $campaigns = $client->getCampaigns('updated', 'desc', $date, '1');
+        $campaigns = $client->getCampaigns('updated', 'desc', $date, 1, 1);
         $this->assertCount(7, $campaigns);
 
         /** @var Request $request */
@@ -175,7 +175,7 @@ class PublisherClientTest extends TestCase
 
         $this->assertEquals(
             // @codingStandardsIgnoreStart
-            'https://api.emailbidding.com/api/p/publishers/2/campaigns?key=thekey&secret=thesecret&order_by=updated&order=desc&endDateGreaterThan=2014-02-15&country=1',
+            'https://api.emailbidding.com/api/p/publishers/2/campaigns?key=thekey&secret=thesecret&order_by=updated&order=desc&endDateGreaterThan=2014-02-15&country=1&category=1',
             // @codingStandardsIgnoreEnd
             $request->getUrl()
         );

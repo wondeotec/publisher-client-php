@@ -76,7 +76,8 @@ class PublisherClient extends FastcClient implements PublisherClientInterface
         $orderBy = null,
         $order = null,
         EBDateTime $endDateGreaterThan = null,
-        $country = null
+        $country = null,
+        $category = null
     ) {
         if ($endDateGreaterThan instanceof EBDateTime) {
             $endDateGreaterThan = $endDateGreaterThan->formatAsDateString();
@@ -88,7 +89,8 @@ class PublisherClient extends FastcClient implements PublisherClientInterface
                 'orderBy' => $orderBy,
                 'order' => $order,
                 'endDateGreaterThan' => $endDateGreaterThan,
-                'country' => $country
+                'country' => $country,
+                'category' => $category,
             )
         )->execute();
     }

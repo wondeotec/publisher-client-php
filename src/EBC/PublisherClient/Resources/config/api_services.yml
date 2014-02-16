@@ -35,7 +35,12 @@ operations:
             country:
                 location: query
                 description: Campaigns' country
-                type: number
+                type: integer
+                required: false
+            category:
+                location: query
+                description: Campaigns' category
+                type: integer
                 required: false
     getLists:
         httpMethod: GET
