@@ -180,6 +180,27 @@ class PublisherClientTest extends TestCase
     }
 
     /**
+     * @expectedException \RuntimeException
+     */
+    public function testUpdateListByPublisherWrongStatusCode()
+    {
+        $client = new PublisherClient();
+        $plugin = new MockPlugin();
+        $plugin->addResponse(new Response(200));
+        $client->addSubscriber($plugin);
+        $client->updateListByPublisher('ext_list_id', 'list_name', array(1), array(2));
+    }
+
+    public function testUpdateListByPublisher()
+    {
+        $client = new PublisherClient();
+        $plugin = new MockPlugin();
+        $plugin->addResponse(new Response(201));
+        $client->addSubscriber($plugin);
+        $client->updateListByPublisher('ext_list_id', 'list_name', array(1), array(2));
+    }
+
+    /**
      * @return PublisherClientInterface
      */
     protected function getPublisherClient()

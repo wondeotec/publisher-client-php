@@ -32,3 +32,38 @@ operations:
         summary: Returns publisher lists
         data:
             acceptedStatusCodes: 200
+    updateListByPublisher:
+        httpMethod: POST
+        uri: lists/{externalId}
+        summary: Update a list by a publisher
+        data:
+            acceptedStatusCodes: 201
+        parameters:
+            externalId:
+                location: uri
+                description: The list external Id
+                type: string
+                minLength: 1
+                required: true
+            list_definition_update:
+                location: json
+                description: The form of credential
+                type: object
+                required: true
+                properties:
+                    externalId:
+                        location: json
+                        required: true
+                        type: string
+                    name:
+                        location: json
+                        required: true
+                        type: string
+                    approved:
+                        location: json
+                        required: true
+                        type: array
+                    rejected:
+                        location: json
+                        required: true
+                        type: array
