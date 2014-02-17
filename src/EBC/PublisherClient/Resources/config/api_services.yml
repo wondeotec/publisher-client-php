@@ -27,7 +27,7 @@ operations:
                 required: false
             endDateGreaterThan:
                 location: query
-                description: End date for campaign greater than
+                description: End date for campaign greater than (YYYY-MM-DD)
                 type: string
                 minLength: 10
                 maxLength: 10
