@@ -2,6 +2,20 @@ name: Publisher Client
 baseUrl: "{scheme}://{host}{+basePath}/{publisherId}"
 description: Publisher Client
 operations:
+    getCampaignCreativities:
+        httpMethod: GET
+        uri: campaigns/{campaignId}/creativities
+        responseClass: 'EBC\PublisherClient\Campaign\Creativities'
+        summary: Returns the creativity for one campaign
+        data:
+            acceptedStatusCodes: 200
+        parameters:
+            campaignId:
+                location: uri
+                description: Id of the campaign to use
+                type: integer
+                required: true
+
     getCampaigns:
         httpMethod: GET
         uri: campaigns

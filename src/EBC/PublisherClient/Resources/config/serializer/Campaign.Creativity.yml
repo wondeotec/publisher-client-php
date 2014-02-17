@@ -1,0 +1,8 @@
+EBC\PublisherClient\Campaign\Creativity:
+    properties:
+        fromName:
+            type: string
+        subject:
+            type: string
+        bodyHtml:
+            type: string
