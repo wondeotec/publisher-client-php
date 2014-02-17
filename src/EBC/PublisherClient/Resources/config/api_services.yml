@@ -37,7 +37,7 @@ operations:
         uri: lists/{externalId}
         summary: Update a list by a publisher
         data:
-            acceptedStatusCodes: 201
+            acceptedStatusCodes: 204
         parameters:
             externalId:
                 location: uri
