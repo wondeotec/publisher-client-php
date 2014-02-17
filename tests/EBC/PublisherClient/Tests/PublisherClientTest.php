@@ -200,6 +200,13 @@ class PublisherClientTest extends TestCase
         $client->updateListByPublisher('ext_list_id', 'list_name', array(1), array(2));
     }
 
+    /*public function testUpdateListByPublisherReal()
+    {
+        $client = new PublisherClient();
+        $client->setPublisher(1, '', '');
+        $client->updateListByPublisher('extIdList_2_publisher_1', 'list_name', array(1), array(2));
+    }*/
+
     /**
      * @return PublisherClientInterface
      */

@@ -62,8 +62,8 @@ operations:
                     approved:
                         location: json
                         required: true
-                        type: array
+                        type: string
                     rejected:
                         location: json
                         required: true
-                        type: array
+                        type: string

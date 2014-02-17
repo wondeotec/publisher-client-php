@@ -101,8 +101,8 @@ class PublisherClient extends FastcClient implements PublisherClientInterface
                 'list_definition_update' => array(
                     'externalId' => $externalId,
                     'name' => $name,
-                    'approved' => $approved,
-                    'rejected' => $rejected,
+                    'approved' => implode(',', $approved),
+                    'rejected' => implode(',', $rejected),
                 )
             )
         )->execute();
