@@ -13,6 +13,7 @@ namespace EBC\PublisherClient\Tests;
 
 use EBC\PublisherClient\PublisherClient;
 use EBC\PublisherClient\PublisherClientInterface;
+use EBT\EBDate\EBDateTime;
 use Guzzle\Plugin\Mock\MockPlugin;
 use Guzzle\Http\Message\Response;
 use Guzzle\Http\Message\Request;
@@ -209,7 +210,8 @@ class PublisherClientTest extends TestCase
         $plugin->addResponse(new Response(200, null, file_get_contents(__DIR__ . '/Model/campaigns.json')));
         $client->addSubscriber($plugin);
 
-        $campaigns = $client->getCampaigns('updated', 'desc');
+        $date = EBDateTime::createFromFormat(EBDateTime::getDateFormat(), '2014-02-15');
+        $campaigns = $client->getCampaigns('updated', 'desc', $date, 1, 1);
         $this->assertCount(7, $campaigns);
 
         /** @var Request $request */
@@ -217,7 +219,7 @@ class PublisherClientTest extends TestCase
 
         $this->assertEquals(
             // @codingStandardsIgnoreStart
-            'https://api.emailbidding.com/api/p/publishers/2/campaigns?key=thekey&secret=thesecret&order_by=updated&order=desc',
+            'https://api.emailbidding.com/api/p/publishers/2/campaigns?key=thekey&secret=thesecret&order_by=updated&order=desc&endDateGreaterThan=2014-02-15&country=1&category=1',
             // @codingStandardsIgnoreEnd
             $request->getUrl()
         );
