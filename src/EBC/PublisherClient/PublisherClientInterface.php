@@ -34,6 +34,15 @@ interface PublisherClientInterface extends ClientInterface
     public function setPublisher($publisherId, $key, $secret);
 
     /**
+     * Return creativity for one campaign
+     *
+     * @param $campaignId
+     *
+     * @return mixed
+     */
+    public function getCampaignCreativities($campaignId);
+
+    /**
      * Returns all accessible campaigns for the current publisher.
      *
      * @param string|null $orderBy created|updated|null

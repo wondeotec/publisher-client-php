@@ -59,6 +59,50 @@ class PublisherClientTest extends TestCase
         $client->getCampaigns();
     }
 
+    public function testGetCampaignCreativities() {
+        $client = $this->getPublisherClient();
+        $client->setPublisher(2, 'thekey', 'thesecret');
+        $plugin = new MockPlugin();
+        $campaignsJson = file_get_contents(__DIR__ . '/Model/criativities.json');
+
+        $plugin->addResponse(new Response(200, null, $campaignsJson));
+        $client->addSubscriber($plugin);
+
+        $campaignsArr = json_decode($campaignsJson, true)['items'];
+
+        $campaigns = $client->getCampaignCreativities(1);
+
+        $this->assertCount(1, $campaigns);
+        $pos = 0;
+
+        foreach ($campaigns as $campaign) {
+            $campaignArr =  $campaignsArr[$pos];
+
+            // fromName
+            $this->assertEquals($campaignArr['from_name'], $campaign->getFromName());
+            // subject
+            $this->assertEquals($campaignArr['subject'], $campaign->getSubject());
+            // bodyHtml
+            $this->assertEquals($campaignArr['body_html'], $campaign->getBodyHtml());
+
+            ++$pos;
+        }
+
+        /** @var Request $request */
+        $request = $plugin->getReceivedRequests()[0];
+        $this->assertEquals('GET', $request->getMethod());
+        /** @var Header $acceptHeader */
+        $acceptHeader = $request->getHeader('Accept');
+        $this->assertCount(1, $acceptHeader);
+        $this->assertEquals('application/json', $acceptHeader->getIterator()->current());
+
+        $this->assertEquals(
+            'https://api.emailbidding.com/api/p/publishers/2/campaigns/1/creativities?key=thekey&secret=thesecret',
+            $request->getUrl()
+        );
+
+    }
+
     public function testGetCampaigns()
     {
         $client = $this->getPublisherClient();

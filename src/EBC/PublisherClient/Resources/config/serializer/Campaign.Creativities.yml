@@ -1,0 +1,4 @@
+EBC\PublisherClient\Campaign\Creativities:
+    properties:
+        items:
+            type: array<EBC\PublisherClient\Campaign\Creativity>
