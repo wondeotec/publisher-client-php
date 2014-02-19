@@ -60,7 +60,106 @@ class PublisherClientTest extends TestCase
         $client->getCampaigns();
     }
 
-    public function testGetCampaignCreativities() {
+    public function testGetCampaignById()
+    {
+        $client = $this->getPublisherClient();
+        $client->setPublisher(2, 'thekey', 'thesecret');
+        $plugin = new MockPlugin();
+        $campaignsJson = file_get_contents(__DIR__ . '/Model/campaign.json');
+
+        $plugin->addResponse(new Response(200, null, $campaignsJson));
+        $client->addSubscriber($plugin);
+
+        $campaignsArr = json_decode($campaignsJson, true);
+
+        $campaigns = $client->getCampaignById(1);
+
+        $pos = 0;
+
+        foreach ($campaigns as $campaign) {
+            $campaignArr =  $campaignsArr[$pos];
+            // top level stuff
+            $this->assertEquals($campaignArr['id'], $campaign->getId());
+            $this->assertEquals($campaignArr['name'], $campaign->getName());
+
+            // advertiser
+            $this->assertInstanceOf('EBC\PublisherClient\Advertiser\Advertiser', $campaign->getAdvertiser());
+            $this->assertEquals($campaignArr['advertiser']['name'], $campaign->getAdvertiser()->getName());
+
+            // country
+            $this->assertInstanceOf('EBC\PublisherClient\Locale\Country', $campaign->getCountry());
+            $this->assertEquals($campaignArr['country']['code'], $campaign->getCountry()->getCode());
+            $this->assertEquals($campaignArr['country']['name'], $campaign->getCountry()->getName());
+
+            // schedule
+            $this->assertInstanceOf('EBC\PublisherClient\Campaign\Schedule', $campaign->getSchedule());
+            $this->assertInstanceOf('EBT\EBDate\EBDateTime', $campaign->getSchedule()->getStartDate());
+            $this->assertEquals(
+                $campaignArr['schedule']['start_date'],
+                $campaign->getSchedule()->getStartDate()->formatAsString()
+            );
+            $this->assertInstanceOf('EBT\EBDate\EBDateTime', $campaign->getSchedule()->getEndDate());
+            $this->assertEquals(
+                $campaignArr['schedule']['end_date'],
+                $campaign->getSchedule()->getEndDate()->formatAsString()
+            );
+
+            // bid
+            $this->assertInstanceOf('EBC\PublisherClient\Campaign\Payout', $campaign->getPayout());
+            $this->assertEquals($campaignArr['payout']['type'], $campaign->getPayout()->getType());
+            $this->assertEquals($campaignArr['payout']['value'], $campaign->getPayout()->getValue());
+
+            // list approvals
+            $listsApproval = $campaign->getListsApproval();
+            $this->assertInstanceOf('EBC\PublisherClient\Campaign\ListsApproval', $listsApproval);
+            $this->assertCount(count($campaignArr['lists_approval']['items']), $listsApproval);
+            $posApproval = 0;
+            foreach ($listsApproval as $listApproval) {
+                $listsApprovalArr = $campaignArr['lists_approval']['items'][$posApproval];
+                $this->assertEquals($listsApprovalArr['list_external_id'], $listApproval->getListExternalId());
+                $this->assertInstanceOf('EBC\PublisherClient\Campaign\Approval', $listApproval->getApproval());
+                $this->assertEquals(
+                    $listsApprovalArr['approval']['status'],
+                    $listApproval->getApproval()->getStatus()
+                );
+                $this->assertEquals($listsApprovalArr['approval']['type'], $listApproval->getApproval()->getType());
+                ++$posApproval;
+            }
+
+            // categories
+            $categories = $campaign->getCategories();
+            $this->assertInstanceOf('EBC\PublisherClient\Campaign\Categories', $categories);
+            $this->assertCount(count($campaignArr['categories']['items']), $categories);
+            $posCategory = 0;
+            foreach ($categories as $category) {
+                $categoryArr = $campaignArr['categories']['items'][$posCategory];
+                $this->assertEquals($categoryArr['name'], $category->getName());
+                ++$posCategory;
+            }
+
+            // updated at
+            $this->assertInstanceOf('EBT\EBDate\EBDateTime', $campaign->getUpdatedAt());
+            $this->assertEquals($campaignArr['updated_at'], $campaign->getUpdatedAt()->formatAsString());
+
+            ++$pos;
+        }
+
+        /** @var Request $request */
+        $request = $plugin->getReceivedRequests()[0];
+        $this->assertEquals('GET', $request->getMethod());
+        /** @var Header $acceptHeader */
+        $acceptHeader = $request->getHeader('Accept');
+        $this->assertCount(1, $acceptHeader);
+        $this->assertEquals('application/json', $acceptHeader->getIterator()->current());
+
+        $this->assertEquals(
+            'https://api.emailbidding.com/api/p/publishers/2/campaigns/1/creativities?key=thekey&secret=thesecret',
+            $request->getUrl()
+        );
+    }
+
+    public function testGetCampaignCreativities()
+    {
         $client = $this->getPublisherClient();
         $client->setPublisher(2, 'thekey', 'thesecret');
         $plugin = new MockPlugin();
