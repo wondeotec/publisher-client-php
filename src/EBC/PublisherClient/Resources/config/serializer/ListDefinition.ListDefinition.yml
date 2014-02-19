@@ -4,3 +4,5 @@ EBC\PublisherClient\ListDefinition\ListDefinition:
             type: string
         name:
             type: string
+        approvalCampaignsExceptions:
+            type: EBC\PublisherClient\ListDefinition\ApprovalCampaignsExceptions

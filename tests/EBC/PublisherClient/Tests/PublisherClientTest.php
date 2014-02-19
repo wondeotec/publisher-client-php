@@ -245,6 +245,15 @@ class PublisherClientTest extends TestCase
         );
     }
 
+    // code for testing integration
+    /*public function testGetListByExternalIdReal()
+    {
+        $client = new PublisherClient();
+        $client->setPublisher(1, '', '');
+        $list = $client->getListByExternalId('extIdList_1_publisher_1');
+        var_dump($list);
+    }*/
+
     /**
      * @expectedException \RuntimeException
      */
