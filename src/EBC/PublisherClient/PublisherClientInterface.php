@@ -41,7 +41,7 @@ interface PublisherClientInterface extends ClientInterface
      *
      * @return Campaign
      */
-    public function getCampaignById($campaignId);
+    public function getCampaign($campaignId);
 
     /**
      * Return creativity for one campaign

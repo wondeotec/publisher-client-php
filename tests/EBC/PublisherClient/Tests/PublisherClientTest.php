@@ -65,15 +65,14 @@ class PublisherClientTest extends TestCase
         $client = $this->getPublisherClient();
         $client->setPublisher(2, 'thekey', 'thesecret');
         $plugin = new MockPlugin();
-        $campaignsJson = file_get_contents(__DIR__ . '/Model/campaigns.json');
+        $campaignJson = file_get_contents(__DIR__ . '/Model/campaign.json');
 
-        $plugin->addResponse(new Response(200, null, $campaignsJson));
+        $plugin->addResponse(new Response(200, null, $campaignJson));
+        $client->addSubscriber($plugin);
+        $campaign = $client->getCampaign(1);
 
-        $campaignsArr = json_decode($campaignsJson, true)['items'];
+        $campaignArr = json_decode($campaignJson, true);
 
-        $campaign = $client->getCampaignById(1);
-
-        $campaignArr =  $campaignsArr[0];
         // top level stuff
         $this->assertEquals($campaignArr['id'], $campaign->getId());
         $this->assertEquals($campaignArr['name'], $campaign->getName());
@@ -115,6 +114,19 @@ class PublisherClientTest extends TestCase
             $this->assertEquals($categoryArr['name'], $category->getName());
             ++$posCategory;
         }
+
+        /** @var Request $request */
+        $request = $plugin->getReceivedRequests()[0];
+        $this->assertEquals('GET', $request->getMethod());
+        /** @var Header $acceptHeader */
+        $acceptHeader = $request->getHeader('Accept');
+        $this->assertCount(1, $acceptHeader);
+        $this->assertEquals('application/json', $acceptHeader->getIterator()->current());
+
+        $this->assertEquals(
+            'https://api.emailbidding.com/api/p/publishers/2/campaigns/1?key=thekey&secret=thesecret',
+            $request->getUrl()
+        );
     }
 
     public function testGetCampaignCreativities()
@@ -122,7 +134,7 @@ class PublisherClientTest extends TestCase
         $client = $this->getPublisherClient();
         $client->setPublisher(2, 'thekey', 'thesecret');
         $plugin = new MockPlugin();
-        $campaignsJson = file_get_contents(__DIR__ . '/Model/criativities.json');
+        $campaignsJson = file_get_contents(__DIR__ . '/Model/creativities.json');
 
         $plugin->addResponse(new Response(200, null, $campaignsJson));
         $client->addSubscriber($plugin);

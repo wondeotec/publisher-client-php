@@ -2,9 +2,9 @@ name: Publisher Client
 baseUrl: "{scheme}://{host}{+basePath}/{publisherId}"
 description: Publisher Client
 operations:
-    getCampaignById:
+    getCampaign:
         httpMethod: GET
-        uri: campaign/{campaignId}
+        uri: campaigns/{campaignId}
         responseClass: 'EBC\PublisherClient\Campaign\Campaign'
         summary: Returns one campaign
         data:
