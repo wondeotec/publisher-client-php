@@ -68,6 +68,19 @@ operations:
         summary: Returns publisher lists
         data:
             acceptedStatusCodes: 200
+    getListByExternalIdAndPublisherAction:
+        httpMethod: GET
+        uri: lists/{externalId}
+        responseClass: 'EBC\PublisherClient\ListDefinition\ListDefinition'
+        summary: Returns a list of a publisher by its external id
+        data:
+            acceptedStatusCodes: 200
+        parameters:
+            externalId:
+                location: uri
+                description: external Id of the list to get
+                type: string
+                required: true
     updateListByPublisher:
         httpMethod: PATCH
         uri: lists/{externalId}

@@ -11,6 +11,7 @@
 
 namespace EBC\PublisherClient;
 
+use EBC\PublisherClient\Campaign\Creativities;
 use EBT\EBDate\EBDateTime;
 use EBT\Fastc\ClientInterface;
 use EBC\PublisherClient\Campaign\Campaigns;
@@ -37,9 +38,9 @@ interface PublisherClientInterface extends ClientInterface
     /**
      * Return creativity for one campaign
      *
-     * @param $campaignId
+     * @param int $campaignId
      *
-     * @return mixed
+     * @return Creativities
      */
     public function getCampaignCreativities($campaignId);
 
@@ -67,9 +68,18 @@ interface PublisherClientInterface extends ClientInterface
     /**
      * Returns publisher lists.
      *
-     * @return ListsDefinition|ListDefinition[]
+     * @return ListsDefinition
      */
     public function getLists();
+
+    /**
+     * Return a list of a publisher by its external id
+     *
+     * @param string $externalId
+     *
+     * @return ListDefinition
+     */
+    public function getListByExternalId($externalId);
 
     /**
      * Update list by a publisher

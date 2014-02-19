@@ -225,6 +225,26 @@ class PublisherClientTest extends TestCase
         );
     }
 
+    public function testGetListByExternalId()
+    {
+        $client = new PublisherClient();
+        $client->setPublisher(2, 'thekey', 'thesecret');
+        $plugin = new MockPlugin();
+        $plugin->addResponse(new Response(200));
+        $client->addSubscriber($plugin);
+        $client->getListByExternalId('ext_list_id');
+
+        /** @var Request $request */
+        $request = $plugin->getReceivedRequests()[0];
+
+        $this->assertEquals(
+        // @codingStandardsIgnoreStart
+            'https://api.emailbidding.com/api/p/publishers/2/lists/ext_list_id?key=thekey&secret=thesecret',
+            // @codingStandardsIgnoreEnd
+            $request->getUrl()
+        );
+    }
+
     /**
      * @expectedException \RuntimeException
      */
