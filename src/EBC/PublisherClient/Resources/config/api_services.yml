@@ -106,13 +106,13 @@ operations:
                         type: string
                     name:
                         location: json
-                        required: true
+                        required: false
                         type: string
                     approved:
                         location: json
-                        required: true
+                        required: false
                         type: string
                     rejected:
                         location: json
-                        required: true
+                        required: false
                         type: string
