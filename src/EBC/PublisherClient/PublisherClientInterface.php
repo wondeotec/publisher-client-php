@@ -51,6 +51,7 @@ interface PublisherClientInterface extends ClientInterface
      * @param EBDateTime|null   $endDateGreaterThan
      * @param int|null          $country
      * @param int|null          $category
+     * @param int|null          $limit
      *
      * @return Campaigns|Campaign[]
      */
@@ -59,7 +60,8 @@ interface PublisherClientInterface extends ClientInterface
         $order = null,
         EBDateTime $endDateGreaterThan = null,
         $country = null,
-        $category = null
+        $category = null,
+        $limit = null
     );
 
     /**
