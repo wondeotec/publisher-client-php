@@ -1,7 +1,7 @@
 {
     "name": "emailbidding/publisher-client-php",
     "type": "library",
-    "description": "Credential client",
+    "description": "Publisher client",
     "keywords": ["emailbidding", "publisher", "api", "client", "php", "library"],
     "homepage": "http://github.com/emailbidding/publisher-client-php",
     "license": "MIT",
