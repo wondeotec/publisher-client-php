@@ -56,6 +56,11 @@ operations:
                 description: Campaigns' category
                 type: integer
                 required: false
+            limit:
+                location: query
+                description: Number of campaigns to get
+                type: integer
+                required: false
     getLists:
         httpMethod: GET
         uri: lists

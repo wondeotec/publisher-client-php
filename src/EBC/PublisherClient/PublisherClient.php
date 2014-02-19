@@ -80,7 +80,7 @@ class PublisherClient extends FastcClient implements PublisherClientInterface
         )->execute();
     }
 
-/**
+    /**
      * {@inheritdoc}
      */
     public function getCampaigns(
@@ -88,7 +88,8 @@ class PublisherClient extends FastcClient implements PublisherClientInterface
         $order = null,
         EBDateTime $endDateGreaterThan = null,
         $country = null,
-        $category = null
+        $category = null,
+        $limit = null
     ) {
         if ($endDateGreaterThan instanceof EBDateTime) {
             $endDateGreaterThan = $endDateGreaterThan->formatAsDateString();
@@ -102,6 +103,7 @@ class PublisherClient extends FastcClient implements PublisherClientInterface
                 'endDateGreaterThan' => $endDateGreaterThan,
                 'country' => $country,
                 'category' => $category,
+                'limit' => $limit,
             )
         )->execute();
     }
