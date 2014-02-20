@@ -16,7 +16,7 @@ use EBT\EBDate\EBDateTime;
 use EBT\Fastc\ClientInterface;
 use EBC\PublisherClient\Campaign\Campaigns;
 use EBC\PublisherClient\Campaign\Campaign;
-use EBC\PublisherClient\Campaign\ListApproval;
+use EBC\PublisherClient\Campaign\Approval;
 use EBC\PublisherClient\ListDefinition\ListDefinition;
 use EBC\PublisherClient\ListDefinition\ListsDefinition;
 
@@ -81,7 +81,7 @@ interface PublisherClientInterface extends ClientInterface
      * @param int       $campaignId
      * @param string    $listExternalId
      *
-     * @return ListApproval
+     * @return Approval
      */
     public function getCampaignListApproval($campaignId, $listExternalId);
 

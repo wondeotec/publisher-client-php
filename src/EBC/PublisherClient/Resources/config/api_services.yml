@@ -78,7 +78,7 @@ operations:
     getCampaignListApproval:
         httpMethod: GET
         uri: campaigns/{campaignId}/lists/{listExternalId}
-        responseClass: 'EBC\PublisherClient\Campaign\ListApproval'
+        responseClass: 'EBC\PublisherClient\Campaign\Approval'
         summary: Returns approval of a campaign for a list
         data:
             acceptedStatusCodes: 200
