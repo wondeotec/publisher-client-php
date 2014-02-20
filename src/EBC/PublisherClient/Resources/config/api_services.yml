@@ -75,6 +75,24 @@ operations:
                 description: Number of campaigns to get
                 type: integer
                 required: false
+    getCampaignListApproval:
+        httpMethod: GET
+        uri: campaigns/{campaignId}/lists/{listExternalId}
+        responseClass: 'EBC\PublisherClient\Campaign\ListApproval'
+        summary: Returns approval of a campaign for a list
+        data:
+            acceptedStatusCodes: 200
+        parameters:
+            campaignId:
+                location: uri
+                description: id of the campaign
+                type: integer
+                required: true
+            listExternalId:
+                location: uri
+                description: external Id of the list
+                type: string
+                required: true
     getLists:
         httpMethod: GET
         uri: lists

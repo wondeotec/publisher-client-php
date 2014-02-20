@@ -16,6 +16,7 @@ use EBT\EBDate\EBDateTime;
 use EBT\Fastc\ClientInterface;
 use EBC\PublisherClient\Campaign\Campaigns;
 use EBC\PublisherClient\Campaign\Campaign;
+use EBC\PublisherClient\Campaign\ListApproval;
 use EBC\PublisherClient\ListDefinition\ListDefinition;
 use EBC\PublisherClient\ListDefinition\ListsDefinition;
 
@@ -73,6 +74,16 @@ interface PublisherClientInterface extends ClientInterface
         $category = null,
         $limit = null
     );
+
+    /**
+     * Get approval of a campaign for a list
+     *
+     * @param int       $campaignId
+     * @param string    $listExternalId
+     *
+     * @return ListApproval
+     */
+    public function getCampaignListApproval($campaignId, $listExternalId);
 
     /**
      * Returns publisher lists.
