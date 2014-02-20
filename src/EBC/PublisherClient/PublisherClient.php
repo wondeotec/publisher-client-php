@@ -72,6 +72,17 @@ class PublisherClient extends FastcClient implements PublisherClientInterface
     /**
      * {@inheritdoc}
      */
+    public function getCampaign($campaignId)
+    {
+        return $this->client->getCommand(
+            'getCampaign',
+            array('campaignId' => $campaignId)
+        )->execute();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getCampaignCreativities($campaignId)
     {
         return $this->client->getCommand(
