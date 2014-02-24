@@ -1,0 +1,10 @@
+EBC\PublisherClient\ListDefinition\ApprovalCampaignsExceptions:
+    # exclude everything except what is explicitly exposed
+    exclusion_policy: ALL
+    properties:
+        approved:
+            expose: true
+            type: array
+        rejected:
+            expose: true
+            type: array

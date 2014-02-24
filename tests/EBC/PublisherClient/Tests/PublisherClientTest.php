@@ -198,6 +198,55 @@ class PublisherClientTest extends TestCase
         );
     }
 
+    public function testGetCampaignListApproval()
+    {
+        $client = new PublisherClient();
+        $client->setPublisher(2, 'thekey', 'thesecret');
+        $plugin = new MockPlugin();
+        $plugin->addResponse(new Response(200));
+        $client->addSubscriber($plugin);
+        $client->getCampaignListApproval(1, 'ext_list_id');
+
+        /** @var Request $request */
+        $request = $plugin->getReceivedRequests()[0];
+
+        $this->assertEquals(
+            // @codingStandardsIgnoreStart
+            'https://api.emailbidding.com/api/p/publishers/2/campaigns/1/lists/ext_list_id?key=thekey&secret=thesecret',
+            // @codingStandardsIgnoreEnd
+            $request->getUrl()
+        );
+    }
+
+    public function testGetListByExternalId()
+    {
+        $client = new PublisherClient();
+        $client->setPublisher(2, 'thekey', 'thesecret');
+        $plugin = new MockPlugin();
+        $plugin->addResponse(new Response(200));
+        $client->addSubscriber($plugin);
+        $client->getListByExternalId('ext_list_id');
+
+        /** @var Request $request */
+        $request = $plugin->getReceivedRequests()[0];
+
+        $this->assertEquals(
+            // @codingStandardsIgnoreStart
+            'https://api.emailbidding.com/api/p/publishers/2/lists/ext_list_id?key=thekey&secret=thesecret',
+            // @codingStandardsIgnoreEnd
+            $request->getUrl()
+        );
+    }
+
+    // code for testing integration
+    /*public function testGetListByExternalIdReal()
+    {
+        $client = new PublisherClient();
+        $client->setPublisher(1, '', '');
+        $list = $client->getListByExternalId('extIdList_1_publisher_1');
+        var_dump($list);
+    }*/
+
     /**
      * @expectedException \RuntimeException
      */
@@ -223,8 +272,8 @@ class PublisherClientTest extends TestCase
     /*public function testUpdateListByPublisherReal()
     {
         $client = new PublisherClient();
-        $client->setPublisher(1, '', '');
-        $client->updateListByPublisher('extIdList_2_publisher_1', 'list_name', array(1), array(2));
+        $client->setPublisher(2, '', '');
+        $client->updateListByPublisher('extIdList_10_publisher_1', 'list_name', array(), array());
     }*/
 
     protected function compareCampaign($campaignArr, $campaign)

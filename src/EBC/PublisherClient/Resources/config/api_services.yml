@@ -75,6 +75,24 @@ operations:
                 description: Number of campaigns to get
                 type: integer
                 required: false
+    getCampaignListApproval:
+        httpMethod: GET
+        uri: campaigns/{campaignId}/lists/{listExternalId}
+        responseClass: 'EBC\PublisherClient\Campaign\Approval'
+        summary: Returns approval of a campaign for a list
+        data:
+            acceptedStatusCodes: 200
+        parameters:
+            campaignId:
+                location: uri
+                description: id of the campaign
+                type: integer
+                required: true
+            listExternalId:
+                location: uri
+                description: external Id of the list
+                type: string
+                required: true
     getLists:
         httpMethod: GET
         uri: lists
@@ -82,6 +100,19 @@ operations:
         summary: Returns publisher lists
         data:
             acceptedStatusCodes: 200
+    getListByExternalIdAndPublisherAction:
+        httpMethod: GET
+        uri: lists/{externalId}
+        responseClass: 'EBC\PublisherClient\ListDefinition\ListDefinition'
+        summary: Returns a list of a publisher by its external id
+        data:
+            acceptedStatusCodes: 200
+        parameters:
+            externalId:
+                location: uri
+                description: external Id of the list to get
+                type: string
+                required: true
     updateListByPublisher:
         httpMethod: PATCH
         uri: lists/{externalId}
@@ -107,13 +138,13 @@ operations:
                         type: string
                     name:
                         location: json
-                        required: true
+                        required: false
                         type: string
                     approved:
                         location: json
-                        required: true
+                        required: false
                         type: string
                     rejected:
                         location: json
-                        required: true
+                        required: false
                         type: string

@@ -83,6 +83,17 @@ class PublisherClient extends FastcClient implements PublisherClientInterface
     /**
      * {@inheritdoc}
      */
+    public function getCampaignListApproval($campaignId, $listExternalId)
+    {
+        return $this->client->getCommand(
+            'getCampaignListApproval',
+            array('campaignId' => $campaignId, 'listExternalId' => $listExternalId)
+        )->execute();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getCampaignCreativities($campaignId)
     {
         return $this->client->getCommand(
@@ -126,6 +137,17 @@ class PublisherClient extends FastcClient implements PublisherClientInterface
     {
         return $this->client->getCommand(
             'getLists'
+        )->execute();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getListByExternalId($externalId)
+    {
+        return $this->client->getCommand(
+            'getListByExternalIdAndPublisherAction',
+            array('externalId' => $externalId)
         )->execute();
     }
 
