@@ -211,7 +211,7 @@ class PublisherClientTest extends TestCase
         $request = $plugin->getReceivedRequests()[0];
 
         $this->assertEquals(
-        // @codingStandardsIgnoreStart
+            // @codingStandardsIgnoreStart
             'https://api.emailbidding.com/api/p/publishers/2/campaigns/1/lists/ext_list_id?key=thekey&secret=thesecret',
             // @codingStandardsIgnoreEnd
             $request->getUrl()
@@ -231,7 +231,7 @@ class PublisherClientTest extends TestCase
         $request = $plugin->getReceivedRequests()[0];
 
         $this->assertEquals(
-        // @codingStandardsIgnoreStart
+            // @codingStandardsIgnoreStart
             'https://api.emailbidding.com/api/p/publishers/2/lists/ext_list_id?key=thekey&secret=thesecret',
             // @codingStandardsIgnoreEnd
             $request->getUrl()
