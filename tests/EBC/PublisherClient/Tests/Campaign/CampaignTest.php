@@ -59,10 +59,15 @@ class CampaignTest extends TestCase
         $this->assertEquals('PT', $campaign->getCountry()->getCode());
         $this->assertEquals('Portugal', $campaign->getCountry()->getName());
 
-        // payout
-        $this->assertInstanceOf('EBC\PublisherClient\Campaign\Payout', $campaign->getPayout());
-        $this->assertEquals('cpc', $campaign->getPayout()->getType());
-        $this->assertEquals(20.9, $campaign->getPayout()->getValue());
+        // total payout
+        $this->assertInstanceOf('EBC\PublisherClient\Campaign\Payout', $campaign->getTotalPayout());
+        $this->assertEquals('cpc', $campaign->getTotalPayout()->getType());
+        $this->assertEquals(0.9, $campaign->getTotalPayout()->getValue());
+
+        // publisher payout
+        $this->assertInstanceOf('EBC\PublisherClient\Campaign\Payout', $campaign->getPublisherPayout());
+        $this->assertEquals('cpc', $campaign->getPublisherPayout()->getType());
+        $this->assertEquals(0.7, $campaign->getPublisherPayout()->getValue());
 
         // list approvals
         $listsApproval = $campaign->getListsApproval();
@@ -111,9 +116,13 @@ class CampaignTest extends TestCase
                 'start_date' => '2014-01-09 19:20:30',
                 'end_date' => '2014-01-28 09:18:05'
             ),
-            'payout' => array(
+            'total_payout' => array(
                 'type' => 'cpc',
-                'value' => 20.9
+                'value' => 0.9
+            ),
+            'publisher_payout' => array(
+                'type' => 'cpc',
+                'value' => 0.7
             ),
             'country' => array(
                 'code' => 'PT',
