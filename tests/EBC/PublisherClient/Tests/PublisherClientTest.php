@@ -11,6 +11,7 @@
 
 namespace EBC\PublisherClient\Tests;
 
+use EBC\PublisherClient\Campaign\Campaign;
 use EBC\PublisherClient\PublisherClient;
 use EBC\PublisherClient\PublisherClientInterface;
 use EBT\EBDate\EBDateTime;
@@ -276,6 +277,10 @@ class PublisherClientTest extends TestCase
         $client->updateListByPublisher('extIdList_10_publisher_1', 'list_name', array(), array());
     }*/
 
+    /**
+     * @param array     $campaignArr
+     * @param Campaign  $campaign
+     */
     protected function compareCampaign($campaignArr, $campaign)
     {
         // top level stuff
@@ -309,7 +314,7 @@ class PublisherClientTest extends TestCase
         $this->assertEquals($campaignArr['total_payout']['type'], $campaign->getTotalPayout()->getType());
         $this->assertEquals($campaignArr['total_payout']['value'], $campaign->getTotalPayout()->getValue());
 
-        // final payout
+        // publisher payout
         $this->assertInstanceOf('EBC\PublisherClient\Campaign\Payout', $campaign->getPublisherPayout());
         $this->assertEquals($campaignArr['publisher_payout']['type'], $campaign->getPublisherPayout()->getType());
         $this->assertEquals($campaignArr['publisher_payout']['value'], $campaign->getPublisherPayout()->getValue());

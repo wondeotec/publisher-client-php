@@ -64,7 +64,7 @@ class CampaignTest extends TestCase
         $this->assertEquals('cpc', $campaign->getTotalPayout()->getType());
         $this->assertEquals(0.9, $campaign->getTotalPayout()->getValue());
 
-        // final payout
+        // publisher payout
         $this->assertInstanceOf('EBC\PublisherClient\Campaign\Payout', $campaign->getPublisherPayout());
         $this->assertEquals('cpc', $campaign->getPublisherPayout()->getType());
         $this->assertEquals(0.7, $campaign->getPublisherPayout()->getValue());
