@@ -65,9 +65,9 @@ class CampaignTest extends TestCase
         $this->assertEquals(0.9, $campaign->getTotalPayout()->getValue());
 
         // final payout
-        $this->assertInstanceOf('EBC\PublisherClient\Campaign\Payout', $campaign->getFinalPayout());
-        $this->assertEquals('cpc', $campaign->getFinalPayout()->getType());
-        $this->assertEquals(0.7, $campaign->getFinalPayout()->getValue());
+        $this->assertInstanceOf('EBC\PublisherClient\Campaign\Payout', $campaign->getPublisherPayout());
+        $this->assertEquals('cpc', $campaign->getPublisherPayout()->getType());
+        $this->assertEquals(0.7, $campaign->getPublisherPayout()->getValue());
 
         // list approvals
         $listsApproval = $campaign->getListsApproval();
@@ -120,7 +120,7 @@ class CampaignTest extends TestCase
                 'type' => 'cpc',
                 'value' => 0.9
             ),
-            'final_payout' => array(
+            'publisher_payout' => array(
                 'type' => 'cpc',
                 'value' => 0.7
             ),

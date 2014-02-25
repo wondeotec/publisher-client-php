@@ -53,7 +53,7 @@ class Campaign
     /**
      * @var Payout
      */
-    protected $finalPayout;
+    protected $publisherPayout;
 
     /**
      * @var ListsApproval
@@ -121,9 +121,9 @@ class Campaign
     /**
      * @return Payout
      */
-    public function getFinalPayout()
+    public function getPublisherPayout()
     {
-        return $this->finalPayout;
+        return $this->publisherPayout;
     }
 
     /**

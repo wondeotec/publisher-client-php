@@ -12,7 +12,7 @@ EBC\PublisherClient\Campaign\Campaign:
             type: EBC\PublisherClient\Campaign\Schedule
         totalPayout:
             type: EBC\PublisherClient\Campaign\Payout
-        finalPayout:
+        publisherPayout:
             type: EBC\PublisherClient\Campaign\Payout
         listsApproval:
             type: EBC\PublisherClient\Campaign\ListsApproval

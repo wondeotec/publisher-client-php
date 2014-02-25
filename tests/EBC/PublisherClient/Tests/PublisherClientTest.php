@@ -310,9 +310,9 @@ class PublisherClientTest extends TestCase
         $this->assertEquals($campaignArr['total_payout']['value'], $campaign->getTotalPayout()->getValue());
 
         // final payout
-        $this->assertInstanceOf('EBC\PublisherClient\Campaign\Payout', $campaign->getFinalPayout());
-        $this->assertEquals($campaignArr['final_payout']['type'], $campaign->getFinalPayout()->getType());
-        $this->assertEquals($campaignArr['final_payout']['value'], $campaign->getFinalPayout()->getValue());
+        $this->assertInstanceOf('EBC\PublisherClient\Campaign\Payout', $campaign->getPublisherPayout());
+        $this->assertEquals($campaignArr['publisher_payout']['type'], $campaign->getPublisherPayout()->getType());
+        $this->assertEquals($campaignArr['publisher_payout']['value'], $campaign->getPublisherPayout()->getValue());
 
         // categories
         $categories = $campaign->getCategories();
