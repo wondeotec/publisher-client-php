@@ -119,7 +119,7 @@ operations:
         responseClass: 'EBC\PublisherClient\ListDefinition\ListDefinition'
         summary: Update a list by a publisher
         data:
-            acceptedStatusCodes: 204
+            acceptedStatusCodes: 202
         parameters:
             externalId:
                 location: uri

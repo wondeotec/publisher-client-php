@@ -240,10 +240,13 @@ class PublisherClientTest extends TestCase
     }
 
     // code for testing integration
+    /**
+     * @group get
+     */
     /*public function testGetListByExternalIdReal()
     {
         $client = new PublisherClient();
-        $client->setPublisher(1, '', '');
+        $client->setPublisher(1, 'key', 'secret');
         $list = $client->getListByExternalId('extIdList_1_publisher_1');
         var_dump($list);
     }*/
@@ -264,19 +267,23 @@ class PublisherClientTest extends TestCase
     {
         $client = new PublisherClient();
         $plugin = new MockPlugin();
-        $plugin->addResponse(new Response(204));
+        $plugin->addResponse(new Response(202));
         $client->addSubscriber($plugin);
         $list = $client->updateListByPublisher('ext_list_id', 'list_name', array(1), array(2));
         $this->assertInstanceOf('EBC\PublisherClient\ListDefinition\ListDefinition', $list);
     }
 
     // code for testing integration
+    /**
+     * @group update
+     */
     /*public function testUpdateListByPublisherReal()
     {
         $client = new PublisherClient();
-        $client->setPublisher(2, 'key', 'secret');
-        $list = $client->updateListByPublisher('extIdList_10_publisher_1', 'list_name', array(), array());
+        $client->setPublisher(1, 'key', 'secret');
+        $list = $client->updateListByPublisher('extIdList_1_publisher_1', 'list_name', array(1), array(2));
         $this->assertInstanceOf('EBC\PublisherClient\ListDefinition\ListDefinition', $list);
+        var_dump($list);
     }*/
 
     /**
