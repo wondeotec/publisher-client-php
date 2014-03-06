@@ -116,6 +116,7 @@ operations:
     updateListByPublisher:
         httpMethod: PATCH
         uri: lists/{externalId}
+        responseClass: 'EBC\PublisherClient\ListDefinition\ListDefinition'
         summary: Update a list by a publisher
         data:
             acceptedStatusCodes: 204

@@ -156,7 +156,7 @@ class PublisherClient extends FastcClient implements PublisherClientInterface
      */
     public function updateListByPublisher($externalId, $name, array $approved, array $rejected)
     {
-        $this->client->getCommand(
+        return $this->client->getCommand(
             'updateListByPublisher',
             array(
                 'externalId' => $externalId,

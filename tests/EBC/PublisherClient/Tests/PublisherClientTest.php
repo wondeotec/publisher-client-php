@@ -266,15 +266,17 @@ class PublisherClientTest extends TestCase
         $plugin = new MockPlugin();
         $plugin->addResponse(new Response(204));
         $client->addSubscriber($plugin);
-        $client->updateListByPublisher('ext_list_id', 'list_name', array(1), array(2));
+        $list = $client->updateListByPublisher('ext_list_id', 'list_name', array(1), array(2));
+        $this->assertInstanceOf('EBC\PublisherClient\ListDefinition\ListDefinition', $list);
     }
 
     // code for testing integration
     /*public function testUpdateListByPublisherReal()
     {
         $client = new PublisherClient();
-        $client->setPublisher(2, '', '');
-        $client->updateListByPublisher('extIdList_10_publisher_1', 'list_name', array(), array());
+        $client->setPublisher(2, 'key', 'secret');
+        $list = $client->updateListByPublisher('extIdList_10_publisher_1', 'list_name', array(), array());
+        $this->assertInstanceOf('EBC\PublisherClient\ListDefinition\ListDefinition', $list);
     }*/
 
     /**

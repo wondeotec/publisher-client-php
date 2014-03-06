@@ -108,6 +108,8 @@ interface PublisherClientInterface extends ClientInterface
      * @param string $name
      * @param array  $approved
      * @param array  $rejected
+     *
+     * @return ListDefinition
      */
     public function updateListByPublisher($externalId, $name, array $approved, array $rejected);
 }
