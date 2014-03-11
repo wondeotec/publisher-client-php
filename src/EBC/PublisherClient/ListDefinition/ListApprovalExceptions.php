@@ -11,9 +11,9 @@
 namespace EBC\PublisherClient\ListDefinition;
 
 /**
- * ListDefinition
+ * ListApprovalExceptions
  */
-class ListDefinition
+class ListApprovalExceptions
 {
     /**
      * @var string

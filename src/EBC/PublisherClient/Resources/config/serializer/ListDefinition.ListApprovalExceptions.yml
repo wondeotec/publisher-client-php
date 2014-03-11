@@ -1,4 +1,4 @@
-EBC\PublisherClient\ListDefinition\ListDefinition:
+EBC\PublisherClient\ListDefinition\ListApprovalExceptions:
     properties:
         externalId:
             type: string

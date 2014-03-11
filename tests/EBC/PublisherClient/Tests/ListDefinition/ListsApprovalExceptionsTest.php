@@ -11,14 +11,14 @@
 namespace EBC\PublisherClient\Tests\ListDefinition;
 
 use EBC\PublisherClient\Tests\TestCase;
-use EBC\PublisherClient\ListDefinition\ListsDefinition;
+use EBC\PublisherClient\ListDefinition\ListsApprovalExceptions;
 
 /**
  * ListsDefinitionTest
  */
 class ListsDefinitionTest extends TestCase
 {
-    const CLASS_NAME = 'EBC\PublisherClient\ListDefinition\ListsDefinition';
+    const CLASS_NAME = 'EBC\PublisherClient\ListDefinition\ListsApprovalExceptions';
 
     public function testDeserialize()
     {
@@ -35,7 +35,7 @@ class ListsDefinitionTest extends TestCase
             )
         );
 
-        /** @var ListsDefinition $listsDefinition */
+        /** @var ListsApprovalExceptions $lists */
         $lists = $this->deserialize(
             $listsArr,
             self::CLASS_NAME

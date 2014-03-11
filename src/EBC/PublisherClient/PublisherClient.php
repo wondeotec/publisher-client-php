@@ -133,20 +133,20 @@ class PublisherClient extends FastcClient implements PublisherClientInterface
     /**
      * {@inheritdoc}
      */
-    public function getLists()
+    public function getListsApprovalExceptions()
     {
         return $this->client->getCommand(
-            'getLists'
+            'getListsApprovalExceptions'
         )->execute();
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getListByExternalId($externalId)
+    public function getListApprovalExceptionsByExternalId($externalId)
     {
         return $this->client->getCommand(
-            'getListByExternalIdAndPublisherAction',
+            'getListApprovalExceptionsByExternalIdAndPublisherAction',
             array('externalId' => $externalId)
         )->execute();
     }
@@ -154,13 +154,13 @@ class PublisherClient extends FastcClient implements PublisherClientInterface
     /**
      * {@inheritdoc}
      */
-    public function updateListByPublisher($externalId, $name, array $approved, array $rejected)
+    public function updateListApprovalExceptionsByPublisher($externalId, $name, array $approved, array $rejected)
     {
         return $this->client->getCommand(
-            'updateListByPublisher',
+            'updateListApprovalExceptionsByPublisher',
             array(
                 'externalId' => $externalId,
-                'list_definition_update' => array(
+                'list_approval_exceptions_update' => array(
                     'externalId' => $externalId,
                     'name' => $name,
                     'approved' => implode(',', $approved),

@@ -17,8 +17,8 @@ use EBT\Fastc\ClientInterface;
 use EBC\PublisherClient\Campaign\Campaigns;
 use EBC\PublisherClient\Campaign\Campaign;
 use EBC\PublisherClient\Campaign\Approval;
-use EBC\PublisherClient\ListDefinition\ListDefinition;
-use EBC\PublisherClient\ListDefinition\ListsDefinition;
+use EBC\PublisherClient\ListDefinition\ListApprovalExceptions;
+use EBC\PublisherClient\ListDefinition\ListsApprovalExceptions;
 
 /**
  * PublisherClientInterface
@@ -88,18 +88,18 @@ interface PublisherClientInterface extends ClientInterface
     /**
      * Returns publisher lists.
      *
-     * @return ListsDefinition
+     * @return ListsApprovalExceptions
      */
-    public function getLists();
+    public function getListsApprovalExceptions();
 
     /**
      * Return a list of a publisher by its external id
      *
      * @param string $externalId
      *
-     * @return ListDefinition
+     * @return ListApprovalExceptions
      */
-    public function getListByExternalId($externalId);
+    public function getListApprovalExceptionsByExternalId($externalId);
 
     /**
      * Update list by a publisher
@@ -109,7 +109,7 @@ interface PublisherClientInterface extends ClientInterface
      * @param array  $approved
      * @param array  $rejected
      *
-     * @return ListDefinition
+     * @return ListApprovalExceptions
      */
-    public function updateListByPublisher($externalId, $name, array $approved, array $rejected);
+    public function updateListApprovalExceptionsByPublisher($externalId, $name, array $approved, array $rejected);
 }

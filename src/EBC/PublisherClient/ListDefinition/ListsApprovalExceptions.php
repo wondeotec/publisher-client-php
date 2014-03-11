@@ -18,9 +18,9 @@ use EBT\Collection\GetItemsTrait;
 use EBT\Collection\IterableTrait;
 
 /**
- * ListsDefinition
+ * ListsApprovalExceptions
  */
-class ListsDefinition implements CollectionInterface
+class ListsApprovalExceptions implements CollectionInterface
 {
     use CountableTrait;
     use EmptyTrait;
@@ -28,12 +28,12 @@ class ListsDefinition implements CollectionInterface
     use IterableTrait;
 
     /**
-     * @var ListDefinition[]
+     * @var ListApprovalExceptions[]
      */
     protected $items = array();
 
     /**
-     * @param ListDefinition[] $items
+     * @param ListApprovalExceptions[] $items
      */
     public function __construct(array $items)
     {

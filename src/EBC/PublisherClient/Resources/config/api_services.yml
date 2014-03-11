@@ -93,17 +93,17 @@ operations:
                 description: external Id of the list
                 type: string
                 required: true
-    getLists:
+    getListsApprovalExceptions:
         httpMethod: GET
-        uri: lists
-        responseClass: 'EBC\PublisherClient\ListDefinition\ListsDefinition'
+        uri: lists/approvals
+        responseClass: 'EBC\PublisherClient\ListDefinition\ListsApprovalExceptions'
         summary: Returns publisher lists
         data:
             acceptedStatusCodes: 200
-    getListByExternalIdAndPublisherAction:
+    getListApprovalExceptionsByExternalIdAndPublisherAction:
         httpMethod: GET
-        uri: lists/{externalId}
-        responseClass: 'EBC\PublisherClient\ListDefinition\ListDefinition'
+        uri: lists/{externalId}/approvals
+        responseClass: 'EBC\PublisherClient\ListDefinition\ListApprovalExceptions'
         summary: Returns a list of a publisher by its external id
         data:
             acceptedStatusCodes: 200
@@ -113,13 +113,13 @@ operations:
                 description: external Id of the list to get
                 type: string
                 required: true
-    updateListByPublisher:
+    updateListApprovalExceptionsByPublisher:
         httpMethod: PATCH
-        uri: lists/{externalId}
-        responseClass: 'EBC\PublisherClient\ListDefinition\ListDefinition'
+        uri: lists/{externalId}/approvals
+        responseClass: 'EBC\PublisherClient\ListDefinition\ListApprovalExceptions'
         summary: Update a list by a publisher
         data:
-            acceptedStatusCodes: 202
+            acceptedStatusCodes: 200
         parameters:
             externalId:
                 location: uri
@@ -127,7 +127,7 @@ operations:
                 type: string
                 minLength: 1
                 required: true
-            list_definition_update:
+            list_approval_exceptions_update:
                 location: json
                 description: The form of credential
                 type: object

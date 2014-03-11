@@ -1,0 +1,4 @@
+EBC\PublisherClient\ListDefinition\ListsApprovalExceptions:
+    properties:
+        items:
+            type: array<EBC\PublisherClient\ListDefinition\ListApprovalExceptions>
