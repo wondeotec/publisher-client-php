@@ -14,9 +14,9 @@ use EBC\PublisherClient\Tests\TestCase;
 use EBC\PublisherClient\ListDefinition\ListApprovalExceptions;
 
 /**
- * ListDefinitionTest
+ * ListApprovalExceptionsTest
  */
-class ListDefinitionTest extends TestCase
+class ListApprovalExceptionsTest extends TestCase
 {
     const CLASS_NAME = 'EBC\PublisherClient\ListDefinition\ListApprovalExceptions';
 

@@ -3,8 +3,8 @@
 /**
  * LICENSE: [EMAILBIDDING_DESCRIPTION_LICENSE_HERE]
  *
- * @author     Rui Ribeiro <rui.ribeiro@emailbidding.com>
- * @copyright  2012-2013 Emailbidding
+ * @author     Diogo Rocha <diogo.rocha@emailbidding.com>
+ * @copyright  2012-2014 Emailbidding
  * @license    [EMAILBIDDING_URL_LICENSE_HERE]
  */
 
@@ -18,9 +18,9 @@ use EBT\Collection\GetItemsTrait;
 use EBT\Collection\IterableTrait;
 
 /**
- * ListsApprovalExceptions
+ * ListsDefinition
  */
-class ListsApprovalExceptions implements CollectionInterface
+class ListsDefinition implements CollectionInterface
 {
     use CountableTrait;
     use EmptyTrait;
@@ -28,7 +28,7 @@ class ListsApprovalExceptions implements CollectionInterface
     use IterableTrait;
 
     /**
-     * @var ListApprovalExceptions[]
+     * @var ListDefinition[]
      */
     protected $items = array();
 }

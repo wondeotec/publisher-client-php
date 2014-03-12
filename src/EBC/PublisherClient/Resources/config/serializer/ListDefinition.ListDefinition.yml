@@ -1,0 +1,36 @@
+EBC\PublisherClient\ListDefinition\ListDefinition:
+    properties:
+        externalId:
+            type: string
+        name:
+            type: string
+        description:
+            type: string
+        interests:
+            type: array
+        fromName:
+            type: string
+        fromEmail:
+            type: string
+        publicName:
+            type: string
+        customDomain:
+            type: string
+        headDomain:
+            type: string
+        trackingDomain:
+            type: string
+        replyToEmail:
+            type: string
+        defaultCountryName:
+            type: string
+        listTemplateId:
+            type: integer
+        approvalRulesId:
+            type: integer
+        approvedCategories:
+            type: array
+        minPayoutParentCategories:
+            type: array
+        minPayoutChildCategories:
+            type: array

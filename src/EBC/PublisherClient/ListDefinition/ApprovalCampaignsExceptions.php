@@ -26,16 +26,6 @@ class ApprovalCampaignsExceptions
     protected $rejected;
 
     /**
-     * @param array $approved
-     * @param array $rejected
-     */
-    public function __construct(array $approved, array $rejected)
-    {
-        $this->approved = $approved;
-        $this->rejected = $rejected;
-    }
-
-    /**
      * @return array
      */
     public function getApproved()

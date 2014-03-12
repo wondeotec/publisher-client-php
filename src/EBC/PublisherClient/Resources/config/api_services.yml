@@ -93,6 +93,26 @@ operations:
                 description: external Id of the list
                 type: string
                 required: true
+    getListsDefinition:
+        httpMethod: GET
+        uri: lists
+        responseClass: 'EBC\PublisherClient\ListDefinition\ListsDefinition'
+        summary: Returns publisher lists
+        data:
+            acceptedStatusCodes: 200
+    getListDefinitionByExternalId:
+        httpMethod: GET
+        uri: lists/{externalId}
+        responseClass: 'EBC\PublisherClient\ListDefinition\ListDefinition'
+        summary: Returns a list of a publisher by its external id
+        data:
+            acceptedStatusCodes: 200
+        parameters:
+            externalId:
+                location: uri
+                description: external Id of the list to get
+                type: string
+                required: true
     getListsApprovalExceptions:
         httpMethod: GET
         uri: lists/approvals
@@ -100,7 +120,7 @@ operations:
         summary: Returns publisher lists
         data:
             acceptedStatusCodes: 200
-    getListApprovalExceptionsByExternalIdAndPublisherAction:
+    getListApprovalExceptionsByExternalId:
         httpMethod: GET
         uri: lists/{externalId}/approvals
         responseClass: 'EBC\PublisherClient\ListDefinition\ListApprovalExceptions'
@@ -113,7 +133,7 @@ operations:
                 description: external Id of the list to get
                 type: string
                 required: true
-    updateListApprovalExceptionsByPublisher:
+    updateListApprovalExceptions:
         httpMethod: PATCH
         uri: lists/{externalId}/approvals
         responseClass: 'EBC\PublisherClient\ListDefinition\ListApprovalExceptions'

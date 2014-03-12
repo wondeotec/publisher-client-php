@@ -31,18 +31,6 @@ class ListApprovalExceptions
     protected $approvalCampaignsExceptions;
 
     /**
-     * @param string $externalId
-     * @param string $name
-     * @param ApprovalCampaignsExceptions $approvalCampaignsExceptions
-     */
-    public function __construct($externalId, $name, ApprovalCampaignsExceptions $approvalCampaignsExceptions)
-    {
-        $this->externalId = $externalId;
-        $this->name       = $name;
-        $this->approvalCampaignsExceptions = $approvalCampaignsExceptions;
-    }
-
-    /**
      * @return string
      */
     public function getExternalId()

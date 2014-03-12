@@ -12,6 +12,8 @@
 namespace EBC\PublisherClient;
 
 use EBC\PublisherClient\Campaign\Creativities;
+use EBC\PublisherClient\ListDefinition\ListDefinition;
+use EBC\PublisherClient\ListDefinition\ListsDefinition;
 use EBT\EBDate\EBDateTime;
 use EBT\Fastc\ClientInterface;
 use EBC\PublisherClient\Campaign\Campaigns;
@@ -86,6 +88,22 @@ interface PublisherClientInterface extends ClientInterface
     public function getCampaignListApproval($campaignId, $listExternalId);
 
     /**
+     * Get lists definitions
+     *
+     * @return ListsDefinition
+     */
+    public function getListsDefinition();
+
+    /**
+     * Get list definition
+     *
+     * @param string $externalId
+     *
+     * @return ListDefinition
+     */
+    public function getListDefinitionByExternalId($externalId);
+
+    /**
      * Returns publisher lists.
      *
      * @return ListsApprovalExceptions
@@ -111,5 +129,5 @@ interface PublisherClientInterface extends ClientInterface
      *
      * @return ListApprovalExceptions
      */
-    public function updateListApprovalExceptionsByPublisher($externalId, $name, array $approved, array $rejected);
+    public function updateListApprovalExceptions($externalId, $name, array $approved, array $rejected);
 }
