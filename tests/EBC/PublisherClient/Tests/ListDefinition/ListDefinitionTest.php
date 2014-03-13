@@ -39,6 +39,7 @@ class ListDefinitionTest extends TestCase
                 'default_country_name' => 'defaultCountryName',
                 'list_template_id' => 1,
                 'approval_rules_id' => 2,
+                'approval_rules_name' => 'approvalRulesName',
                 'approved_categories' => array('1', '2'),
                 'min_payout_parent_categories' => array('1' => '0.10', '2' => '0.10'),
                 'min_payout_child_categories' => array('1' => '0.10', '2' => '0.10'),
@@ -61,6 +62,7 @@ class ListDefinitionTest extends TestCase
         $this->assertEquals('defaultCountryName', $listDefinition->getDefaultCountryName());
         $this->assertEquals(1, $listDefinition->getListTemplateId());
         $this->assertEquals(2, $listDefinition->getApprovalRulesId());
+        $this->assertEquals('approvalRulesName', $listDefinition->getApprovalRulesName());
         $this->assertEquals(array('1', '2'), $listDefinition->getApprovedCategories());
         $this->assertEquals(array('1' => '0.10', '2' => '0.10'), $listDefinition->getMinPayoutParentCategories());
         $this->assertEquals(array('1' => '0.10', '2' => '0.10'), $listDefinition->getMinPayoutChildCategories());

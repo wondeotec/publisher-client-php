@@ -28,6 +28,8 @@ EBC\PublisherClient\ListDefinition\ListDefinition:
             type: integer
         approvalRulesId:
             type: integer
+        approvalRulesName:
+            type: string
         approvedCategories:
             type: array
         minPayoutParentCategories:

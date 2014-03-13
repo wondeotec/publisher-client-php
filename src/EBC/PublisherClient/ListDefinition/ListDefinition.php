@@ -86,6 +86,11 @@ class ListDefinition
     protected $approvalRulesId;
 
     /**
+     * @var string
+     */
+    protected $approvalRulesName;
+
+    /**
      * @var array
      */
     protected $approvedCategories;
@@ -210,6 +215,14 @@ class ListDefinition
     public function getApprovalRulesId()
     {
         return $this->approvalRulesId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getApprovalRulesName()
+    {
+        return $this->approvalRulesName;
     }
 
     /**

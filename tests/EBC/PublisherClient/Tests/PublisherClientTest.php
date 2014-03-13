@@ -260,6 +260,9 @@ class PublisherClientTest extends TestCase
     }
 
     // code for testing integration
+    /**
+     * @group get
+     */
     /*public function testGetListDefinitionByExternalIdReal()
     {
         $client = new PublisherClient();
@@ -270,9 +273,9 @@ class PublisherClientTest extends TestCase
             $list,
             'Not obtained list definition for list with external id "extIdList_1_publisher_1"'
         );
-    }
+    }*/
 
-    public function testGetListsDefinitionReal()
+    /*public function testGetListsDefinitionReal()
     {
         $client = new PublisherClient();
         $client->setPublisher(1, 'key', 'secret');
