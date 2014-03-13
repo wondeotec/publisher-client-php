@@ -7,7 +7,7 @@ EBC\PublisherClient\ListDefinition\ListDefinition:
         description:
             type: string
         interests:
-            type: array
+            type: EBC\PublisherClient\ListDefinition\Interests
         fromName:
             type: string
         fromEmail:

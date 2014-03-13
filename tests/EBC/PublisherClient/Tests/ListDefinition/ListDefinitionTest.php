@@ -28,7 +28,12 @@ class ListDefinitionTest extends TestCase
                 'external_id' => 'ccc12',
                 'name' => 'list',
                 'description' => 'list description',
-                'interests' => array('1', '2'),
+                'interests' => array(
+                    'items' => array(
+                        array('id' => 20, 'name' => 'test1'),
+                        array('id' => 30, 'name' => 'test2')
+                    )
+                ),
                 'from_name' => 'fromName',
                 'from_email' => 'fromEmail',
                 'public_name' => 'publicName',
@@ -51,7 +56,11 @@ class ListDefinitionTest extends TestCase
         $this->assertEquals('ccc12', $listDefinition->getExternalId());
         $this->assertEquals('list', $listDefinition->getName());
         $this->assertEquals('list description', $listDefinition->getDescription());
-        $this->assertEquals(array('1', '2'), $listDefinition->getInterests());
+        $this->assertInstanceOf(
+            'EBC\PublisherClient\ListDefinition\Interests',
+            $listDefinition->getInterests()
+        );
+        $this->assertEquals(2, count($listDefinition->getInterests()));
         $this->assertEquals('fromName', $listDefinition->getFromName());
         $this->assertEquals('fromEmail', $listDefinition->getFromEmail());
         $this->assertEquals('publicName', $listDefinition->getPublicName());

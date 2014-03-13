@@ -219,6 +219,38 @@ class PublisherClientTest extends TestCase
         );
     }
 
+    public function testGetListsDefinition()
+    {
+        $client = $this->getPublisherClient();
+        $client->setPublisher(1, 'thekey', 'thesecret');
+        $plugin = new MockPlugin();
+        $listsDefinitionJson = file_get_contents(__DIR__ . '/Model/listsDefinition.json');
+        $plugin->addResponse(new Response(200, null, $listsDefinitionJson));
+        $client->addSubscriber($plugin);
+
+        $listsDefinition = $client->getListsDefinition();
+        $this->assertInstanceOf('EBC\PublisherClient\ListDefinition\ListsDefinition', $listsDefinition);
+        $this->assertCount(5, $listsDefinition);
+
+        foreach ($listsDefinition as $listDefinition) {
+            $this->assertInstanceOf('EBC\PublisherClient\ListDefinition\ListDefinition', $listDefinition);
+        }
+
+        /** @var Request $request */
+        $request = $plugin->getReceivedRequests()[0];
+        $this->assertEquals('GET', $request->getMethod());
+
+        /** @var Header $acceptHeader */
+        $acceptHeader = $request->getHeader('Accept');
+        $this->assertCount(1, $acceptHeader);
+        $this->assertEquals('application/json', $acceptHeader->getIterator()->current());
+
+        $this->assertEquals(
+            'https://api.emailbidding.com/api/p/publishers/1/lists?key=thekey&secret=thesecret',
+            $request->getUrl()
+        );
+    }
+
     public function testGetListApprovalExceptionsByExternalId()
     {
         $client = new PublisherClient();
