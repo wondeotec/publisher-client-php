@@ -153,19 +153,11 @@ operations:
                 type: object
                 required: true
                 properties:
-                    externalId:
-                        location: json
-                        required: true
-                        type: string
-                    name:
-                        location: json
-                        required: false
-                        type: string
                     approved:
                         location: json
                         required: false
-                        type: string
+                        type: array
                     rejected:
                         location: json
                         required: false
-                        type: string
+                        type: array

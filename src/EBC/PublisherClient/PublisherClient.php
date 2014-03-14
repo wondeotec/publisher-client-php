@@ -175,17 +175,15 @@ class PublisherClient extends FastcClient implements PublisherClientInterface
     /**
      * {@inheritdoc}
      */
-    public function updateListApprovalExceptions($externalId, $name, array $approved, array $rejected)
+    public function updateListApprovalExceptions($externalId, array $approved, array $rejected)
     {
         return $this->client->getCommand(
             'updateListApprovalExceptions',
             array(
                 'externalId' => $externalId,
                 'list_approval_exceptions_update' => array(
-                    'externalId' => $externalId,
-                    'name' => $name,
-                    'approved' => implode(',', $approved),
-                    'rejected' => implode(',', $rejected),
+                    'approved' => $approved,
+                    'rejected' => $rejected,
                 )
             )
         )->execute();

@@ -122,12 +122,11 @@ interface PublisherClientInterface extends ClientInterface
     /**
      * Update list by a publisher
      *
-     * @param int    $externalId
-     * @param string $name
-     * @param array  $approved
-     * @param array  $rejected
+     * @param string    $externalId
+     * @param array     $approved
+     * @param array     $rejected
      *
      * @return ListApprovalExceptions
      */
-    public function updateListApprovalExceptions($externalId, $name, array $approved, array $rejected);
+    public function updateListApprovalExceptions($externalId, array $approved, array $rejected);
 }

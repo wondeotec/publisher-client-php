@@ -305,9 +305,9 @@ class PublisherClientTest extends TestCase
             $list,
             'Not obtained list definition for list with external id "extIdList_1_publisher_1"'
         );
-    }*/
+    }
 
-    /*public function testGetListsDefinitionReal()
+    public function testGetListsDefinitionReal()
     {
         $client = new PublisherClient();
         $client->setPublisher(1, 'key', 'secret');
@@ -340,7 +340,7 @@ class PublisherClientTest extends TestCase
         $plugin = new MockPlugin();
         $plugin->addResponse(new Response(202));
         $client->addSubscriber($plugin);
-        $client->updateListApprovalExceptions('ext_list_id', 'list_name', array(1), array(2));
+        $client->updateListApprovalExceptions('ext_list_id', array(1), array(2));
     }
 
     public function testUpdateListApprovalExceptions()
@@ -349,7 +349,7 @@ class PublisherClientTest extends TestCase
         $plugin = new MockPlugin();
         $plugin->addResponse(new Response(200));
         $client->addSubscriber($plugin);
-        $list = $client->updateListApprovalExceptions('ext_list_id', 'list_name', array(1), array(2));
+        $list = $client->updateListApprovalExceptions('ext_list_id', array(1), array(2));
         $this->assertInstanceOf('EBC\PublisherClient\ListDefinition\ListApprovalExceptions', $list);
     }
 
@@ -361,7 +361,7 @@ class PublisherClientTest extends TestCase
     {
         $client = new PublisherClient();
         $client->setPublisher(1, 'key', 'secret');
-        $list = $client->updateListApprovalExceptionsByPublisher('extIdList_1_publisher_1', 'list_name', array(1), array(2));
+        $list = $client->updateListApprovalExceptions('extIdList_1_publisher_1', array(1), array(2));
         $this->assertInstanceOf('EBC\PublisherClient\ListDefinition\ListApprovalExceptions', $list);
     }*/
 
