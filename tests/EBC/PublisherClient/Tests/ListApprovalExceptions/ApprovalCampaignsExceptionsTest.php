@@ -11,14 +11,14 @@
 namespace EBC\PublisherClient\Tests\ListDefinition;
 
 use EBC\PublisherClient\Tests\TestCase;
-use EBC\PublisherClient\ListDefinition\ApprovalCampaignsExceptions;
+use EBC\PublisherClient\ListApprovalExceptions\ApprovalCampaignsExceptions;
 
 /**
  * ApprovalCampaignsExceptionsTest
  */
 class ApprovalCampaignsExceptionsTest extends TestCase
 {
-    const CLASS_NAME = 'EBC\PublisherClient\ListDefinition\ApprovalCampaignsExceptions';
+    const CLASS_NAME = 'EBC\PublisherClient\ListApprovalExceptions\ApprovalCampaignsExceptions';
 
     public function testDeserialize()
     {
