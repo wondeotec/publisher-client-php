@@ -1,0 +1,8 @@
+EBC\PublisherClient\ListApprovalExceptions\ListApprovalExceptions:
+    properties:
+        externalId:
+            type: string
+        name:
+            type: string
+        approvalCampaignsExceptions:
+            type: EBC\PublisherClient\ListApprovalExceptions\ApprovalCampaignsExceptions

@@ -1,4 +1,4 @@
-EBC\PublisherClient\ListDefinition\ApprovalCampaignsExceptions:
+EBC\PublisherClient\ListApprovalExceptions\ApprovalCampaignsExceptions:
     # exclude everything except what is explicitly exposed
     exclusion_policy: ALL
     properties:

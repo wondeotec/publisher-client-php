@@ -1,0 +1,6 @@
+EBC\PublisherClient\ListDefinition\Interest:
+    properties:
+        id:
+            type: string
+        name:
+            type: string

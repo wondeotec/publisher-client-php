@@ -133,20 +133,20 @@ class PublisherClient extends FastcClient implements PublisherClientInterface
     /**
      * {@inheritdoc}
      */
-    public function getLists()
+    public function getListsDefinition()
     {
         return $this->client->getCommand(
-            'getLists'
+            'getListsDefinition'
         )->execute();
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getListByExternalId($externalId)
+    public function getListDefinitionByExternalId($externalId)
     {
         return $this->client->getCommand(
-            'getListByExternalIdAndPublisherAction',
+            'getListDefinitionByExternalId',
             array('externalId' => $externalId)
         )->execute();
     }
@@ -154,17 +154,72 @@ class PublisherClient extends FastcClient implements PublisherClientInterface
     /**
      * {@inheritdoc}
      */
-    public function updateListByPublisher($externalId, $name, array $approved, array $rejected)
-    {
+    public function updateListDefinition(
+        $externalId,
+        $newExternalId,
+        $name,
+        $description,
+        $fromName,
+        $publicName,
+        $listTemplateId,
+        $approvalRulesId,
+        array $approvalCategories,
+        array $minPayoutParentCategories,
+        array $minPayoutChildCategories
+    ) {
         return $this->client->getCommand(
-            'updateListByPublisher',
+            'updateListDefinitionByExternalId',
             array(
                 'externalId' => $externalId,
                 'list_definition_update' => array(
-                    'externalId' => $externalId,
+                    'externalId' => $newExternalId,
                     'name' => $name,
-                    'approved' => implode(',', $approved),
-                    'rejected' => implode(',', $rejected),
+                    'description' => $description,
+                    'fromName' => $fromName,
+                    'publicName' => $publicName,
+                    'listTemplateId' => $listTemplateId,
+                    'approvalRulesId' => $approvalRulesId,
+                    'approvalCategories' => $approvalCategories,
+                    'minPayoutParentCategories' => json_encode($minPayoutParentCategories),
+                    'minPayoutChildCategories' => json_encode($minPayoutChildCategories),
+                )
+            )
+        )->execute();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getListsApprovalExceptions()
+    {
+        return $this->client->getCommand(
+            'getListsApprovalExceptions'
+        )->execute();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getListApprovalExceptionsByExternalId($externalId)
+    {
+        return $this->client->getCommand(
+            'getListApprovalExceptionsByExternalId',
+            array('externalId' => $externalId)
+        )->execute();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function updateListApprovalExceptions($externalId, array $approved, array $rejected)
+    {
+        return $this->client->getCommand(
+            'updateListApprovalExceptions',
+            array(
+                'externalId' => $externalId,
+                'list_approval_exceptions_update' => array(
+                    'approved' => $approved,
+                    'rejected' => $rejected,
                 )
             )
         )->execute();

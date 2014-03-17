@@ -93,14 +93,14 @@ operations:
                 description: external Id of the list
                 type: string
                 required: true
-    getLists:
+    getListsDefinition:
         httpMethod: GET
         uri: lists
         responseClass: 'EBC\PublisherClient\ListDefinition\ListsDefinition'
         summary: Returns publisher lists
         data:
             acceptedStatusCodes: 200
-    getListByExternalIdAndPublisherAction:
+    getListDefinitionByExternalId:
         httpMethod: GET
         uri: lists/{externalId}
         responseClass: 'EBC\PublisherClient\ListDefinition\ListDefinition'
@@ -113,13 +113,91 @@ operations:
                 description: external Id of the list to get
                 type: string
                 required: true
-    updateListByPublisher:
+    updateListDefinitionByExternalId:
         httpMethod: PATCH
         uri: lists/{externalId}
-        responseClass: 'EBC\PublisherClient\ListDefinition\ListDefinition'
+        summary: Returns a list of a publisher by its external id
+        data:
+            acceptedStatusCodes: 204
+        parameters:
+            externalId:
+                location: uri
+                description: external Id of the list to set
+                type: string
+                required: true
+            list_definition_update:
+                location: json
+                description: The form for list definition
+                type: object
+                required: true
+                properties:
+                    externalId:
+                        location: json
+                        type: string
+                        required: true
+                    name:
+                        location: json
+                        required: false
+                        type: string
+                    description:
+                        location: json
+                        required: false
+                        type: string
+                    fromName:
+                        location: json
+                        required: false
+                        type: string
+                    publicName:
+                        location: json
+                        required: false
+                        type: string
+                    listTemplateId:
+                        location: json
+                        required: false
+                        type: integer
+                    approvalRulesId:
+                        location: json
+                        required: false
+                        type: integer
+                    approvalCategories:
+                        location: json
+                        required: false
+                        type: array
+                    minPayoutParentCategories:
+                        location: json
+                        required: false
+                        type: string
+                    minPayoutChildCategories:
+                        location: json
+                        required: false
+                        type: string
+    getListsApprovalExceptions:
+        httpMethod: GET
+        uri: lists/approvals
+        responseClass: 'EBC\PublisherClient\ListApprovalExceptions\ListsApprovalExceptions'
+        summary: Returns publisher lists
+        data:
+            acceptedStatusCodes: 200
+    getListApprovalExceptionsByExternalId:
+        httpMethod: GET
+        uri: lists/{externalId}/approvals
+        responseClass: 'EBC\PublisherClient\ListApprovalExceptions\ListApprovalExceptions'
+        summary: Returns a list of a publisher by its external id
+        data:
+            acceptedStatusCodes: 200
+        parameters:
+            externalId:
+                location: uri
+                description: external Id of the list to get
+                type: string
+                required: true
+    updateListApprovalExceptions:
+        httpMethod: PATCH
+        uri: lists/{externalId}/approvals
+        responseClass: 'EBC\PublisherClient\ListApprovalExceptions\ListApprovalExceptions'
         summary: Update a list by a publisher
         data:
-            acceptedStatusCodes: 202
+            acceptedStatusCodes: 200
         parameters:
             externalId:
                 location: uri
@@ -127,25 +205,17 @@ operations:
                 type: string
                 minLength: 1
                 required: true
-            list_definition_update:
+            list_approval_exceptions_update:
                 location: json
-                description: The form of credential
+                description: The form approval exceptions
                 type: object
                 required: true
                 properties:
-                    externalId:
-                        location: json
-                        required: true
-                        type: string
-                    name:
-                        location: json
-                        required: false
-                        type: string
                     approved:
                         location: json
                         required: false
-                        type: string
+                        type: array
                     rejected:
                         location: json
                         required: false
-                        type: string
+                        type: array

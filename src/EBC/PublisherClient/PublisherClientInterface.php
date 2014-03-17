@@ -12,13 +12,15 @@
 namespace EBC\PublisherClient;
 
 use EBC\PublisherClient\Campaign\Creativities;
+use EBC\PublisherClient\ListDefinition\ListDefinition;
+use EBC\PublisherClient\ListDefinition\ListsDefinition;
 use EBT\EBDate\EBDateTime;
 use EBT\Fastc\ClientInterface;
 use EBC\PublisherClient\Campaign\Campaigns;
 use EBC\PublisherClient\Campaign\Campaign;
 use EBC\PublisherClient\Campaign\Approval;
-use EBC\PublisherClient\ListDefinition\ListDefinition;
-use EBC\PublisherClient\ListDefinition\ListsDefinition;
+use EBC\PublisherClient\ListApprovalExceptions\ListApprovalExceptions;
+use EBC\PublisherClient\ListApprovalExceptions\ListsApprovalExceptions;
 
 /**
  * PublisherClientInterface
@@ -86,30 +88,76 @@ interface PublisherClientInterface extends ClientInterface
     public function getCampaignListApproval($campaignId, $listExternalId);
 
     /**
-     * Returns publisher lists.
+     * Get lists definitions
      *
      * @return ListsDefinition
      */
-    public function getLists();
+    public function getListsDefinition();
+
+    /**
+     * Get list definition
+     *
+     * @param string $externalId
+     *
+     * @return ListDefinition
+     */
+    public function getListDefinitionByExternalId($externalId);
+
+    /**
+     * Set list definition
+     *
+     * @param string    $externalId
+     * @param string    $newExternalId
+     * @param string    $name
+     * @param string    $description
+     * @param string    $fromName
+     * @param string    $publicName
+     * @param int       $listTemplateId
+     * @param int       $approvalRulesId
+     * @param array     $approvalCategories
+     * @param array     $minPayoutParentCategories
+     * @param array     $minPayoutChildCategories
+     *
+     * @return ListDefinition
+     */
+    public function updateListDefinition(
+        $externalId,
+        $newExternalId,
+        $name,
+        $description,
+        $fromName,
+        $publicName,
+        $listTemplateId,
+        $approvalRulesId,
+        array $approvalCategories,
+        array $minPayoutParentCategories,
+        array $minPayoutChildCategories
+    );
+
+    /**
+     * Returns publisher lists.
+     *
+     * @return ListsApprovalExceptions
+     */
+    public function getListsApprovalExceptions();
 
     /**
      * Return a list of a publisher by its external id
      *
      * @param string $externalId
      *
-     * @return ListDefinition
+     * @return ListApprovalExceptions
      */
-    public function getListByExternalId($externalId);
+    public function getListApprovalExceptionsByExternalId($externalId);
 
     /**
      * Update list by a publisher
      *
-     * @param int    $externalId
-     * @param string $name
-     * @param array  $approved
-     * @param array  $rejected
+     * @param string    $externalId
+     * @param array     $approved
+     * @param array     $rejected
      *
-     * @return ListDefinition
+     * @return ListApprovalExceptions
      */
-    public function updateListByPublisher($externalId, $name, array $approved, array $rejected);
+    public function updateListApprovalExceptions($externalId, array $approved, array $rejected);
 }

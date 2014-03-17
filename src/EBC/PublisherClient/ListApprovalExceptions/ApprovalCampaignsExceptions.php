@@ -8,7 +8,7 @@
  * @license    [EMAILBIDDING_URL_LICENSE_HERE]
  */
 
-namespace EBC\PublisherClient\ListDefinition;
+namespace EBC\PublisherClient\ListApprovalExceptions;
 
 /**
  * ApprovalCampaignsExceptions
@@ -24,16 +24,6 @@ class ApprovalCampaignsExceptions
      * @var array
      */
     protected $rejected;
-
-    /**
-     * @param array $approved
-     * @param array $rejected
-     */
-    public function __construct(array $approved, array $rejected)
-    {
-        $this->approved = $approved;
-        $this->rejected = $rejected;
-    }
 
     /**
      * @return array
