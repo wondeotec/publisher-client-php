@@ -3,8 +3,8 @@
 /**
  * LICENSE: [EMAILBIDDING_DESCRIPTION_LICENSE_HERE]
  *
- * @author     Rui Ribeiro <rui.ribeiro@emailbidding.com>
- * @copyright  2012-2013 Emailbidding
+ * @author     Rui Ribeiro <rui.ribeiro@emailbidding.com>, Diogo Rocha <diogo.rocha@emailbidding.com>
+ * @copyright  2012-2014 Emailbidding
  * @license    [EMAILBIDDING_URL_LICENSE_HERE]
  */
 
