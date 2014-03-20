@@ -197,7 +197,7 @@ operations:
         responseClass: 'EBC\PublisherClient\ListApprovalExceptions\ListApprovalExceptions'
         summary: Update a list by a publisher
         data:
-            acceptedStatusCodes: 200
+            acceptedStatusCodes: 204
         parameters:
             externalId:
                 location: uri

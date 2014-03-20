@@ -1,6 +1,6 @@
-scheme: https
-host: api.emailbidding.com
-basePath: /api/p/publishers
+scheme: http
+host: eb.dev
+basePath: /app_test.php/api/p/publishers
 request.options:
     headers:
         Accept: application/json

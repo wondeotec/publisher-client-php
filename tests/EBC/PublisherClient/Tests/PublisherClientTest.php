@@ -400,7 +400,7 @@ class PublisherClientTest extends TestCase
     {
         $client = new PublisherClient();
         $plugin = new MockPlugin();
-        $plugin->addResponse(new Response(200));
+        $plugin->addResponse(new Response(204));
         $client->addSubscriber($plugin);
         $list = $client->updateListApprovalExceptions('ext_list_id', array(1), array(2));
         $this->assertInstanceOf('EBC\PublisherClient\ListApprovalExceptions\ListApprovalExceptions', $list);
@@ -440,13 +440,14 @@ class PublisherClientTest extends TestCase
     /**
      * @group update-list-approval
      */
-    /*public function testUpdateListApprovalExceptionsByPublisherReal()
+    public function testUpdateListApprovalExceptionsByPublisherReal()
     {
         $client = new PublisherClient();
         $client->setPublisher(1, 'key', 'secret');
-        $list = $client->updateListApprovalExceptions('extIdList_1_publisher_1', array(1), array(2));
+        $client->updateListApprovalExceptions('extIdList_1_publisher_1', array(1), array(2));
+        $list = $client->getListApprovalExceptionsByExternalId('extIdList_1_publisher_1');
         $this->assertInstanceOf('EBC\PublisherClient\ListApprovalExceptions\ListApprovalExceptions', $list);
-    }*/
+    }
 
     /**
      * @param array     $campaignArr
