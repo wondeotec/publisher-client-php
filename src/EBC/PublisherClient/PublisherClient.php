@@ -179,7 +179,7 @@ class PublisherClient extends FastcClient implements PublisherClientInterface
                     'publicName' => $publicName,
                     'listTemplateId' => $listTemplateId,
                     'approvalRulesId' => $approvalRulesId,
-                    'approvalCategories' => $approvalCategories,
+                    'approvedCategories' => $approvalCategories,
                     'minPayoutParentCategories' => json_encode($minPayoutParentCategories),
                     'minPayoutChildCategories' => json_encode($minPayoutChildCategories),
                 )

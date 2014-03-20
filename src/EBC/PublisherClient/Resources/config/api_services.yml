@@ -159,7 +159,7 @@ operations:
                         location: json
                         required: false
                         type: integer
-                    approvalCategories:
+                    approvedCategories:
                         location: json
                         required: false
                         type: array

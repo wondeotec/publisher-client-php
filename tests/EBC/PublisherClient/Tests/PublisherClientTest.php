@@ -424,7 +424,7 @@ class PublisherClientTest extends TestCase
     /**
      * @group get-list-approval
      */
-    /*public function testGetListsDefinitionReal()
+    /*public function testGetListsApprovalExceptionsReal()
     {
         $client = new PublisherClient();
         $client->setPublisher(1, 'key', 'secret');
