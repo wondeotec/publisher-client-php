@@ -194,7 +194,6 @@ operations:
     updateListApprovalExceptions:
         httpMethod: PATCH
         uri: lists/{externalId}/approvals
-        responseClass: 'EBC\PublisherClient\ListApprovalExceptions\ListApprovalExceptions'
         summary: Update a list by a publisher
         data:
             acceptedStatusCodes: 204
