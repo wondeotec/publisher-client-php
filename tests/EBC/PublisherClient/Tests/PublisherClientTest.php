@@ -396,14 +396,27 @@ class PublisherClientTest extends TestCase
         $client->updateListApprovalExceptions('ext_list_id', array(1), array(2));
     }
 
+    /**
+     * @group now
+     */
     public function testUpdateListApprovalExceptions()
     {
         $client = new PublisherClient();
+        $client->setPublisher(2, 'thekey', 'thesecret');
         $plugin = new MockPlugin();
         $plugin->addResponse(new Response(204));
         $client->addSubscriber($plugin);
         $list = $client->updateListApprovalExceptions('ext_list_id', array(1), array(2));
-        $this->assertInstanceOf('EBC\PublisherClient\ListApprovalExceptions\ListApprovalExceptions', $list);
+
+        /** @var Request $request */
+        $request = $plugin->getReceivedRequests()[0];
+
+        $this->assertEquals(
+        // @codingStandardsIgnoreStart
+            'https://api.emailbidding.com/api/p/publishers/2/lists/ext_list_id/approvals?key=thekey&secret=thesecret',
+            // @codingStandardsIgnoreEnd
+            $request->getUrl()
+        );
     }
 
     /**
@@ -440,14 +453,14 @@ class PublisherClientTest extends TestCase
     /**
      * @group update-list-approval
      */
-    public function testUpdateListApprovalExceptionsByPublisherReal()
+    /*public function testUpdateListApprovalExceptionsByPublisherReal()
     {
         $client = new PublisherClient();
         $client->setPublisher(1, 'key', 'secret');
         $client->updateListApprovalExceptions('extIdList_1_publisher_1', array(1), array(2));
         $list = $client->getListApprovalExceptionsByExternalId('extIdList_1_publisher_1');
         $this->assertInstanceOf('EBC\PublisherClient\ListApprovalExceptions\ListApprovalExceptions', $list);
-    }
+    }*/
 
     /**
      * @param array     $campaignArr

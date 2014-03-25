@@ -31,6 +31,11 @@ class Campaign
     protected $name;
 
     /**
+     * @var string
+     */
+    protected $description;
+
+    /**
      * @var Advertiser
      */
     protected $advertiser;
@@ -84,6 +89,14 @@ class Campaign
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 
     /**

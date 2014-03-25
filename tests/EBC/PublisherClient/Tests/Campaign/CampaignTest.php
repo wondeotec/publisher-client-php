@@ -36,6 +36,7 @@ class CampaignTest extends TestCase
         // top level stuff
         $this->assertEquals(2, $campaign->getId());
         $this->assertEquals('just a test', $campaign->getName());
+        $this->assertEquals('bla bla', $campaign->getDescription());
 
         // advertiser
         $this->assertInstanceOf('EBC\PublisherClient\Advertiser\Advertiser', $campaign->getAdvertiser());
@@ -109,6 +110,7 @@ class CampaignTest extends TestCase
         return array(
             'id' => 2,
             'name' => 'just a test',
+            'description' => 'bla bla',
             'advertiser' => array(
                 'name' => 'advertiser 1'
             ),
