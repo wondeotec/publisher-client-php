@@ -1,0 +1,9 @@
+machine:
+  php:
+    version: 5.4.10
+dependencies:
+  pre:
+    - sed -i 's/^;//' ~/.phpenv/versions/$(phpenv global)/etc/conf.d/xdebug.ini ; composer install --no-interaction --dev --prefer-source
+test:
+  override:
+    - cd platform ; ./vendor/bin/phpunit -d memory_limit=256M --group unit --coverage-text -c app/ src/
