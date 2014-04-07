@@ -6,15 +6,11 @@ EBC\PublisherClient\Campaign\Campaign:
             type: string
         description:
             type: string
-        advertiser:
-            type: EBC\PublisherClient\Advertiser\Advertiser
         country:
             type: EBC\PublisherClient\Locale\Country
         schedule:
             type: EBC\PublisherClient\Campaign\Schedule
-        totalPayout:
-            type: EBC\PublisherClient\Campaign\Payout
-        publisherPayout:
+        payout:
             type: EBC\PublisherClient\Campaign\Payout
         listsApproval:
             type: EBC\PublisherClient\Campaign\ListsApproval

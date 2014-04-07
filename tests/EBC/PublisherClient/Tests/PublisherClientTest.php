@@ -472,10 +472,6 @@ class PublisherClientTest extends TestCase
         $this->assertEquals($campaignArr['id'], $campaign->getId());
         $this->assertEquals($campaignArr['name'], $campaign->getName());
 
-        // advertiser
-        $this->assertInstanceOf('EBC\PublisherClient\Advertiser\Advertiser', $campaign->getAdvertiser());
-        $this->assertEquals($campaignArr['advertiser']['name'], $campaign->getAdvertiser()->getName());
-
         // country
         $this->assertInstanceOf('EBC\PublisherClient\Locale\Country', $campaign->getCountry());
         $this->assertEquals($campaignArr['country']['code'], $campaign->getCountry()->getCode());
@@ -494,15 +490,10 @@ class PublisherClientTest extends TestCase
             $campaign->getSchedule()->getEndDate()->formatAsString()
         );
 
-        // total payout
-        $this->assertInstanceOf('EBC\PublisherClient\Campaign\Payout', $campaign->getTotalPayout());
-        $this->assertEquals($campaignArr['total_payout']['type'], $campaign->getTotalPayout()->getType());
-        $this->assertEquals($campaignArr['total_payout']['value'], $campaign->getTotalPayout()->getValue());
-
-        // publisher payout
-        $this->assertInstanceOf('EBC\PublisherClient\Campaign\Payout', $campaign->getPublisherPayout());
-        $this->assertEquals($campaignArr['publisher_payout']['type'], $campaign->getPublisherPayout()->getType());
-        $this->assertEquals($campaignArr['publisher_payout']['value'], $campaign->getPublisherPayout()->getValue());
+        // payout
+        $this->assertInstanceOf('EBC\PublisherClient\Campaign\Payout', $campaign->getPayout());
+        $this->assertEquals($campaignArr['payout']['type'], $campaign->getPayout()->getType());
+        $this->assertEquals($campaignArr['payout']['value'], $campaign->getPayout()->getValue());
 
         // categories
         $categories = $campaign->getCategories();
