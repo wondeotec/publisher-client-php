@@ -36,11 +36,6 @@ class Campaign
     protected $description;
 
     /**
-     * @var Advertiser
-     */
-    protected $advertiser;
-
-    /**
      * @var Country
      */
     protected $country;
@@ -53,7 +48,7 @@ class Campaign
     /**
      * @var Payout
      */
-    protected $totalPayout;
+    protected $payout;
 
     /**
      * @var Payout
@@ -100,14 +95,6 @@ class Campaign
     }
 
     /**
-     * @return Advertiser
-     */
-    public function getAdvertiser()
-    {
-        return $this->advertiser;
-    }
-
-    /**
      * @return Country
      */
     public function getCountry()
@@ -126,17 +113,9 @@ class Campaign
     /**
      * @return Payout
      */
-    public function getTotalPayout()
+    public function getPayout()
     {
-        return $this->totalPayout;
-    }
-
-    /**
-     * @return Payout
-     */
-    public function getPublisherPayout()
-    {
-        return $this->publisherPayout;
+        return $this->payout;
     }
 
     /**

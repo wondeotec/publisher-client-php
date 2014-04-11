@@ -38,10 +38,6 @@ class CampaignTest extends TestCase
         $this->assertEquals('just a test', $campaign->getName());
         $this->assertEquals('bla bla', $campaign->getDescription());
 
-        // advertiser
-        $this->assertInstanceOf('EBC\PublisherClient\Advertiser\Advertiser', $campaign->getAdvertiser());
-        $this->assertEquals('advertiser 1', $campaign->getAdvertiser()->getName());
-
         // schedule
         $this->assertInstanceOf('EBC\PublisherClient\Campaign\Schedule', $campaign->getSchedule());
         $this->assertInstanceOf('EBT\EBDate\EBDateTime', $campaign->getSchedule()->getStartDate());
@@ -60,15 +56,10 @@ class CampaignTest extends TestCase
         $this->assertEquals('PT', $campaign->getCountry()->getCode());
         $this->assertEquals('Portugal', $campaign->getCountry()->getName());
 
-        // total payout
-        $this->assertInstanceOf('EBC\PublisherClient\Campaign\Payout', $campaign->getTotalPayout());
-        $this->assertEquals('cpc', $campaign->getTotalPayout()->getType());
-        $this->assertEquals(0.9, $campaign->getTotalPayout()->getValue());
-
-        // publisher payout
-        $this->assertInstanceOf('EBC\PublisherClient\Campaign\Payout', $campaign->getPublisherPayout());
-        $this->assertEquals('cpc', $campaign->getPublisherPayout()->getType());
-        $this->assertEquals(0.7, $campaign->getPublisherPayout()->getValue());
+        // payout
+        $this->assertInstanceOf('EBC\PublisherClient\Campaign\Payout', $campaign->getPayout());
+        $this->assertEquals('cpc', $campaign->getPayout()->getType());
+        $this->assertEquals(0.7, $campaign->getPayout()->getValue());
 
         // list approvals
         $listsApproval = $campaign->getListsApproval();
@@ -111,18 +102,11 @@ class CampaignTest extends TestCase
             'id' => 2,
             'name' => 'just a test',
             'description' => 'bla bla',
-            'advertiser' => array(
-                'name' => 'advertiser 1'
-            ),
             'schedule' => array(
                 'start_date' => '2014-01-09 19:20:30',
                 'end_date' => '2014-01-28 09:18:05'
             ),
-            'total_payout' => array(
-                'type' => 'cpc',
-                'value' => 0.9
-            ),
-            'publisher_payout' => array(
+            'payout' => array(
                 'type' => 'cpc',
                 'value' => 0.7
             ),
