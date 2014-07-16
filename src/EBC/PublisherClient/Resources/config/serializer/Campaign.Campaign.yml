@@ -16,5 +16,7 @@ EBC\PublisherClient\Campaign\Campaign:
             type: EBC\PublisherClient\Campaign\ListsApproval
         categories:
             type: EBC\PublisherClient\Campaign\Categories
+        announcer:
+            type: EBC\PublisherClient\Campaign\Announcer
         updatedAt:
             type: EBT\EBDate\EBDateTime

@@ -75,6 +75,18 @@ class CampaignTest extends TestCase
             ++$pos;
         }
 
+        //announcer
+        $announcer = $campaign->getAnnouncer();
+        $this->assertInstanceOf('EBC\PublisherClient\Campaign\Announcer', $announcer);
+        $this->assertEquals(
+            2,
+            $campaign->getAnnouncer()->getId()
+        );
+        $this->assertEquals(
+            'announcer1',
+            $campaign->getAnnouncer()->getName()
+        );
+
         // categories
         $categories = $campaign->getCategories();
         $this->assertInstanceOf('EBC\PublisherClient\Campaign\Categories', $categories);
@@ -147,6 +159,10 @@ class CampaignTest extends TestCase
                         'name' => 'category3'
                     )
                 )
+            ),
+            'announcer' => array(
+                'id' => 2,
+                'name' => 'announcer1'
             ),
             'updated_at' => '2014-01-09 19:20:30'
         );

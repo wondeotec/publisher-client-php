@@ -1,0 +1,6 @@
+EBC\PublisherClient\Campaign\Announcer:
+    properties:
+        id:
+            type: integer
+        name:
+            type: string
