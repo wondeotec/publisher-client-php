@@ -66,6 +66,11 @@ class Campaign
     protected $categories;
 
     /**
+     * @var Announcer
+     */
+    protected $announcer;
+
+    /**
      * @var EBDateTime
      */
     protected $updatedAt;
@@ -132,6 +137,14 @@ class Campaign
     public function getCategories()
     {
         return $this->categories;
+    }
+
+    /**
+     * @return Announcer
+     */
+    public function getAnnouncer()
+    {
+        return $this->announcer;
     }
 
     /**
