@@ -132,12 +132,11 @@ class PublisherClient extends FastcClient implements PublisherClientInterface
     }
 
     /**
-     * @param int $publisherId
      * @param int $campaignId
      *
      * @return CampaignFilter
      */
-    public function getCampaignsFilters($publisherId, $campaignId)
+    public function getCampaignsFilters($campaignId)
     {
         return $this->client->getCommand(
             'getCampaignsFilters',

@@ -79,12 +79,11 @@ interface PublisherClientInterface extends ClientInterface
     );
 
     /**
-     * @param int $publisherId
      * @param int $campaignId
      *
      * @return CampaignFilter
      */
-    public function getCampaignsFilters($publisherId, $campaignId);
+    public function getCampaignsFilters($campaignId);
 
     /**
      * Get approval of a campaign for a list
