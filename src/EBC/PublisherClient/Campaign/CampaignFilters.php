@@ -16,7 +16,7 @@ use EBT\Collection\EmptyTrait;
 use EBT\Collection\IterableTrait;
 use EBT\Collection\GetItemsTrait;
 
-class CampaignFilters
+class CampaignFilters implements CollectionInterface
 {
     use EmptyTrait;
     use IterableTrait;

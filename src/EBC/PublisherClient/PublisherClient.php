@@ -12,6 +12,7 @@
 namespace EBC\PublisherClient;
 
 use EBC\PublisherClient\Campaign\CampaignFilter;
+use EBC\PublisherClient\Campaign\CampaignFilters;
 use EBT\EBDate\EBDateTime;
 use EBT\Fastc\Client as FastcClient;
 use EBT\Fastc\Listener\StatusCodeListener;
@@ -134,7 +135,7 @@ class PublisherClient extends FastcClient implements PublisherClientInterface
     /**
      * @param int $campaignId
      *
-     * @return CampaignFilter
+     * @return CampaignFilters
      */
     public function getCampaignsFilters($campaignId)
     {
