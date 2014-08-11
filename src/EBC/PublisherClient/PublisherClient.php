@@ -142,7 +142,6 @@ class PublisherClient extends FastcClient implements PublisherClientInterface
         return $this->client->getCommand(
             'getCampaignsFilters',
             array(
-                'publisherId' => $publisherId,
                 'campaignId'  => $campaignId
             )
         )->execute();
