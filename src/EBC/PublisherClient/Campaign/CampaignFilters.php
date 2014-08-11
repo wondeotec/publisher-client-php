@@ -10,6 +10,12 @@
 
 namespace EBC\PublisherClient\Campaign;
 
+use EBT\Collection\CollectionInterface;
+use EBT\Collection\CountableTrait;
+use EBT\Collection\EmptyTrait;
+use EBT\Collection\IterableTrait;
+use EBT\Collection\GetItemsTrait;
+
 class CampaignFilters
 {
     use EmptyTrait;

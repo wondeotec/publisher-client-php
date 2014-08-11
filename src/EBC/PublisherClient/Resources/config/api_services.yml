@@ -78,7 +78,7 @@ operations:
     getCampaignsFilters:
          httpMethod: GET
          uri:  campaigns/{campaignId}/filters
-         responseClass: 'EBC\PublisherClient\Campaign\CampaignsFilters'
+         responseClass: 'EBC\PublisherClient\Campaign\CampaignFilters'
          summary: Returns filters for the campaignid
          data:
              acceptedStatusCodes: 200
