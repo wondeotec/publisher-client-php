@@ -75,6 +75,20 @@ operations:
                 description: Number of campaigns to get
                 type: integer
                 required: false
+    getCampaignsFilters:
+         httpMethod: GET
+         uri:  campaigns/{campaignId}/filters
+         responseClass: 'EBC\PublisherClient\Campaign\CampaignsFilters'
+         summary: Returns filters for the campaignid
+         data:
+             acceptedStatusCodes: 200
+         parameters:
+             campaignId:
+                 location: uri
+                 description: campaign id
+                 type: integer
+                 required: true
+
     getCampaignListApproval:
         httpMethod: GET
         uri: campaigns/{campaignId}/lists/{listExternalId}
