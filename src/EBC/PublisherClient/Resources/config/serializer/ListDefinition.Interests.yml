@@ -1,0 +1,5 @@
+EBC\PublisherClient\ListDefinition\Interests:
+    properties:
+        items:
+            type: array<EBC\PublisherClient\ListDefinition\Interest>
+

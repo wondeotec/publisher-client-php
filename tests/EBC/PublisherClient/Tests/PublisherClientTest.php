@@ -11,6 +11,7 @@
 
 namespace EBC\PublisherClient\Tests;
 
+use EBC\PublisherClient\Campaign\Campaign;
 use EBC\PublisherClient\PublisherClient;
 use EBC\PublisherClient\PublisherClientInterface;
 use EBT\EBDate\EBDateTime;
@@ -60,11 +61,41 @@ class PublisherClientTest extends TestCase
         $client->getCampaigns();
     }
 
-    public function testGetCampaignCreativities() {
+    public function testGetCampaignById()
+    {
         $client = $this->getPublisherClient();
         $client->setPublisher(2, 'thekey', 'thesecret');
         $plugin = new MockPlugin();
-        $campaignsJson = file_get_contents(__DIR__ . '/Model/criativities.json');
+        $campaignJson = file_get_contents(__DIR__ . '/Model/campaign.json');
+
+        $plugin->addResponse(new Response(200, null, $campaignJson));
+        $client->addSubscriber($plugin);
+        $campaign = $client->getCampaign(1);
+
+        $campaignArr = json_decode($campaignJson, true);
+
+        $this->compareCampaign($campaignArr, $campaign);
+
+        /** @var Request $request */
+        $request = $plugin->getReceivedRequests()[0];
+        $this->assertEquals('GET', $request->getMethod());
+        /** @var Header $acceptHeader */
+        $acceptHeader = $request->getHeader('Accept');
+        $this->assertCount(1, $acceptHeader);
+        $this->assertEquals('application/json', $acceptHeader->getIterator()->current());
+
+        $this->assertEquals(
+            'https://api.emailbidding.com/api/p/publishers/2/campaigns/1?key=thekey&secret=thesecret',
+            $request->getUrl()
+        );
+    }
+
+    public function testGetCampaignCreativities()
+    {
+        $client = $this->getPublisherClient();
+        $client->setPublisher(2, 'thekey', 'thesecret');
+        $plugin = new MockPlugin();
+        $campaignsJson = file_get_contents(__DIR__ . '/Model/creativities.json');
 
         $plugin->addResponse(new Response(200, null, $campaignsJson));
         $client->addSubscriber($plugin);
@@ -121,64 +152,8 @@ class PublisherClientTest extends TestCase
 
         foreach ($campaigns as $campaign) {
             $campaignArr =  $campaignsArr[$pos];
-            // top level stuff
-            $this->assertEquals($campaignArr['id'], $campaign->getId());
-            $this->assertEquals($campaignArr['name'], $campaign->getName());
 
-            // advertiser
-            $this->assertInstanceOf('EBC\PublisherClient\Advertiser\Advertiser', $campaign->getAdvertiser());
-            $this->assertEquals($campaignArr['advertiser']['name'], $campaign->getAdvertiser()->getName());
-
-            // country
-            $this->assertInstanceOf('EBC\PublisherClient\Locale\Country', $campaign->getCountry());
-            $this->assertEquals($campaignArr['country']['code'], $campaign->getCountry()->getCode());
-            $this->assertEquals($campaignArr['country']['name'], $campaign->getCountry()->getName());
-
-            // schedule
-            $this->assertInstanceOf('EBC\PublisherClient\Campaign\Schedule', $campaign->getSchedule());
-            $this->assertInstanceOf('EBT\EBDate\EBDateTime', $campaign->getSchedule()->getStartDate());
-            $this->assertEquals(
-                $campaignArr['schedule']['start_date'],
-                $campaign->getSchedule()->getStartDate()->formatAsString()
-            );
-            $this->assertInstanceOf('EBT\EBDate\EBDateTime', $campaign->getSchedule()->getEndDate());
-            $this->assertEquals(
-                $campaignArr['schedule']['end_date'],
-                $campaign->getSchedule()->getEndDate()->formatAsString()
-            );
-
-            // bid
-            $this->assertInstanceOf('EBC\PublisherClient\Campaign\Payout', $campaign->getPayout());
-            $this->assertEquals($campaignArr['payout']['type'], $campaign->getPayout()->getType());
-            $this->assertEquals($campaignArr['payout']['value'], $campaign->getPayout()->getValue());
-
-            // list approvals
-            $listsApproval = $campaign->getListsApproval();
-            $this->assertInstanceOf('EBC\PublisherClient\Campaign\ListsApproval', $listsApproval);
-            $this->assertCount(count($campaignArr['lists_approval']['items']), $listsApproval);
-            $posApproval = 0;
-            foreach ($listsApproval as $listApproval) {
-                $listsApprovalArr = $campaignArr['lists_approval']['items'][$posApproval];
-                $this->assertEquals($listsApprovalArr['list_external_id'], $listApproval->getListExternalId());
-                $this->assertInstanceOf('EBC\PublisherClient\Campaign\Approval', $listApproval->getApproval());
-                $this->assertEquals(
-                    $listsApprovalArr['approval']['status'],
-                    $listApproval->getApproval()->getStatus()
-                );
-                $this->assertEquals($listsApprovalArr['approval']['type'], $listApproval->getApproval()->getType());
-                ++$posApproval;
-            }
-
-            // categories
-            $categories = $campaign->getCategories();
-            $this->assertInstanceOf('EBC\PublisherClient\Campaign\Categories', $categories);
-            $this->assertCount(count($campaignArr['categories']['items']), $categories);
-            $posCategory = 0;
-            foreach ($categories as $category) {
-                $categoryArr = $campaignArr['categories']['items'][$posCategory];
-                $this->assertEquals($categoryArr['name'], $category->getName());
-                ++$posCategory;
-            }
+            $this->compareCampaign($campaignArr, $campaign);
 
             // updated at
             $this->assertInstanceOf('EBT\EBDate\EBDateTime', $campaign->getUpdatedAt());
@@ -186,7 +161,6 @@ class PublisherClientTest extends TestCase
 
             ++$pos;
         }
-
 
         /** @var Request $request */
         $request = $plugin->getReceivedRequests()[0];
@@ -225,34 +199,313 @@ class PublisherClientTest extends TestCase
         );
     }
 
-    /**
-     * @expectedException \RuntimeException
-     */
-    public function testUpdateListByPublisherWrongStatusCode()
+    public function testGetCampaignListApproval()
     {
         $client = new PublisherClient();
+        $client->setPublisher(2, 'thekey', 'thesecret');
         $plugin = new MockPlugin();
         $plugin->addResponse(new Response(200));
         $client->addSubscriber($plugin);
-        $client->updateListByPublisher('ext_list_id', 'list_name', array(1), array(2));
+        $client->getCampaignListApproval(1, 'ext_list_id');
+
+        /** @var Request $request */
+        $request = $plugin->getReceivedRequests()[0];
+
+        $this->assertEquals(
+            // @codingStandardsIgnoreStart
+            'https://api.emailbidding.com/api/p/publishers/2/campaigns/1/lists/ext_list_id?key=thekey&secret=thesecret',
+            // @codingStandardsIgnoreEnd
+            $request->getUrl()
+        );
     }
 
-    public function testUpdateListByPublisher()
+    public function testGetListsDefinition()
+    {
+        $client = $this->getPublisherClient();
+        $client->setPublisher(1, 'thekey', 'thesecret');
+        $plugin = new MockPlugin();
+        $listsDefinitionJson = file_get_contents(__DIR__ . '/Model/listsDefinition.json');
+        $plugin->addResponse(new Response(200, null, $listsDefinitionJson));
+        $client->addSubscriber($plugin);
+
+        $listsDefinition = $client->getListsDefinition();
+        $this->assertInstanceOf('EBC\PublisherClient\ListDefinition\ListsDefinition', $listsDefinition);
+        $this->assertCount(5, $listsDefinition);
+
+        foreach ($listsDefinition as $listDefinition) {
+            $this->assertInstanceOf('EBC\PublisherClient\ListDefinition\ListDefinition', $listDefinition);
+        }
+
+        /** @var Request $request */
+        $request = $plugin->getReceivedRequests()[0];
+        $this->assertEquals('GET', $request->getMethod());
+
+        /** @var Header $acceptHeader */
+        $acceptHeader = $request->getHeader('Accept');
+        $this->assertCount(1, $acceptHeader);
+        $this->assertEquals('application/json', $acceptHeader->getIterator()->current());
+
+        $this->assertEquals(
+            'https://api.emailbidding.com/api/p/publishers/1/lists?key=thekey&secret=thesecret',
+            $request->getUrl()
+        );
+    }
+
+    public function testGetListDefinitionByExternalId()
     {
         $client = new PublisherClient();
+        $client->setPublisher(2, 'thekey', 'thesecret');
         $plugin = new MockPlugin();
-        $plugin->addResponse(new Response(204));
+        $plugin->addResponse(new Response(200));
         $client->addSubscriber($plugin);
-        $client->updateListByPublisher('ext_list_id', 'list_name', array(1), array(2));
+        $client->getListDefinitionByExternalId('ext_list_id');
+
+        /** @var Request $request */
+        $request = $plugin->getReceivedRequests()[0];
+
+        $this->assertEquals(
+            // @codingStandardsIgnoreStart
+            'https://api.emailbidding.com/api/p/publishers/2/lists/ext_list_id?key=thekey&secret=thesecret',
+            // @codingStandardsIgnoreEnd
+            $request->getUrl()
+        );
     }
 
     // code for testing integration
-    /*public function testUpdateListByPublisherReal()
+    /**
+     * @group get-list-definition
+     */
+    /*public function testGetListDefinitionByExternalIdReal()
     {
         $client = new PublisherClient();
-        $client->setPublisher(1, '', '');
-        $client->updateListByPublisher('extIdList_2_publisher_1', 'list_name', array(1), array(2));
+        $client->setPublisher(1, 'key', 'secret');
+        $list = $client->getListDefinitionByExternalId('extIdList_1_publisher_1');
+        $this->assertInstanceOf(
+            'EBC\PublisherClient\ListDefinition\ListDefinition',
+            $list,
+            'Not obtained list definition for list with external id "extIdList_1_publisher_1"'
+        );
     }*/
+
+    /**
+     * @group get-list-definition
+     */
+    /*public function testGetListsDefinitionReal()
+    {
+        $client = new PublisherClient();
+        $client->setPublisher(1, 'key', 'secret');
+        $lists = $client->getListsDefinition('extIdList_1_publisher_1');
+        $this->assertInstanceOf(
+            'EBC\PublisherClient\ListDefinition\ListsDefinition',
+            $lists,
+            'Not obtained lists definition for publisher"'
+        );
+    }*/
+
+    /**
+     * @group update-list-definition
+     */
+    /*public function testUpdateListDefinitionByPublisherRealApprovalRules()
+    {
+        $client = new PublisherClient();
+        $client->setPublisher(1, 'key', 'secret');
+        $client->updateListDefinition(
+            'extIdList_1_publisher_1',
+            'newExtIdList_1_publisher_1',
+            'newName',
+            'newDescription',
+            'newFromName',
+            'newPublicName',
+            2,
+            2,
+            array(),
+            array(1 => 0.1),
+            array(1 => 0.1, 2 => 0.2)
+        );
+
+        $list = $client->getListDefinitionByExternalId('newExtIdList_1_publisher_1');
+        $this->assertInstanceOf(
+            'EBC\PublisherClient\ListDefinition\ListDefinition',
+            $list,
+            'Not obtained list definition for list with new external id "newExtIdList_1_publisher_1"'
+        );
+
+        $this->assertInstanceOf('EBC\PublisherClient\ListDefinition\ListDefinition', $list);
+    }*/
+
+    /**
+     * @group update-list-definition
+     */
+    /*public function testUpdateListDefinitionByPublisherRealCustomApproval()
+    {
+        $client = new PublisherClient();
+        $client->setPublisher(1, 'key', 'secret');
+        $client->updateListDefinition(
+            'extIdList_2_publisher_1',
+            'newExtIdList_2_publisher_1',
+            'newName',
+            'newDescription',
+            'newFromName',
+            'newPublicName',
+            2,
+            null,
+            array(4, 5, 7),
+            array(1 => 0.4),
+            array(1 => 0.1, 4 => 0.2, 30 => 0.15)
+        );
+
+        $list = $client->getListDefinitionByExternalId('newExtIdList_1_publisher_1');
+        $this->assertInstanceOf(
+            'EBC\PublisherClient\ListDefinition\ListDefinition',
+            $list,
+            'Not obtained list definition for list with new external id "newExtIdList_1_publisher_1"'
+        );
+
+        $this->assertInstanceOf('EBC\PublisherClient\ListDefinition\ListDefinition', $list);
+    }*/
+
+    public function testGetListApprovalExceptionsByExternalId()
+    {
+        $client = new PublisherClient();
+        $client->setPublisher(2, 'thekey', 'thesecret');
+        $plugin = new MockPlugin();
+        $plugin->addResponse(new Response(200));
+        $client->addSubscriber($plugin);
+        $client->getListApprovalExceptionsByExternalId('ext_list_id');
+
+        /** @var Request $request */
+        $request = $plugin->getReceivedRequests()[0];
+
+        $this->assertEquals(
+            // @codingStandardsIgnoreStart
+            'https://api.emailbidding.com/api/p/publishers/2/lists/ext_list_id/approvals?key=thekey&secret=thesecret',
+            // @codingStandardsIgnoreEnd
+            $request->getUrl()
+        );
+    }
+
+    /**
+     * @expectedException \RuntimeException
+     */
+    public function testUpdateListApprovalExceptionsWrongStatusCode()
+    {
+        $client = new PublisherClient();
+        $plugin = new MockPlugin();
+        $plugin->addResponse(new Response(202));
+        $client->addSubscriber($plugin);
+        $client->updateListApprovalExceptions('ext_list_id', array(1), array(2));
+    }
+
+    /**
+     * @group now
+     */
+    public function testUpdateListApprovalExceptions()
+    {
+        $client = new PublisherClient();
+        $client->setPublisher(2, 'thekey', 'thesecret');
+        $plugin = new MockPlugin();
+        $plugin->addResponse(new Response(204));
+        $client->addSubscriber($plugin);
+        $list = $client->updateListApprovalExceptions('ext_list_id', array(1), array(2));
+
+        /** @var Request $request */
+        $request = $plugin->getReceivedRequests()[0];
+
+        $this->assertEquals(
+        // @codingStandardsIgnoreStart
+            'https://api.emailbidding.com/api/p/publishers/2/lists/ext_list_id/approvals?key=thekey&secret=thesecret',
+            // @codingStandardsIgnoreEnd
+            $request->getUrl()
+        );
+    }
+
+    /**
+     * @group get-list-approval
+     */
+    /*public function testGetListApprovalExceptionsByExternalIdReal()
+    {
+        $client = new PublisherClient();
+        $client->setPublisher(1, 'key', 'secret');
+        $list = $client->getListApprovalExceptionsByExternalId('extIdList_1_publisher_1');
+        $this->assertInstanceOf(
+            'EBC\PublisherClient\ListApprovalExceptions\ListApprovalExceptions',
+            $list,
+            'Not obtained list approval exceptions for list with external id "extIdList_1_publisher_1"'
+        );
+    }*/
+
+    /**
+     * @group get-list-approval
+     */
+    /*public function testGetListsApprovalExceptionsReal()
+    {
+        $client = new PublisherClient();
+        $client->setPublisher(1, 'key', 'secret');
+        $lists = $client->getListsApprovalExceptions('extIdList_1_publisher_1');
+        $this->assertInstanceOf(
+            'EBC\PublisherClient\ListApprovalExceptions\ListsApprovalExceptions',
+            $lists,
+            'Not obtained lists approval exceptions for publisher"'
+        );
+    }*/
+
+    // code for testing integration
+    /**
+     * @group update-list-approval
+     */
+    /*public function testUpdateListApprovalExceptionsByPublisherReal()
+    {
+        $client = new PublisherClient();
+        $client->setPublisher(1, 'key', 'secret');
+        $client->updateListApprovalExceptions('extIdList_1_publisher_1', array(1), array(2));
+        $list = $client->getListApprovalExceptionsByExternalId('extIdList_1_publisher_1');
+        $this->assertInstanceOf('EBC\PublisherClient\ListApprovalExceptions\ListApprovalExceptions', $list);
+    }*/
+
+    /**
+     * @param array     $campaignArr
+     * @param Campaign  $campaign
+     */
+    protected function compareCampaign($campaignArr, $campaign)
+    {
+        // top level stuff
+        $this->assertEquals($campaignArr['id'], $campaign->getId());
+        $this->assertEquals($campaignArr['name'], $campaign->getName());
+
+        // country
+        $this->assertInstanceOf('EBC\PublisherClient\Locale\Country', $campaign->getCountry());
+        $this->assertEquals($campaignArr['country']['code'], $campaign->getCountry()->getCode());
+        $this->assertEquals($campaignArr['country']['name'], $campaign->getCountry()->getName());
+
+        // schedule
+        $this->assertInstanceOf('EBC\PublisherClient\Campaign\Schedule', $campaign->getSchedule());
+        $this->assertInstanceOf('EBT\EBDate\EBDateTime', $campaign->getSchedule()->getStartDate());
+        $this->assertEquals(
+            $campaignArr['schedule']['start_date'],
+            $campaign->getSchedule()->getStartDate()->formatAsString()
+        );
+        $this->assertInstanceOf('EBT\EBDate\EBDateTime', $campaign->getSchedule()->getEndDate());
+        $this->assertEquals(
+            $campaignArr['schedule']['end_date'],
+            $campaign->getSchedule()->getEndDate()->formatAsString()
+        );
+
+        // payout
+        $this->assertInstanceOf('EBC\PublisherClient\Campaign\Payout', $campaign->getPayout());
+        $this->assertEquals($campaignArr['payout']['type'], $campaign->getPayout()->getType());
+        $this->assertEquals($campaignArr['payout']['value'], $campaign->getPayout()->getValue());
+
+        // categories
+        $categories = $campaign->getCategories();
+        $this->assertInstanceOf('EBC\PublisherClient\Campaign\Categories', $categories);
+        $this->assertCount(count($campaignArr['categories']['items']), $categories);
+        $posCategory = 0;
+        foreach ($categories as $category) {
+            $categoryArr = $campaignArr['categories']['items'][$posCategory];
+            $this->assertEquals($categoryArr['name'], $category->getName());
+            ++$posCategory;
+        }
+    }
 
     /**
      * @return PublisherClientInterface

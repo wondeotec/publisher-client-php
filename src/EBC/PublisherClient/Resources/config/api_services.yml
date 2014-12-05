@@ -2,6 +2,20 @@ name: Publisher Client
 baseUrl: "{scheme}://{host}{+basePath}/{publisherId}"
 description: Publisher Client
 operations:
+    getCampaign:
+        httpMethod: GET
+        uri: campaigns/{campaignId}
+        responseClass: 'EBC\PublisherClient\Campaign\Campaign'
+        summary: Returns one campaign
+        data:
+            acceptedStatusCodes: 200
+        parameters:
+            campaignId:
+                location: uri
+                description: Id of the campaign to use
+                type: integer
+                required: true
+
     getCampaignCreativities:
         httpMethod: GET
         uri: campaigns/{campaignId}/creativities
@@ -61,16 +75,125 @@ operations:
                 description: Number of campaigns to get
                 type: integer
                 required: false
-    getLists:
+    getCampaignListApproval:
+        httpMethod: GET
+        uri: campaigns/{campaignId}/lists/{listExternalId}
+        responseClass: 'EBC\PublisherClient\Campaign\Approval'
+        summary: Returns approval of a campaign for a list
+        data:
+            acceptedStatusCodes: 200
+        parameters:
+            campaignId:
+                location: uri
+                description: id of the campaign
+                type: integer
+                required: true
+            listExternalId:
+                location: uri
+                description: external Id of the list
+                type: string
+                required: true
+    getListsDefinition:
         httpMethod: GET
         uri: lists
         responseClass: 'EBC\PublisherClient\ListDefinition\ListsDefinition'
         summary: Returns publisher lists
         data:
             acceptedStatusCodes: 200
-    updateListByPublisher:
+    getListDefinitionByExternalId:
+        httpMethod: GET
+        uri: lists/{externalId}
+        responseClass: 'EBC\PublisherClient\ListDefinition\ListDefinition'
+        summary: Returns a list of a publisher by its external id
+        data:
+            acceptedStatusCodes: 200
+        parameters:
+            externalId:
+                location: uri
+                description: external Id of the list to get
+                type: string
+                required: true
+    updateListDefinitionByExternalId:
         httpMethod: PATCH
         uri: lists/{externalId}
+        summary: Returns a list of a publisher by its external id
+        data:
+            acceptedStatusCodes: 204
+        parameters:
+            externalId:
+                location: uri
+                description: external Id of the list to set
+                type: string
+                required: true
+            list_definition_update:
+                location: json
+                description: The form for list definition
+                type: object
+                required: true
+                properties:
+                    externalId:
+                        location: json
+                        type: string
+                        required: true
+                    name:
+                        location: json
+                        required: false
+                        type: string
+                    description:
+                        location: json
+                        required: false
+                        type: string
+                    fromName:
+                        location: json
+                        required: false
+                        type: string
+                    publicName:
+                        location: json
+                        required: false
+                        type: string
+                    listTemplateId:
+                        location: json
+                        required: false
+                        type: integer
+                    approvalRulesId:
+                        location: json
+                        required: false
+                        type: integer
+                    approvedCategories:
+                        location: json
+                        required: false
+                        type: array
+                    minPayoutParentCategories:
+                        location: json
+                        required: false
+                        type: string
+                    minPayoutChildCategories:
+                        location: json
+                        required: false
+                        type: string
+    getListsApprovalExceptions:
+        httpMethod: GET
+        uri: lists/approvals
+        responseClass: 'EBC\PublisherClient\ListApprovalExceptions\ListsApprovalExceptions'
+        summary: Returns publisher lists
+        data:
+            acceptedStatusCodes: 200
+    getListApprovalExceptionsByExternalId:
+        httpMethod: GET
+        uri: lists/{externalId}/approvals
+        responseClass: 'EBC\PublisherClient\ListApprovalExceptions\ListApprovalExceptions'
+        summary: Returns a list of a publisher by its external id
+        data:
+            acceptedStatusCodes: 200
+        parameters:
+            externalId:
+                location: uri
+                description: external Id of the list to get
+                type: string
+                required: true
+    updateListApprovalExceptions:
+        httpMethod: PATCH
+        uri: lists/{externalId}/approvals
         summary: Update a list by a publisher
         data:
             acceptedStatusCodes: 204
@@ -81,25 +204,17 @@ operations:
                 type: string
                 minLength: 1
                 required: true
-            list_definition_update:
+            list_approval_exceptions_update:
                 location: json
-                description: The form of credential
+                description: The form approval exceptions
                 type: object
                 required: true
                 properties:
-                    externalId:
-                        location: json
-                        required: true
-                        type: string
-                    name:
-                        location: json
-                        required: true
-                        type: string
                     approved:
                         location: json
-                        required: true
-                        type: string
+                        required: false
+                        type: array
                     rejected:
                         location: json
-                        required: true
-                        type: string
+                        required: false
+                        type: array

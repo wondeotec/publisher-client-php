@@ -36,10 +36,7 @@ class CampaignTest extends TestCase
         // top level stuff
         $this->assertEquals(2, $campaign->getId());
         $this->assertEquals('just a test', $campaign->getName());
-
-        // advertiser
-        $this->assertInstanceOf('EBC\PublisherClient\Advertiser\Advertiser', $campaign->getAdvertiser());
-        $this->assertEquals('advertiser 1', $campaign->getAdvertiser()->getName());
+        $this->assertEquals('bla bla', $campaign->getDescription());
 
         // schedule
         $this->assertInstanceOf('EBC\PublisherClient\Campaign\Schedule', $campaign->getSchedule());
@@ -62,7 +59,7 @@ class CampaignTest extends TestCase
         // payout
         $this->assertInstanceOf('EBC\PublisherClient\Campaign\Payout', $campaign->getPayout());
         $this->assertEquals('cpc', $campaign->getPayout()->getType());
-        $this->assertEquals(20.9, $campaign->getPayout()->getValue());
+        $this->assertEquals(0.7, $campaign->getPayout()->getValue());
 
         // list approvals
         $listsApproval = $campaign->getListsApproval();
@@ -77,6 +74,18 @@ class CampaignTest extends TestCase
             $this->assertEquals($listsApprovalArr['approval']['type'], $listApproval->getApproval()->getType());
             ++$pos;
         }
+
+        //announcer
+        $announcer = $campaign->getAnnouncer();
+        $this->assertInstanceOf('EBC\PublisherClient\Campaign\Announcer', $announcer);
+        $this->assertEquals(
+            2,
+            $campaign->getAnnouncer()->getId()
+        );
+        $this->assertEquals(
+            'announcer1',
+            $campaign->getAnnouncer()->getName()
+        );
 
         // categories
         $categories = $campaign->getCategories();
@@ -104,16 +113,14 @@ class CampaignTest extends TestCase
         return array(
             'id' => 2,
             'name' => 'just a test',
-            'advertiser' => array(
-                'name' => 'advertiser 1'
-            ),
+            'description' => 'bla bla',
             'schedule' => array(
                 'start_date' => '2014-01-09 19:20:30',
                 'end_date' => '2014-01-28 09:18:05'
             ),
             'payout' => array(
                 'type' => 'cpc',
-                'value' => 20.9
+                'value' => 0.7
             ),
             'country' => array(
                 'code' => 'PT',
@@ -152,6 +159,10 @@ class CampaignTest extends TestCase
                         'name' => 'category3'
                     )
                 )
+            ),
+            'announcer' => array(
+                'id' => 2,
+                'name' => 'announcer1'
             ),
             'updated_at' => '2014-01-09 19:20:30'
         );

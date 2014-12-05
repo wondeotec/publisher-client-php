@@ -31,9 +31,9 @@ class Campaign
     protected $name;
 
     /**
-     * @var Advertiser
+     * @var string
      */
-    protected $advertiser;
+    protected $description;
 
     /**
      * @var Country
@@ -51,6 +51,11 @@ class Campaign
     protected $payout;
 
     /**
+     * @var Payout
+     */
+    protected $publisherPayout;
+
+    /**
      * @var ListsApproval
      */
     protected $listsApproval;
@@ -59,6 +64,11 @@ class Campaign
      * @var Categories
      */
     protected $categories;
+
+    /**
+     * @var Announcer
+     */
+    protected $announcer;
 
     /**
      * @var EBDateTime
@@ -82,11 +92,11 @@ class Campaign
     }
 
     /**
-     * @return Advertiser
+     * @return string
      */
-    public function getAdvertiser()
+    public function getDescription()
     {
-        return $this->advertiser;
+        return $this->description;
     }
 
     /**
@@ -127,6 +137,14 @@ class Campaign
     public function getCategories()
     {
         return $this->categories;
+    }
+
+    /**
+     * @return Announcer
+     */
+    public function getAnnouncer()
+    {
+        return $this->announcer;
     }
 
     /**

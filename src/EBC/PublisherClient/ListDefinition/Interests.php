@@ -12,23 +12,30 @@ namespace EBC\PublisherClient\ListDefinition;
 
 use EBT\Collection\CollectionInterface;
 use EBT\Collection\CountableTrait;
-use EBT\Collection\DirectAccessTrait;
 use EBT\Collection\EmptyTrait;
-use EBT\Collection\GetItemsTrait;
 use EBT\Collection\IterableTrait;
+use EBT\Collection\GetItemsTrait;
 
 /**
- * ListsDefinition
+ * Interests
  */
-class ListsDefinition implements CollectionInterface
+class Interests implements CollectionInterface
 {
     use CountableTrait;
     use EmptyTrait;
-    use GetItemsTrait;
     use IterableTrait;
+    use GetItemsTrait;
 
     /**
-     * @var ListDefinition[]
+     * @var Interest[]
      */
-    protected $items = array();
+    protected $items;
+
+    /**
+     * @param Interest[] $items
+     */
+    public function __construct(array $items)
+    {
+        $this->items = $items;
+    }
 }
