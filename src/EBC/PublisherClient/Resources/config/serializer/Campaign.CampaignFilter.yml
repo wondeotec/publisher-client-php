@@ -1,0 +1,22 @@
+EBC\PublisherClient\Campaign\CampaignFilter:
+    # exclude everything except what is explicitly exposed
+    exclusion_policy: ALL
+    properties:
+        valuesLong:
+            expose: true
+            type: array<string>
+        valuesShort:
+            expose: true
+            type: array<string>
+        displayName:
+            expose: true
+            type: string
+            xml_element:
+                # Remove the cdata to have a more readable XML
+                cdata: false
+        name:
+            expose: true
+            type: string
+            xml_element:
+                # Remove the cdata to have a more readable XML
+                cdata: false

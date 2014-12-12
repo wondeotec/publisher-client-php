@@ -11,6 +11,8 @@
 
 namespace EBC\PublisherClient;
 
+use EBC\PublisherClient\Campaign\CampaignFilter;
+use EBC\PublisherClient\Campaign\CampaignFilters;
 use EBC\PublisherClient\Campaign\Creativities;
 use EBC\PublisherClient\ListDefinition\ListDefinition;
 use EBC\PublisherClient\ListDefinition\ListsDefinition;
@@ -76,6 +78,13 @@ interface PublisherClientInterface extends ClientInterface
         $category = null,
         $limit = null
     );
+
+    /**
+     * @param int $campaignId
+     *
+     * @return CampaignFilters
+     */
+    public function getCampaignsFilters($campaignId);
 
     /**
      * Get approval of a campaign for a list
