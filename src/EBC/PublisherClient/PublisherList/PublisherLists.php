@@ -17,9 +17,6 @@ use EBT\Collection\EmptyTrait;
 use EBT\Collection\GetItemsTrait;
 use EBT\Collection\IterableTrait;
 
-/**
- * Lists
- */
 class PublisherLists implements CollectionInterface
 {
     use CountableTrait;

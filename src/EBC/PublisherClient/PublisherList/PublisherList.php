@@ -10,9 +10,6 @@
 
 namespace EBC\PublisherClient\PublisherList;
 
-/**
- * List
- */
 class PublisherList
 {
     /**

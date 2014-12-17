@@ -14,6 +14,7 @@ namespace EBC\PublisherClient;
 use EBC\PublisherClient\Campaign\Creativities;
 use EBC\PublisherClient\PublisherList\PublisherList;
 use EBC\PublisherClient\PublisherList\PublisherLists;
+use EBC\PublisherClient\PublisherList\PublisherListStats;
 use EBT\EBDate\EBDateTime;
 use EBT\Fastc\ClientInterface;
 use EBC\PublisherClient\Campaign\Campaigns;
@@ -160,4 +161,11 @@ interface PublisherClientInterface extends ClientInterface
      * @return ListApprovalExceptions
      */
     public function updateListApprovalExceptions($id, array $approved, array $rejected);
+
+    /**
+     * Get publisher lists stats (totals)
+     *
+     * @return PublisherListStats
+     */
+    public function getPublisherListStats();
 }
