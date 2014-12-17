@@ -77,7 +77,7 @@ operations:
                 required: false
     getCampaignListApproval:
         httpMethod: GET
-        uri: campaigns/{campaignId}/lists/{listExternalId}
+        uri: campaigns/{campaignId}/lists/{listId}
         responseClass: 'EBC\PublisherClient\Campaign\Approval'
         summary: Returns approval of a campaign for a list
         data:
@@ -88,50 +88,50 @@ operations:
                 description: id of the campaign
                 type: integer
                 required: true
-            listExternalId:
+            listId:
                 location: uri
                 description: external Id of the list
                 type: string
                 required: true
-    getListsDefinition:
+    getLists:
         httpMethod: GET
         uri: lists
-        responseClass: 'EBC\PublisherClient\ListDefinition\ListsDefinition'
+        responseClass: 'EBC\PublisherClient\PublisherList\PublisherLists'
         summary: Returns publisher lists
         data:
             acceptedStatusCodes: 200
-    getListDefinitionByExternalId:
+    getListById:
         httpMethod: GET
-        uri: lists/{externalId}
-        responseClass: 'EBC\PublisherClient\ListDefinition\ListDefinition'
+        uri: lists/{id}
+        responseClass: 'EBC\PublisherClient\PublisherList\PublisherList'
         summary: Returns a list of a publisher by its external id
         data:
             acceptedStatusCodes: 200
         parameters:
-            externalId:
+            id:
                 location: uri
                 description: external Id of the list to get
                 type: string
                 required: true
-    updateListDefinitionByExternalId:
+    updateListById:
         httpMethod: PATCH
-        uri: lists/{externalId}
+        uri: lists/{id}
         summary: Returns a list of a publisher by its external id
         data:
             acceptedStatusCodes: 204
         parameters:
-            externalId:
+            id:
                 location: uri
                 description: external Id of the list to set
                 type: string
                 required: true
-            list_definition_update:
+            list_update:
                 location: json
                 description: The form for list definition
                 type: object
                 required: true
                 properties:
-                    externalId:
+                    id:
                         location: json
                         type: string
                         required: true
@@ -178,27 +178,27 @@ operations:
         summary: Returns publisher lists
         data:
             acceptedStatusCodes: 200
-    getListApprovalExceptionsByExternalId:
+    getListApprovalExceptionsById:
         httpMethod: GET
-        uri: lists/{externalId}/approvals
+        uri: lists/{id}/approvals
         responseClass: 'EBC\PublisherClient\ListApprovalExceptions\ListApprovalExceptions'
         summary: Returns a list of a publisher by its external id
         data:
             acceptedStatusCodes: 200
         parameters:
-            externalId:
+            id:
                 location: uri
                 description: external Id of the list to get
                 type: string
                 required: true
     updateListApprovalExceptions:
         httpMethod: PATCH
-        uri: lists/{externalId}/approvals
+        uri: lists/{id}/approvals
         summary: Update a list by a publisher
         data:
             acceptedStatusCodes: 204
         parameters:
-            externalId:
+            id:
                 location: uri
                 description: The list external Id
                 type: string

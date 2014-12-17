@@ -8,7 +8,7 @@
  * @license    [EMAILBIDDING_URL_LICENSE_HERE]
  */
 
-namespace EBC\PublisherClient\ListDefinition;
+namespace EBC\PublisherClient\PublisherList;
 
 /**
  * Interest

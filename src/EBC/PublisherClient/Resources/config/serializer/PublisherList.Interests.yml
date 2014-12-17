@@ -1,0 +1,5 @@
+EBC\PublisherClient\PublisherList\Interests:
+    properties:
+        items:
+            type: array<EBC\PublisherClient\PublisherList\Interest>
+

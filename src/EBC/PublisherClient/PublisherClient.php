@@ -83,11 +83,11 @@ class PublisherClient extends FastcClient implements PublisherClientInterface
     /**
      * {@inheritdoc}
      */
-    public function getCampaignListApproval($campaignId, $listExternalId)
+    public function getCampaignListApproval($campaignId, $listId)
     {
         return $this->client->getCommand(
             'getCampaignListApproval',
-            array('campaignId' => $campaignId, 'listExternalId' => $listExternalId)
+            array('campaignId' => $campaignId, 'listId' => $listId)
         )->execute();
     }
 
@@ -133,30 +133,30 @@ class PublisherClient extends FastcClient implements PublisherClientInterface
     /**
      * {@inheritdoc}
      */
-    public function getListsDefinition()
+    public function getLists()
     {
         return $this->client->getCommand(
-            'getListsDefinition'
+            'getLists'
         )->execute();
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getListDefinitionByExternalId($externalId)
+    public function getListById($id)
     {
         return $this->client->getCommand(
-            'getListDefinitionByExternalId',
-            array('externalId' => $externalId)
+            'getListById',
+            array('id' => $id)
         )->execute();
     }
 
     /**
      * {@inheritdoc}
      */
-    public function updateListDefinition(
-        $externalId,
-        $newExternalId,
+    public function updateList(
+        $id,
+        $newId,
         $name,
         $description,
         $fromName,
@@ -168,11 +168,11 @@ class PublisherClient extends FastcClient implements PublisherClientInterface
         array $minPayoutChildCategories
     ) {
         return $this->client->getCommand(
-            'updateListDefinitionByExternalId',
+            'updateListById',
             array(
-                'externalId' => $externalId,
-                'list_definition_update' => array(
-                    'externalId' => $newExternalId,
+                'id' => $id,
+                'list_update' => array(
+                    'id' => $newId,
                     'name' => $name,
                     'description' => $description,
                     'fromName' => $fromName,
@@ -200,23 +200,23 @@ class PublisherClient extends FastcClient implements PublisherClientInterface
     /**
      * {@inheritdoc}
      */
-    public function getListApprovalExceptionsByExternalId($externalId)
+    public function getListApprovalExceptionsById($id)
     {
         return $this->client->getCommand(
-            'getListApprovalExceptionsByExternalId',
-            array('externalId' => $externalId)
+            'getListApprovalExceptionsById',
+            array('id' => $id)
         )->execute();
     }
 
     /**
      * {@inheritdoc}
      */
-    public function updateListApprovalExceptions($externalId, array $approved, array $rejected)
+    public function updateListApprovalExceptions($id, array $approved, array $rejected)
     {
         return $this->client->getCommand(
             'updateListApprovalExceptions',
             array(
-                'externalId' => $externalId,
+                'id' => $id,
                 'list_approval_exceptions_update' => array(
                     'approved' => $approved,
                     'rejected' => $rejected,

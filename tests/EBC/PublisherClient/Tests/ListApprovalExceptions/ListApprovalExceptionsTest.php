@@ -8,7 +8,7 @@
  * @license    [EMAILBIDDING_URL_LICENSE_HERE]
  */
 
-namespace EBC\PublisherClient\Tests\ListDefinition;
+namespace EBC\PublisherClient\Tests\PublisherList;
 
 use EBC\PublisherClient\Tests\TestCase;
 use EBC\PublisherClient\ListApprovalExceptions\ListApprovalExceptions;
@@ -24,12 +24,12 @@ class ListApprovalExceptionsTest extends TestCase
     {
         /** @var ListApprovalExceptions $listApprovalExceptions */
         $listApprovalExceptions = $this->deserialize(
-            array('external_id' => 'ccc12', 'name' => 'list'),
+            array('id' => 'ccc12', 'name' => 'list'),
             self::CLASS_NAME
         );
 
         $this->assertInstanceOf(self::CLASS_NAME, $listApprovalExceptions);
-        $this->assertEquals('ccc12', $listApprovalExceptions->getExternalId());
+        $this->assertEquals('ccc12', $listApprovalExceptions->getId());
         $this->assertEquals('list', $listApprovalExceptions->getName());
     }
 }

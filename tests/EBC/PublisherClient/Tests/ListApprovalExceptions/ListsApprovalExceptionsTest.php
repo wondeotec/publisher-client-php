@@ -8,7 +8,7 @@
  * @license    [EMAILBIDDING_URL_LICENSE_HERE]
  */
 
-namespace EBC\PublisherClient\Tests\ListDefinition;
+namespace EBC\PublisherClient\Tests\PublisherList;
 
 use EBC\PublisherClient\Tests\TestCase;
 use EBC\PublisherClient\ListApprovalExceptions\ListsApprovalExceptions;
@@ -25,11 +25,11 @@ class ListsApprovalExceptionsTest extends TestCase
         $listsArr = array(
             'items' => array(
                 array(
-                    'external_id' => 'ext1',
+                    'id' => 'ext1',
                     'name'        => 'list1'
                 ),
                 array(
-                    'external_id' => 'ext2',
+                    'id' => 'ext2',
                     'name'        => 'list2'
                 )
             )

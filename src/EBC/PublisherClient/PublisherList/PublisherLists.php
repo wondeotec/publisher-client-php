@@ -8,7 +8,7 @@
  * @license    [EMAILBIDDING_URL_LICENSE_HERE]
  */
 
-namespace EBC\PublisherClient\ListDefinition;
+namespace EBC\PublisherClient\PublisherList;
 
 use EBT\Collection\CollectionInterface;
 use EBT\Collection\CountableTrait;
@@ -18,9 +18,9 @@ use EBT\Collection\GetItemsTrait;
 use EBT\Collection\IterableTrait;
 
 /**
- * ListsDefinition
+ * Lists
  */
-class ListsDefinition implements CollectionInterface
+class PublisherLists implements CollectionInterface
 {
     use CountableTrait;
     use EmptyTrait;
@@ -28,7 +28,7 @@ class ListsDefinition implements CollectionInterface
     use IterableTrait;
 
     /**
-     * @var ListDefinition[]
+     * @var List[]
      */
     protected $items = array();
 }

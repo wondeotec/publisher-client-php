@@ -1,4 +1,4 @@
-EBC\PublisherClient\ListDefinition\Interest:
+EBC\PublisherClient\PublisherList\Interest:
     properties:
         id:
             type: string

@@ -1,0 +1,4 @@
+EBC\PublisherClient\PublisherList\PublisherLists:
+    properties:
+        items:
+            type: array<EBC\PublisherClient\PublisherList\PublisherList>

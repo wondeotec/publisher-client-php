@@ -8,17 +8,17 @@
  * @license    [EMAILBIDDING_URL_LICENSE_HERE]
  */
 
-namespace EBC\PublisherClient\ListDefinition;
+namespace EBC\PublisherClient\PublisherList;
 
 /**
- * ListDefinition
+ * List
  */
-class ListDefinition
+class PublisherList
 {
     /**
      * @var string
      */
-    protected $externalId;
+    protected $id;
 
     /**
      * @var string
@@ -108,9 +108,9 @@ class ListDefinition
     /**
      * @return string
      */
-    public function getExternalId()
+    public function getId()
     {
-        return $this->externalId;
+        return $this->id;
     }
 
     /**

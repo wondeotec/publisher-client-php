@@ -26,7 +26,7 @@ class ListApprovalTest extends TestCase
         /** @var ListApproval $listApproval */
         $listApproval = $this->deserialize(
             array(
-                'list_external_id' => 9,
+                'list_id' => 9,
                 'approval' => array(
                     'status' => 'rejected',
                     'type' => 'manual'
@@ -36,7 +36,7 @@ class ListApprovalTest extends TestCase
         );
 
         $this->assertInstanceOf(self::CLASS_NAME, $listApproval);
-        $this->assertEquals(9, $listApproval->getListExternalId());
+        $this->assertEquals(9, $listApproval->getListId());
         $this->assertInstanceOf('EBC\PublisherClient\Campaign\Approval', $listApproval->getApproval());
         $this->assertEquals('rejected', $listApproval->getApproval()->getStatus());
         $this->assertEquals('manual', $listApproval->getApproval()->getType());
