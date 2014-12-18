@@ -14,7 +14,7 @@ namespace EBC\PublisherClient;
 use EBC\PublisherClient\Campaign\Creativities;
 use EBC\PublisherClient\PublisherList\PublisherList;
 use EBC\PublisherClient\PublisherList\PublisherLists;
-use EBC\PublisherClient\PublisherList\PublisherListStats;
+use EBC\PublisherClient\PublisherList\PublisherListsStats;
 use EBT\EBDate\EBDateTime;
 use EBT\Fastc\ClientInterface;
 use EBC\PublisherClient\Campaign\Campaigns;
@@ -165,7 +165,7 @@ interface PublisherClientInterface extends ClientInterface
     /**
      * Get publisher lists stats (totals)
      *
-     * @return PublisherListStats
+     * @return PublisherListsStats
      */
     public function getListStats();
 }

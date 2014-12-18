@@ -4,7 +4,7 @@ EBC\PublisherClient\PublisherList\PublisherListStats:
             type: string
         totalSubscribers:
             type: integer
-        totalSnsubscribes:
+        totalUnsubscribes:
             type: integer
         totalBounces:
             type: integer
