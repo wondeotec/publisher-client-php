@@ -51,5 +51,4 @@ class PublisherListStats
     {
         return $this->bounces;
     }
-
 }

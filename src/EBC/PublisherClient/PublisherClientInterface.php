@@ -167,5 +167,5 @@ interface PublisherClientInterface extends ClientInterface
      *
      * @return PublisherListStats
      */
-    public function getPublisherListStats();
+    public function getListStats();
 }

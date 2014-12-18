@@ -228,8 +228,8 @@ class PublisherClient extends FastcClient implements PublisherClientInterface
     /**
      * {@inheritdoc}
      */
-    public function getPublisherListStats() {
-
+    public function getListStats()
+    {
         return $this->client->getCommand(
             'getPublisherListStats'
         )->execute();

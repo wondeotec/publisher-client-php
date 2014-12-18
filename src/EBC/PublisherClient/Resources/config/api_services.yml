@@ -218,7 +218,7 @@ operations:
                         location: json
                         required: false
                         type: array
-    getPublisherListStats:
+    getListStats:
         httpMethod: GET
         uri: lists/stats
         responseClass: 'EBC\PublisherClient\PublisherList\PublisherListStats'
