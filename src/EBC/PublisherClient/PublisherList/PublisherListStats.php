@@ -54,7 +54,7 @@ class PublisherListStats
      */
     public function getTotalUnsubscribes()
     {
-        return $this->totalUnsubscribers;
+        return $this->totalUnsubscribes;
     }
 
     /**
