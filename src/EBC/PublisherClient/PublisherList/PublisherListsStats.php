@@ -17,7 +17,7 @@ use EBT\Collection\EmptyTrait;
 use EBT\Collection\GetItemsTrait;
 use EBT\Collection\IterableTrait;
 
-class PublisherLists implements CollectionInterface
+class PublisherListsStats implements CollectionInterface
 {
     use CountableTrait;
     use EmptyTrait;
@@ -25,7 +25,7 @@ class PublisherLists implements CollectionInterface
     use IterableTrait;
 
     /**
-     * @var PublisherList[]
+     * @var PublisherListStats[]
      */
     protected $items = array();
 }

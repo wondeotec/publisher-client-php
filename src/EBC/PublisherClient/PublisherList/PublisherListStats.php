@@ -14,41 +14,54 @@ namespace EBC\PublisherClient\PublisherList;
 class PublisherListStats
 {
     /**
-     * @var int
+     * @var string
      */
-    protected $subscribers;
+    protected $id;
 
     /**
      * @var int
      */
-    protected $unsubscribers;
+    protected $totalSubscribers;
 
     /**
      * @var int
      */
-    protected $bounces;
+    protected $totalUnsubscribes;
+
+    /**
+     * @var int
+     */
+    protected $totalBounces;
 
     /**
      * @return int
      */
-    public function getSubscribers()
+    public function getId()
     {
-        return $this->subscribers;
+        return $this->id;
     }
 
     /**
      * @return int
      */
-    public function getUnsubscribers()
+    public function getTotalSubscribers()
     {
-        return $this->unsubscribers;
+        return $this->totalSubscribers;
     }
 
     /**
      * @return int
      */
-    public function getBounces()
+    public function getTotalUnsubscribes()
     {
-        return $this->bounces;
+        return $this->totalUnsubscribers;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTotalBounces()
+    {
+        return $this->totalBounces;
     }
 }

@@ -1,8 +1,10 @@
 EBC\PublisherClient\PublisherList\PublisherListStats:
     properties:
-        subscribers:
+        id:
+            type: string
+        totalSubscribers:
             type: integer
-        unsubscribers:
+        totalSnsubscribes:
             type: integer
-        bounces:
+        totalBounces:
             type: integer
