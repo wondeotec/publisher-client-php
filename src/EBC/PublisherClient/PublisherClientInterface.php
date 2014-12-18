@@ -165,7 +165,9 @@ interface PublisherClientInterface extends ClientInterface
     /**
      * Get publisher lists stats (totals)
      *
+     * @param string    $id
+     *
      * @return PublisherListStats
      */
-    public function getListStats();
+    public function getListStats($id);
 }

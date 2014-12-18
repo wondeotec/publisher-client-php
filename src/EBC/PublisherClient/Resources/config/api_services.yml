@@ -220,8 +220,14 @@ operations:
                         type: array
     getListStats:
         httpMethod: GET
-        uri: lists/stats
+        uri: lists/{id}/stats
         responseClass: 'EBC\PublisherClient\PublisherList\PublisherListStats'
         summary: Returns publisher lists stats (totals)
         data:
             acceptedStatusCodes: 200
+        parameters:
+            id:
+                location: uri
+                description: external Id of the list to get
+                type: string
+                required: true
