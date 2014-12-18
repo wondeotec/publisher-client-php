@@ -34,7 +34,7 @@ class PublisherListStats
     protected $totalBounces;
 
     /**
-     * @return int
+     * @return string
      */
     public function getId()
     {
