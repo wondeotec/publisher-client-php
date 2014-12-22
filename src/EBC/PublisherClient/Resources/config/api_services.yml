@@ -125,7 +125,7 @@ operations:
                 description: external Id of the list to set
                 type: string
                 required: true
-            list_update:
+            list_definition_update:
                 location: json
                 description: The form for list definition
                 type: object
