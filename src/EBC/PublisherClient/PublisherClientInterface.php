@@ -121,7 +121,7 @@ interface PublisherClientInterface extends ClientInterface
      *
      * @return PublisherList
      */
-    public function updateList(
+    public function updateListById(
         $id,
         $newId,
         $name,

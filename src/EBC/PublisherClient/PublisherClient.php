@@ -154,7 +154,7 @@ class PublisherClient extends FastcClient implements PublisherClientInterface
     /**
      * {@inheritdoc}
      */
-    public function updateList(
+    public function updateListById(
         $id,
         $newId,
         $name,
