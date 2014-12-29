@@ -90,7 +90,7 @@ operations:
                 required: true
             listId:
                 location: uri
-                description: external Id of the list
+                description: id of the list
                 type: string
                 required: true
     getLists:
@@ -104,28 +104,28 @@ operations:
         httpMethod: GET
         uri: lists/{id}
         responseClass: 'EBC\PublisherClient\PublisherList\PublisherList'
-        summary: Returns a list of a publisher by its external id
+        summary: Returns a list of a publisher by its id
         data:
             acceptedStatusCodes: 200
         parameters:
             id:
                 location: uri
-                description: external Id of the list to get
+                description: id of the list to get
                 type: string
                 required: true
     updateListById:
         httpMethod: PATCH
         uri: lists/{id}
-        summary: Returns a list of a publisher by its external id
+        summary: Returns a list of a publisher by its id
         data:
             acceptedStatusCodes: 204
         parameters:
             id:
                 location: uri
-                description: external Id of the list to set
+                description: id of the list to set
                 type: string
                 required: true
-            list_update:
+            list_definition_update:
                 location: json
                 description: The form for list definition
                 type: object
@@ -182,13 +182,13 @@ operations:
         httpMethod: GET
         uri: lists/{id}/approvals
         responseClass: 'EBC\PublisherClient\ListApprovalExceptions\ListApprovalExceptions'
-        summary: Returns a list of a publisher by its external id
+        summary: Returns a list of a publisher by its id
         data:
             acceptedStatusCodes: 200
         parameters:
             id:
                 location: uri
-                description: external Id of the list to get
+                description: id of the list to get
                 type: string
                 required: true
     updateListApprovalExceptions:
@@ -200,7 +200,7 @@ operations:
         parameters:
             id:
                 location: uri
-                description: The list external Id
+                description: The list Id
                 type: string
                 minLength: 1
                 required: true

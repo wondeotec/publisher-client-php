@@ -171,7 +171,7 @@ class PublisherClient extends FastcClient implements PublisherClientInterface
             'updateListById',
             array(
                 'id' => $id,
-                'list_update' => array(
+                'list_definition_update' => array(
                     'id' => $newId,
                     'name' => $name,
                     'description' => $description,

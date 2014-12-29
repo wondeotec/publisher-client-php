@@ -132,7 +132,6 @@ class PublisherClientTest extends TestCase
             'https://api.emailbidding.com/api/p/publishers/2/campaigns/1/creativities?key=thekey&secret=thesecret',
             $request->getUrl()
         );
-
     }
 
     public function testGetCampaigns()
@@ -406,13 +405,13 @@ class PublisherClientTest extends TestCase
         $plugin = new MockPlugin();
         $plugin->addResponse(new Response(204));
         $client->addSubscriber($plugin);
-        $list = $client->updateListApprovalExceptions('ext_list_id', array(1), array(2));
+        $client->updateListApprovalExceptions('ext_list_id', array(1), array(2));
 
         /** @var Request $request */
         $request = $plugin->getReceivedRequests()[0];
 
         $this->assertEquals(
-        // @codingStandardsIgnoreStart
+            // @codingStandardsIgnoreStart
             'https://api.emailbidding.com/api/p/publishers/2/lists/ext_list_id/approvals?key=thekey&secret=thesecret',
             // @codingStandardsIgnoreEnd
             $request->getUrl()
@@ -461,6 +460,26 @@ class PublisherClientTest extends TestCase
         $list = $client->getListApprovalExceptionsById('extIdList_1_publisher_1');
         $this->assertInstanceOf('EBC\PublisherClient\ListApprovalExceptions\ListApprovalExceptions', $list);
     }*/
+
+    public function testGetListStatsById()
+    {
+        $client = new PublisherClient();
+        $client->setPublisher(2, 'thekey', 'thesecret');
+        $plugin = new MockPlugin();
+        $plugin->addResponse(new Response(200));
+        $client->addSubscriber($plugin);
+        $client->getListStats();
+
+        /** @var Request $request */
+        $request = $plugin->getReceivedRequests()[0];
+
+        $this->assertEquals(
+            // @codingStandardsIgnoreStart
+            'https://api.emailbidding.com/api/p/publishers/2/lists/stats?key=thekey&secret=thesecret',
+            // @codingStandardsIgnoreEnd
+            $request->getUrl()
+        );
+    }
 
     /**
      * @param array     $campaignArr
