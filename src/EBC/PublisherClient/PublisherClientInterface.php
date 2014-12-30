@@ -12,8 +12,9 @@
 namespace EBC\PublisherClient;
 
 use EBC\PublisherClient\Campaign\Creativities;
-use EBC\PublisherClient\ListDefinition\ListDefinition;
-use EBC\PublisherClient\ListDefinition\ListsDefinition;
+use EBC\PublisherClient\PublisherList\PublisherList;
+use EBC\PublisherClient\PublisherList\PublisherLists;
+use EBC\PublisherClient\PublisherList\PublisherListsStats;
 use EBT\EBDate\EBDateTime;
 use EBT\Fastc\ClientInterface;
 use EBC\PublisherClient\Campaign\Campaigns;
@@ -81,33 +82,33 @@ interface PublisherClientInterface extends ClientInterface
      * Get approval of a campaign for a list
      *
      * @param int       $campaignId
-     * @param string    $listExternalId
+     * @param string    $listId
      *
      * @return Approval
      */
-    public function getCampaignListApproval($campaignId, $listExternalId);
+    public function getCampaignListApproval($campaignId, $listId);
 
     /**
-     * Get lists definitions
+     * Get lists
      *
-     * @return ListsDefinition
+     * @return PublisherLists
      */
-    public function getListsDefinition();
+    public function getLists();
 
     /**
-     * Get list definition
+     * Get list
      *
-     * @param string $externalId
+     * @param string $id
      *
-     * @return ListDefinition
+     * @return PublisherList
      */
-    public function getListDefinitionByExternalId($externalId);
+    public function getListById($id);
 
     /**
      * Set list definition
      *
-     * @param string    $externalId
-     * @param string    $newExternalId
+     * @param string    $id
+     * @param string    $newId
      * @param string    $name
      * @param string    $description
      * @param string    $fromName
@@ -118,11 +119,11 @@ interface PublisherClientInterface extends ClientInterface
      * @param array     $minPayoutParentCategories
      * @param array     $minPayoutChildCategories
      *
-     * @return ListDefinition
+     * @return PublisherList
      */
-    public function updateListDefinition(
-        $externalId,
-        $newExternalId,
+    public function updateList(
+        $id,
+        $newId,
         $name,
         $description,
         $fromName,
@@ -144,20 +145,27 @@ interface PublisherClientInterface extends ClientInterface
     /**
      * Return a list of a publisher by its external id
      *
-     * @param string $externalId
+     * @param string $id
      *
      * @return ListApprovalExceptions
      */
-    public function getListApprovalExceptionsByExternalId($externalId);
+    public function getListApprovalExceptionsById($id);
 
     /**
      * Update list by a publisher
      *
-     * @param string    $externalId
+     * @param string    $id
      * @param array     $approved
      * @param array     $rejected
      *
      * @return ListApprovalExceptions
      */
-    public function updateListApprovalExceptions($externalId, array $approved, array $rejected);
+    public function updateListApprovalExceptions($id, array $approved, array $rejected);
+
+    /**
+     * Get publisher lists stats (totals)
+     *
+     * @return PublisherListsStats
+     */
+    public function getListStats();
 }

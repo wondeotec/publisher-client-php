@@ -8,34 +8,24 @@
  * @license    [EMAILBIDDING_URL_LICENSE_HERE]
  */
 
-namespace EBC\PublisherClient\ListDefinition;
+namespace EBC\PublisherClient\PublisherList;
 
 use EBT\Collection\CollectionInterface;
 use EBT\Collection\CountableTrait;
+use EBT\Collection\DirectAccessTrait;
 use EBT\Collection\EmptyTrait;
-use EBT\Collection\IterableTrait;
 use EBT\Collection\GetItemsTrait;
+use EBT\Collection\IterableTrait;
 
-/**
- * Interests
- */
-class Interests implements CollectionInterface
+class PublisherLists implements CollectionInterface
 {
     use CountableTrait;
     use EmptyTrait;
-    use IterableTrait;
     use GetItemsTrait;
+    use IterableTrait;
 
     /**
-     * @var Interest[]
+     * @var PublisherList[]
      */
-    protected $items;
-
-    /**
-     * @param Interest[] $items
-     */
-    public function __construct(array $items)
-    {
-        $this->items = $items;
-    }
+    protected $items = array();
 }

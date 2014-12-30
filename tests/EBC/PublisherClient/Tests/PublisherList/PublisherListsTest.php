@@ -8,24 +8,21 @@
  * @license    [EMAILBIDDING_URL_LICENSE_HERE]
  */
 
-namespace EBC\PublisherClient\Tests\ListDefinition;
+namespace EBC\PublisherClient\Tests\PublisherList;
 
-use EBC\PublisherClient\ListDefinition\ListsDefinition;
+use EBC\PublisherClient\PublisherList\PublisherLists;
 use EBC\PublisherClient\Tests\TestCase;
 
-/**
- * ListsDefinitionTest
- */
-class ListsDefinitionTest extends TestCase
+class PublisherListsTest extends TestCase
 {
-    const CLASS_NAME = 'EBC\PublisherClient\ListDefinition\ListsDefinition';
+    const CLASS_NAME = 'EBC\PublisherClient\PublisherList\PublisherLists';
 
     public function testDeserialize()
     {
         $listsArr = array(
             'items' => array(
                 array(
-                    'external_id' => 'ccc12',
+                    'id' => 'ccc12',
                     'name' => 'list',
                     'description' => 'list description',
                     'interests' => array('1', '2'),
@@ -44,7 +41,7 @@ class ListsDefinitionTest extends TestCase
                     'min_payout_child_categories' => array('1' => '0.10', '2' => '0.10'),
                 ),
                 array(
-                    'external_id' => 'ccc12',
+                    'id' => 'ccc12',
                     'name' => 'list',
                     'description' => 'list description',
                     'interests' => array('1', '2'),
@@ -65,7 +62,7 @@ class ListsDefinitionTest extends TestCase
             )
         );
 
-        /** @var ListsDefinition $lists */
+        /** @var PublisherLists $lists */
         $lists = $this->deserialize(
             $listsArr,
             self::CLASS_NAME

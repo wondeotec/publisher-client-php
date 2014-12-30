@@ -18,7 +18,7 @@ class ListApprovalExceptions
     /**
      * @var string
      */
-    protected $externalId;
+    protected $id;
 
     /**
      * @var string
@@ -33,9 +33,9 @@ class ListApprovalExceptions
     /**
      * @return string
      */
-    public function getExternalId()
+    public function getId()
     {
-        return $this->externalId;
+        return $this->id;
     }
 
     /**

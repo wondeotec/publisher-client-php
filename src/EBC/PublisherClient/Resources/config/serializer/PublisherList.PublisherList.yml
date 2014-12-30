@@ -1,13 +1,13 @@
-EBC\PublisherClient\ListDefinition\ListDefinition:
+EBC\PublisherClient\PublisherList\PublisherList:
     properties:
-        externalId:
+        id:
             type: string
         name:
             type: string
         description:
             type: string
         interests:
-            type: EBC\PublisherClient\ListDefinition\Interests
+            type: EBC\PublisherClient\PublisherList\Interests
         fromName:
             type: string
         fromEmail:

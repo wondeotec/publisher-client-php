@@ -1,6 +1,6 @@
 EBC\PublisherClient\ListApprovalExceptions\ListApprovalExceptions:
     properties:
-        externalId:
+        id:
             type: string
         name:
             type: string

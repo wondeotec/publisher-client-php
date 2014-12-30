@@ -1,4 +1,0 @@
-EBC\PublisherClient\ListDefinition\ListsDefinition:
-    properties:
-        items:
-            type: array<EBC\PublisherClient\ListDefinition\ListDefinition>

@@ -12,14 +12,14 @@
 namespace EBC\PublisherClient\Tests\Campaign;
 
 use EBC\PublisherClient\Tests\TestCase;
-use EBC\PublisherClient\ListDefinition\Interest;
+use EBC\PublisherClient\PublisherList\Interest;
 
 /**
  * InterestTest
  */
 class InterestTest extends TestCase
 {
-    const CLASS_NAME = 'EBC\PublisherClient\ListDefinition\Interest';
+    const CLASS_NAME = 'EBC\PublisherClient\PublisherList\Interest';
 
     public function testDeserialize()
     {

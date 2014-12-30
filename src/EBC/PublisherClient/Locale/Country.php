@@ -27,16 +27,6 @@ class Country
     protected $name;
 
     /**
-     * @param string $code
-     * @param string $name
-     */
-    public function __construct($code, $name)
-    {
-        $this->code = $code;
-        $this->name = $name;
-    }
-
-    /**
      * @return string
      */
     public function getCode()

@@ -8,7 +8,7 @@
  * @license    [EMAILBIDDING_URL_LICENSE_HERE]
  */
 
-namespace EBC\PublisherClient\Tests\ListDefinition;
+namespace EBC\PublisherClient\Tests\PublisherList;
 
 use EBC\PublisherClient\Tests\TestCase;
 use EBC\PublisherClient\ListApprovalExceptions\ApprovalCampaignsExceptions;
