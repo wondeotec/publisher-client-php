@@ -225,3 +225,7 @@ operations:
         summary: Returns publisher lists stats (totals)
         data:
             acceptedStatusCodes: 200
+        parameters:
+            accept:
+                location: 'header'
+                default: 'application/vnd.emailbidding+json; version=1.1.0'
