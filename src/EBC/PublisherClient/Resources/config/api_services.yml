@@ -93,6 +93,9 @@ operations:
                 description: id of the list
                 type: string
                 required: true
+            accept:
+                location: 'header'
+                default: 'application/vnd.emailbidding+json; version=1.2.0'
     getLists:
         httpMethod: GET
         uri: lists
@@ -100,6 +103,10 @@ operations:
         summary: Returns publisher lists
         data:
             acceptedStatusCodes: 200
+        parameters:
+            accept:
+                location: 'header'
+                default: 'application/vnd.emailbidding+json; version=1.2.0'
     getListById:
         httpMethod: GET
         uri: lists/{id}
@@ -113,6 +120,9 @@ operations:
                 description: id of the list to get
                 type: string
                 required: true
+            accept:
+                location: 'header'
+                default: 'application/vnd.emailbidding+json; version=1.2.0'
     updateListById:
         httpMethod: PATCH
         uri: lists/{id}
@@ -171,6 +181,9 @@ operations:
                         location: json
                         required: false
                         type: string
+            accept:
+                location: 'header'
+                default: 'application/vnd.emailbidding+json; version=1.2.0'
     getListsApprovalExceptions:
         httpMethod: GET
         uri: lists/approvals
@@ -178,6 +191,10 @@ operations:
         summary: Returns publisher lists
         data:
             acceptedStatusCodes: 200
+        parameters:
+            accept:
+                location: 'header'
+                default: 'application/vnd.emailbidding+json; version=1.2.0'
     getListApprovalExceptionsById:
         httpMethod: GET
         uri: lists/{id}/approvals
@@ -191,6 +208,9 @@ operations:
                 description: id of the list to get
                 type: string
                 required: true
+            accept:
+                location: 'header'
+                default: 'application/vnd.emailbidding+json; version=1.2.0'
     updateListApprovalExceptions:
         httpMethod: PATCH
         uri: lists/{id}/approvals
@@ -218,6 +238,9 @@ operations:
                         location: json
                         required: false
                         type: array
+            accept:
+                location: 'header'
+                default: 'application/vnd.emailbidding+json; version=1.2.0'
     getListStats:
         httpMethod: GET
         uri: lists/stats
@@ -228,4 +251,4 @@ operations:
         parameters:
             accept:
                 location: 'header'
-                default: 'application/vnd.emailbidding+json; version=1.1.0'
+                default: 'application/vnd.emailbidding+json; version=1.2.0'
