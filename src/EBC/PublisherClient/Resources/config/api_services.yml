@@ -15,6 +15,9 @@ operations:
                 description: Id of the campaign to use
                 type: integer
                 required: true
+            accept:
+                location: 'header'
+                default: 'application/vnd.emailbidding+json; version=1.2.1'
 
     getCampaignCreativities:
         httpMethod: GET
@@ -75,6 +78,9 @@ operations:
                 description: Number of campaigns to get
                 type: integer
                 required: false
+            accept:
+                location: 'header'
+                default: 'application/vnd.emailbidding+json; version=1.2.1'
     getCampaignListApproval:
         httpMethod: GET
         uri: campaigns/{campaignId}/lists/{listId}
