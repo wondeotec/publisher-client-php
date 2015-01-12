@@ -242,7 +242,7 @@ class PublisherClientTest extends TestCase
         /** @var Header $acceptHeader */
         $acceptHeader = $request->getHeader('Accept');
         $this->assertCount(1, $acceptHeader);
-        $this->assertEquals('application/json', $acceptHeader->getIterator()->current());
+        $this->assertEquals('application/vnd.emailbidding+json; version=1.2.0', $acceptHeader->getIterator()->current());
 
         $this->assertEquals(
             'https://api.emailbidding.com/api/p/publishers/1/lists?key=thekey&secret=thesecret',
