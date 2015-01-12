@@ -76,6 +76,11 @@ class Campaign
     protected $updatedAt;
 
     /**
+     * @var bool
+     */
+    protected $isPaused;
+
+    /**
      * @return int
      */
     public function getId()
@@ -153,5 +158,12 @@ class Campaign
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isPaused() {
+        return $this->isPaused;
     }
 }
