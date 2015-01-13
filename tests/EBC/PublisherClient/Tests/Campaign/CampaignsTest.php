@@ -58,7 +58,7 @@ class CampaignsTest extends TestCase
                             ),
                             array(
                                 'list_id' => 10,
-                                'approval' => array('status' => 'running', 'type' => 'manual')
+                                'approval' => array('status' => 'approved', 'type' => 'manual')
                             )
                         )
                     ),
@@ -82,11 +82,11 @@ class CampaignsTest extends TestCase
                         'items' => array(
                             array(
                                 'list_id' => 8,
-                                'approval' => array('status' => 'running', 'type' => 'auto')
+                                'approval' => array('status' => 'approved', 'type' => 'auto')
                             ),
                             array(
                                 'list_id' => 10,
-                                'approval' => array('status' => 'running', 'type' => 'manual')
+                                'approval' => array('status' => 'approved', 'type' => 'manual')
                             )
                         )
                     ),

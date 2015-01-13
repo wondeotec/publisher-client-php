@@ -16,6 +16,11 @@ namespace EBC\PublisherClient\Campaign;
  */
 class Approval
 {
+    const STATUS_APPROVED    = 'approved';
+    const STATUS_LOW_PAYOUT  = 'low_payout';
+    const STATUS_REJECTED    = 'rejected';
+    const STATUS_UNAVAILABLE = 'unavailable';
+
     /**
      * @var string
      */
@@ -40,5 +45,37 @@ class Approval
     public function getType()
     {
         return $this->type;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isApproved()
+    {
+        return $this->status === self::STATUS_APPROVED;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isLowPayout()
+    {
+        return $this->status === self::STATUS_LOW_PAYOUT;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isRejected()
+    {
+        return $this->status === self::STATUS_REJECTED;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isUnavailable()
+    {
+        return $this->status === self::STATUS_UNAVAILABLE;
     }
 }
