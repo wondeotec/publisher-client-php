@@ -17,7 +17,7 @@ operations:
                 required: true
             accept:
                 location: 'header'
-                default: 'application/vnd.emailbidding+json; version=1.2.1'
+                default: 'application/vnd.emailbidding+json; version=1.2.2'
 
     getCampaignCreativities:
         httpMethod: GET
@@ -80,7 +80,7 @@ operations:
                 required: false
             accept:
                 location: 'header'
-                default: 'application/vnd.emailbidding+json; version=1.2.1'
+                default: 'application/vnd.emailbidding+json; version=1.2.2'
     getCampaignListApproval:
         httpMethod: GET
         uri: campaigns/{campaignId}/lists/{listId}
@@ -101,7 +101,7 @@ operations:
                 required: true
             accept:
                 location: 'header'
-                default: 'application/vnd.emailbidding+json; version=1.2.0'
+                default: 'application/vnd.emailbidding+json; version=1.2.2'
     getLists:
         httpMethod: GET
         uri: lists

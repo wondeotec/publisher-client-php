@@ -83,7 +83,7 @@ class PublisherClientTest extends TestCase
         $acceptHeader = $request->getHeader('Accept');
         $this->assertCount(1, $acceptHeader);
         $this->assertEquals(
-            'application/vnd.emailbidding+json; version=1.2.1',
+            'application/vnd.emailbidding+json; version=1.2.2',
             $acceptHeader->getIterator()->current()
         );
 
@@ -171,7 +171,7 @@ class PublisherClientTest extends TestCase
         $acceptHeader = $request->getHeader('Accept');
         $this->assertCount(1, $acceptHeader);
         $this->assertEquals(
-            'application/vnd.emailbidding+json; version=1.2.1',
+            'application/vnd.emailbidding+json; version=1.2.2',
             $acceptHeader->getIterator()->current()
         );
 
