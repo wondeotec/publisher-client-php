@@ -183,7 +183,7 @@ operations:
                         location: json
                         required: false
                         type: string
-                    minPayoutChildCategories:
+                    minPayoutChildCategories    :
                         location: json
                         required: false
                         type: string

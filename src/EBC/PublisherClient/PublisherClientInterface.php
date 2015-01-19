@@ -118,6 +118,7 @@ interface PublisherClientInterface extends ClientInterface
      * @param array     $approvalCategories
      * @param array     $minPayoutParentCategories
      * @param array     $minPayoutChildCategories
+     * @param boolean   $runCpmCampaigns
      *
      * @return PublisherList
      */
@@ -132,7 +133,8 @@ interface PublisherClientInterface extends ClientInterface
         $approvalRulesId,
         array $approvalCategories,
         array $minPayoutParentCategories,
-        array $minPayoutChildCategories
+        array $minPayoutChildCategories,
+        $runCpmCampaigns
     );
 
     /**

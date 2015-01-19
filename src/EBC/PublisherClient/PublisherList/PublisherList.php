@@ -103,6 +103,11 @@ class PublisherList
     protected $minPayoutChildCategories;
 
     /**
+     * @var boolean
+     */
+    protected $runCpmCampaigns;
+
+    /**
      * @return string
      */
     public function getId()
@@ -244,5 +249,10 @@ class PublisherList
     public function getMinPayoutChildCategories()
     {
         return $this->minPayoutParentCategories;
+    }
+
+    public function getRunCpmCampaigns()
+    {
+        return $this->runCpmCampaigns;
     }
 }

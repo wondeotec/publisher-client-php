@@ -165,7 +165,8 @@ class PublisherClient extends FastcClient implements PublisherClientInterface
         $approvalRulesId,
         array $approvalCategories,
         array $minPayoutParentCategories,
-        array $minPayoutChildCategories
+        array $minPayoutChildCategories,
+        $runCpmCampaigns
     ) {
         return $this->client->getCommand(
             'updateListById',
@@ -182,6 +183,7 @@ class PublisherClient extends FastcClient implements PublisherClientInterface
                     'approvedCategories' => $approvalCategories,
                     'minPayoutParentCategories' => json_encode($minPayoutParentCategories),
                     'minPayoutChildCategories' => json_encode($minPayoutChildCategories),
+                    'runCpmCampaigns' => $runCpmCampaigns
                 )
             )
         )->execute();
