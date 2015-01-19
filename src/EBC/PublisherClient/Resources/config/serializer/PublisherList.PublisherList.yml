@@ -36,5 +36,5 @@ EBC\PublisherClient\PublisherList\PublisherList:
             type: array
         minPayoutChildCategories:
             type: array
-        runCpmCampaigns:
+        isEnabledForCPMBidding:
             type: boolean

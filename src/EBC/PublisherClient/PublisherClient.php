@@ -166,7 +166,7 @@ class PublisherClient extends FastcClient implements PublisherClientInterface
         array $approvalCategories,
         array $minPayoutParentCategories,
         array $minPayoutChildCategories,
-        $runCpmCampaigns
+        $isEnabledForCPMBidding
     ) {
         return $this->client->getCommand(
             'updateListById',
@@ -183,7 +183,7 @@ class PublisherClient extends FastcClient implements PublisherClientInterface
                     'approvedCategories' => $approvalCategories,
                     'minPayoutParentCategories' => json_encode($minPayoutParentCategories),
                     'minPayoutChildCategories' => json_encode($minPayoutChildCategories),
-                    'runCpmCampaigns' => $runCpmCampaigns
+                    'isEnabledForCPMBidding' => $isEnabledForCPMBidding
                 )
             )
         )->execute();

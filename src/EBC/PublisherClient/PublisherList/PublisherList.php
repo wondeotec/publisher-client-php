@@ -105,7 +105,7 @@ class PublisherList
     /**
      * @var boolean
      */
-    protected $runCpmCampaigns;
+    protected $isEnabledForCPMBidding;
 
     /**
      * @return string
@@ -251,8 +251,11 @@ class PublisherList
         return $this->minPayoutParentCategories;
     }
 
-    public function getRunCpmCampaigns()
+    /**
+     * @return boolean
+     */
+    public function getIsEnabledForCPMBidding()
     {
-        return $this->runCpmCampaigns;
+        return $this->isEnabledForCPMBidding;
     }
 }
