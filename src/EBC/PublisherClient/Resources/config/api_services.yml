@@ -190,7 +190,7 @@ operations:
                     isEnabledForCPMBidding:
                         location: json
                         required: false
-                        type: integer
+                        type: boolean
             accept:
                 location: 'header'
                 default: 'application/vnd.emailbidding+json; version=1.2.0'
