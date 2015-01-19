@@ -183,14 +183,14 @@ operations:
                         location: json
                         required: false
                         type: string
-                    minPayoutChildCategories    :
+                    minPayoutChildCategories:
                         location: json
                         required: false
                         type: string
                     isEnabledForCPMBidding:
                         location: json
                         required: false
-                        type: boolean
+                        type: integer
             accept:
                 location: 'header'
                 default: 'application/vnd.emailbidding+json; version=1.2.0'
