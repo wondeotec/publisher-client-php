@@ -36,3 +36,5 @@ EBC\PublisherClient\PublisherList\PublisherList:
             type: array
         minPayoutChildCategories:
             type: array
+        isEnabledForCPMBidding:
+            type: boolean

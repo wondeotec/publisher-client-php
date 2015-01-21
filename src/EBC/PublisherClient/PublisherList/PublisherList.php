@@ -103,6 +103,11 @@ class PublisherList
     protected $minPayoutChildCategories;
 
     /**
+     * @var boolean
+     */
+    protected $isEnabledForCPMBidding;
+
+    /**
      * @return string
      */
     public function getId()
@@ -244,5 +249,13 @@ class PublisherList
     public function getMinPayoutChildCategories()
     {
         return $this->minPayoutParentCategories;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getIsEnabledForCPMBidding()
+    {
+        return $this->isEnabledForCPMBidding;
     }
 }

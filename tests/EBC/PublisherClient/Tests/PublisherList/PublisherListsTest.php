@@ -39,6 +39,7 @@ class PublisherListsTest extends TestCase
                     'approved_categories' => array('1', '2'),
                     'min_payout_parent_categories' => array('1' => '0.10', '2' => '0.10'),
                     'min_payout_child_categories' => array('1' => '0.10', '2' => '0.10'),
+                    'is_enabled_for_c_p_m_bidding' => true,
                 ),
                 array(
                     'id' => 'ccc12',
@@ -58,6 +59,7 @@ class PublisherListsTest extends TestCase
                     'approved_categories' => array('1', '2'),
                     'min_payout_parent_categories' => array('1' => '0.10', '2' => '0.10'),
                     'min_payout_child_categories' => array('1' => '0.10', '2' => '0.10'),
+                    'is_enabled_for_c_p_m_bidding' => true,
                 ),
             )
         );
