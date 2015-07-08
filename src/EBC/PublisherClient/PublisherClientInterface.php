@@ -32,6 +32,7 @@ interface PublisherClientInterface extends ClientInterface
     const CAMPAIGN_ORDER_BY_FIELD_START_DATE = 'start_date';
     const CAMPAIGN_ORDER_BY_FIELD_END_DATE = 'end_date';
     const CAMPAIGN_ORDER_BY_FIELD_UPDATED_AT = 'updated_at';
+    const CAMPAIGN_ORDER_BY_FIELD_COUNTRY = 'country';
 
     const CAMPAIGN_ORDER_BY_DIRECTION_ASC = 'ASC';
     const CAMPAIGN_ORDER_BY_DIRECTION_DESC = 'DESC';
@@ -73,6 +74,7 @@ interface PublisherClientInterface extends ClientInterface
      * @param EBDateTime|null $endDateGreaterThan
      * @param int|null        $country
      * @param int|null        $category
+     * @param string|null     $campaignNamePattern
      * @param int|null        $page
      * @param int|null        $pageResultsNumber
      *
@@ -84,6 +86,7 @@ interface PublisherClientInterface extends ClientInterface
         EBDateTime $endDateGreaterThan = null,
         $country = null,
         $category = null,
+        $campaignNamePattern = null,
         $page = null,
         $pageResultsNumber = null
     );

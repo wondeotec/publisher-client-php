@@ -111,6 +111,7 @@ class PublisherClient extends FastcClient implements PublisherClientInterface
         EBDateTime $endDateGreaterThan = null,
         $country = null,
         $category = null,
+        $campaignNamePattern = null,
         $page = null,
         $pageResultsNumber = null
     ) {
@@ -126,6 +127,7 @@ class PublisherClient extends FastcClient implements PublisherClientInterface
                 'endDateGreaterThan' => $endDateGreaterThan,
                 'country' => $country,
                 'category' => $category,
+                'campaignNamePattern' => $campaignNamePattern,
                 'page' => $page,
                 'pageResultsNumber' => $pageResultsNumber,
             )

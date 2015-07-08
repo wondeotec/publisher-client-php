@@ -72,6 +72,12 @@ operations:
                 description: Campaigns' category
                 type: integer
                 required: false
+            campaignNamePattern:
+                location: query
+                description: Text to search campaigns by name
+                type: string
+                minLength: 3
+                required: false
             page:
                 location: query
                 description: Results page number
