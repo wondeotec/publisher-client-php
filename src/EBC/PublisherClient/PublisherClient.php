@@ -106,12 +106,13 @@ class PublisherClient extends FastcClient implements PublisherClientInterface
      * {@inheritdoc}
      */
     public function getCampaigns(
-        $orderBy = null,
-        $order = null,
+        $orderByField = self::CAMPAIGN_ORDER_BY_FIELD_UPDATED_AT,
+        $orderByDirection = self::CAMPAIGN_ORDER_BY_DIRECTION_ASC,
         EBDateTime $endDateGreaterThan = null,
         $country = null,
         $category = null,
-        $limit = null
+        $page = null,
+        $pageResultsNumber = null
     ) {
         if ($endDateGreaterThan instanceof EBDateTime) {
             $endDateGreaterThan = $endDateGreaterThan->formatAsDateString();
@@ -120,12 +121,13 @@ class PublisherClient extends FastcClient implements PublisherClientInterface
         return $this->client->getCommand(
             'getCampaigns',
             array(
-                'orderBy' => $orderBy,
-                'order' => $order,
+                'orderByField' => $orderByField,
+                'orderByDirection' => $orderByDirection,
                 'endDateGreaterThan' => $endDateGreaterThan,
                 'country' => $country,
                 'category' => $category,
-                'limit' => $limit,
+                'page' => $page,
+                'pageResultsNumber' => $pageResultsNumber,
             )
         )->execute();
     }

@@ -41,17 +41,16 @@ operations:
         data:
             acceptedStatusCodes: 200
         parameters:
-            orderBy:
+            orderByField:
                 location: query
-                description: How to order the result set (created|updated)
+                description: Field to order the result set
                 type: string
                 minLength: 2
                 maxLength: 64
                 required: false
-                sentAs: order_by
-            order:
+            orderByDirection:
                 location: query
-                description: Order asc|desc|ASC|DESC
+                description: Direction to order the result set: ASC|DESC
                 type: string
                 minLength: 3
                 maxLength: 4
@@ -73,14 +72,19 @@ operations:
                 description: Campaigns' category
                 type: integer
                 required: false
-            limit:
+            page:
                 location: query
-                description: Number of campaigns to get
+                description: Results page number
+                type: integer
+                required: false
+            pageResultsNumber:
+                location: query
+                description: Number of results per page
                 type: integer
                 required: false
             accept:
                 location: 'header'
-                default: 'application/vnd.emailbidding+json; version=1.2.2'
+                default: 'application/vnd.emailbidding+json; version=1.3.0'
     getCampaignListApproval:
         httpMethod: GET
         uri: campaigns/{campaignId}/lists/{listId}

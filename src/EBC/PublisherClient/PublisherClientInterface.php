@@ -28,6 +28,14 @@ use EBC\PublisherClient\ListApprovalExceptions\ListsApprovalExceptions;
  */
 interface PublisherClientInterface extends ClientInterface
 {
+    const CAMPAIGN_ORDER_BY_FIELD_NAME = 'name';
+    const CAMPAIGN_ORDER_BY_FIELD_START_DATE = 'start_date';
+    const CAMPAIGN_ORDER_BY_FIELD_END_DATE = 'end_date';
+    const CAMPAIGN_ORDER_BY_FIELD_UPDATED_AT = 'updated_at';
+
+    const CAMPAIGN_ORDER_BY_DIRECTION_ASC = 'ASC';
+    const CAMPAIGN_ORDER_BY_DIRECTION_DESC = 'DESC';
+
     /**
      * Choose the publisher on behalf the requests will be done.
      *
@@ -60,8 +68,8 @@ interface PublisherClientInterface extends ClientInterface
     /**
      * Returns all accessible campaigns for the current publisher.
      *
-     * @param string|null       $orderBy            created|updated|null
-     * @param string|null       $order              asc|desc|ASC|DESC|null
+     * @param string|null       $orderByField
+     * @param string|null       $orderByDirection
      * @param EBDateTime|null   $endDateGreaterThan
      * @param int|null          $country
      * @param int|null          $category
@@ -70,8 +78,8 @@ interface PublisherClientInterface extends ClientInterface
      * @return Campaigns|Campaign[]
      */
     public function getCampaigns(
-        $orderBy = null,
-        $order = null,
+        $orderByField = self::CAMPAIGN_ORDER_BY_FIELD_UPDATED_AT,
+        $orderByDirection = self::CAMPAIGN_ORDER_BY_DIRECTION_ASC,
         EBDateTime $endDateGreaterThan = null,
         $country = null,
         $category = null,
