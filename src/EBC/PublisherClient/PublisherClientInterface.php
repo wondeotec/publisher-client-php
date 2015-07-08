@@ -68,22 +68,24 @@ interface PublisherClientInterface extends ClientInterface
     /**
      * Returns all accessible campaigns for the current publisher.
      *
-     * @param string|null       $orderByField
-     * @param string|null       $orderByDirection
-     * @param EBDateTime|null   $endDateGreaterThan
-     * @param int|null          $country
-     * @param int|null          $category
-     * @param int|null          $limit
+     * @param string          $orderByField
+     * @param string          $orderByDirection
+     * @param EBDateTime|null $endDateGreaterThan
+     * @param int|null        $country
+     * @param int|null        $category
+     * @param int|null        $page
+     * @param int|null        $pageResultsNumber
      *
      * @return Campaigns|Campaign[]
      */
     public function getCampaigns(
-        $orderByField = self::CAMPAIGN_ORDER_BY_FIELD_UPDATED_AT,
-        $orderByDirection = self::CAMPAIGN_ORDER_BY_DIRECTION_ASC,
+        $orderByField,
+        $orderByDirection,
         EBDateTime $endDateGreaterThan = null,
         $country = null,
         $category = null,
-        $limit = null
+        $page = null,
+        $pageResultsNumber = null
     );
 
     /**

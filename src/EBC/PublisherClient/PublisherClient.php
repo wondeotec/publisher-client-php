@@ -106,8 +106,8 @@ class PublisherClient extends FastcClient implements PublisherClientInterface
      * {@inheritdoc}
      */
     public function getCampaigns(
-        $orderByField = self::CAMPAIGN_ORDER_BY_FIELD_UPDATED_AT,
-        $orderByDirection = self::CAMPAIGN_ORDER_BY_DIRECTION_ASC,
+        $orderByField,
+        $orderByDirection,
         EBDateTime $endDateGreaterThan = null,
         $country = null,
         $category = null,
