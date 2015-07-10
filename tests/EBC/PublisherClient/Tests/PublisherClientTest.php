@@ -148,6 +148,21 @@ class PublisherClientTest extends TestCase
     }
 
     /**
+     * @covers EBC\PublisherClient\EBC\PublisherClientInterface::getCampaignsCount()
+     */
+    /*public function testGetCampaignsCountReal()
+    {
+        $client = new PublisherClient();
+        $client->setPublisher(1, 'key', 'secret');
+        $list = $client->getCampaignsCount();
+        $this->assertInstanceOf(
+            'EBC\PublisherClient\Campaign\CampaignsCount',
+            $list,
+            'Not obtained list for list with external id "extIdList_1_publisher_1"'
+        );
+    }*/
+
+    /**
      * @covers EBC\PublisherClient\EBC\PublisherClientInterface::getCampaigns()
      */
     public function testGetCampaigns()
@@ -478,8 +493,6 @@ class PublisherClientTest extends TestCase
 
     /**
      * @covers EBC\PublisherClient\EBC\PublisherClientInterface::updateListApprovalExceptions()
-     *
-     * @group now
      */
     public function testUpdateListApprovalExceptions()
     {
