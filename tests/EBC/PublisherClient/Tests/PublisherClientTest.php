@@ -26,6 +26,8 @@ use Guzzle\Http\Message\Header;
 class PublisherClientTest extends TestCase
 {
     /**
+     * @covers EBC\PublisherClient\EBC\PublisherClientInterface::getCampaigns()
+     *
      * @expectedException \JMS\Serializer\Exception\RuntimeException
      */
     public function testMalformedJson()
@@ -34,10 +36,15 @@ class PublisherClientTest extends TestCase
         $plugin = new MockPlugin();
         $plugin->addResponse(new Response(200, null, 'malformed JSON'));
         $client->addSubscriber($plugin);
-        $client->getCampaigns();
+        $client->getCampaigns(
+            PublisherClientInterface::CAMPAIGN_ORDER_BY_FIELD_NAME,
+            PublisherClientInterface::CAMPAIGN_ORDER_BY_DIRECTION_ASC
+        );
     }
 
     /**
+     * @covers EBC\PublisherClient\EBC\PublisherClientInterface::getCampaigns()
+     *
      * @expectedException \Guzzle\Http\Exception\ClientErrorResponseException
      */
     public function testClientErrorTransformedClientException()
@@ -46,10 +53,15 @@ class PublisherClientTest extends TestCase
         $plugin = new MockPlugin();
         $plugin->addResponse(new Response(400));
         $client->addSubscriber($plugin);
-        $client->getCampaigns();
+        $client->getCampaigns(
+            PublisherClientInterface::CAMPAIGN_ORDER_BY_FIELD_NAME,
+            PublisherClientInterface::CAMPAIGN_ORDER_BY_DIRECTION_ASC
+        );
     }
 
     /**
+     * @covers EBC\PublisherClient\EBC\PublisherClientInterface::getCampaigns()
+     *
      * @expectedException \Guzzle\Http\Exception\ServerErrorResponseException
      */
     public function testServerErrorTransformedServerException()
@@ -58,9 +70,15 @@ class PublisherClientTest extends TestCase
         $plugin = new MockPlugin();
         $plugin->addResponse(new Response(500));
         $client->addSubscriber($plugin);
-        $client->getCampaigns();
+        $client->getCampaigns(
+            PublisherClientInterface::CAMPAIGN_ORDER_BY_FIELD_NAME,
+            PublisherClientInterface::CAMPAIGN_ORDER_BY_DIRECTION_ASC
+        );
     }
 
+    /**
+     * @covers EBC\PublisherClient\EBC\PublisherClientInterface::getCampaign()
+     */
     public function testGetCampaignById()
     {
         $client = $this->getPublisherClient();
@@ -93,50 +111,45 @@ class PublisherClientTest extends TestCase
         );
     }
 
-    public function testGetCampaignCreativities()
+    /**
+     * @covers EBC\PublisherClient\EBC\PublisherClientInterface::getCampaignsCount()
+     */
+    public function testGetCampaignsCount()
     {
         $client = $this->getPublisherClient();
         $client->setPublisher(2, 'thekey', 'thesecret');
         $plugin = new MockPlugin();
-        $campaignsJson = file_get_contents(__DIR__ . '/Model/creativities.json');
 
-        $plugin->addResponse(new Response(200, null, $campaignsJson));
+        $plugin->addResponse(new Response(200, null, '{"value":2}'));
         $client->addSubscriber($plugin);
 
-        $campaignsArr = json_decode($campaignsJson, true)['items'];
-
-        $campaigns = $client->getCampaignCreativities(1);
-
-        $this->assertCount(1, $campaigns);
-        $pos = 0;
-
-        foreach ($campaigns as $campaign) {
-            $campaignArr =  $campaignsArr[$pos];
-
-            // fromName
-            $this->assertEquals($campaignArr['from_name'], $campaign->getFromName());
-            // subject
-            $this->assertEquals($campaignArr['subject'], $campaign->getSubject());
-            // bodyHtml
-            $this->assertEquals($campaignArr['body_html'], $campaign->getBodyHtml());
-
-            ++$pos;
-        }
+        $date = EBDateTime::createFromFormat(EBDateTime::getDateFormat(), '2014-02-15');
+        $count = $client->getCampaignsCount($date, 1, 1, 'search');
+        $this->assertEquals(2, $count->getValue());
 
         /** @var Request $request */
         $request = $plugin->getReceivedRequests()[0];
         $this->assertEquals('GET', $request->getMethod());
+
         /** @var Header $acceptHeader */
         $acceptHeader = $request->getHeader('Accept');
         $this->assertCount(1, $acceptHeader);
-        $this->assertEquals('application/json', $acceptHeader->getIterator()->current());
+        $this->assertEquals(
+            'application/vnd.emailbidding+json; version=1.3.0',
+            $acceptHeader->getIterator()->current()
+        );
 
         $this->assertEquals(
-            'https://api.emailbidding.com/api/p/publishers/2/campaigns/1/creativities?key=thekey&secret=thesecret',
+            // @codingStandardsIgnoreStart
+            'https://api.emailbidding.com/api/p/publishers/2/campaigns/count?key=thekey&secret=thesecret&endDateGreaterThan=2014-02-15&country=1&parentCategory=1&campaignNamePattern=search',
+            // @codingStandardsIgnoreEnd
             $request->getUrl()
         );
     }
 
+    /**
+     * @covers EBC\PublisherClient\EBC\PublisherClientInterface::getCampaigns()
+     */
     public function testGetCampaigns()
     {
         $client = $this->getPublisherClient();
@@ -149,7 +162,10 @@ class PublisherClientTest extends TestCase
         $campaignsArr = json_decode($campaignsJson, true)['items'];
         $pos = 0;
 
-        $campaigns = $client->getCampaigns();
+        $campaigns = $client->getCampaigns(
+            PublisherClientInterface::CAMPAIGN_ORDER_BY_FIELD_UPDATED_AT,
+            PublisherClientInterface::CAMPAIGN_ORDER_BY_DIRECTION_ASC
+        );
         $this->assertCount(7, $campaigns);
 
         foreach ($campaigns as $campaign) {
@@ -176,11 +192,16 @@ class PublisherClientTest extends TestCase
         );
 
         $this->assertEquals(
-            'https://api.emailbidding.com/api/p/publishers/2/campaigns?key=thekey&secret=thesecret&orderByField=updated_at&orderByDirection=ASC',
+            // @codingStandardsIgnoreStart
+            'https://api.emailbidding.com/api/p/publishers/2/campaigns?key=thekey&secret=thesecret&orderField=updated_at&orderDirection=ASC',
+            // @codingStandardsIgnoreEnd
             $request->getUrl()
         );
     }
 
+    /**
+     * @covers EBC\PublisherClient\EBC\PublisherClientInterface::getCampaigns()
+     */
     public function testGetCampaignsFiltered()
     {
         $client = new PublisherClient();
@@ -189,8 +210,14 @@ class PublisherClientTest extends TestCase
         $plugin->addResponse(new Response(200, null, file_get_contents(__DIR__ . '/Model/campaigns.json')));
         $client->addSubscriber($plugin);
 
-        $date = EBDateTime::createFromFormat(EBDateTime::getDateFormat(), '2014-02-15');
-        $campaigns = $client->getCampaigns('updated', 'desc', $date, 1, 1);
+        $campaigns = $client->getCampaigns(
+            PublisherClientInterface::CAMPAIGN_ORDER_BY_FIELD_UPDATED_AT,
+            PublisherClientInterface::CAMPAIGN_ORDER_BY_DIRECTION_ASC,
+            EBDateTime::createFromFormat(EBDateTime::getDateFormat(), '2014-02-15'),
+            1,
+            1,
+            'search'
+        );
         $this->assertCount(7, $campaigns);
 
         /** @var Request $request */
@@ -198,12 +225,49 @@ class PublisherClientTest extends TestCase
 
         $this->assertEquals(
             // @codingStandardsIgnoreStart
-            'https://api.emailbidding.com/api/p/publishers/2/campaigns?key=thekey&secret=thesecret&orderByField=updated&orderByDirection=desc&endDateGreaterThan=2014-02-15&country=1&category=1',
+            'https://api.emailbidding.com/api/p/publishers/2/campaigns?key=thekey&secret=thesecret&orderField=updated_at&orderDirection=ASC&endDateGreaterThan=2014-02-15&country=1&parentCategory=1&campaignNamePattern=search',
             // @codingStandardsIgnoreEnd
             $request->getUrl()
         );
     }
 
+    /**
+     * @covers EBC\PublisherClient\EBC\PublisherClientInterface::getCampaigns()
+     */
+    public function testGetCampaignsWithPagination()
+    {
+        $client = new PublisherClient();
+        $client->setPublisher(2, 'thekey', 'thesecret');
+        $plugin = new MockPlugin();
+        $plugin->addResponse(new Response(200, null, file_get_contents(__DIR__ . '/Model/campaigns.json')));
+        $client->addSubscriber($plugin);
+
+        $campaigns = $client->getCampaigns(
+            PublisherClientInterface::CAMPAIGN_ORDER_BY_FIELD_UPDATED_AT,
+            PublisherClientInterface::CAMPAIGN_ORDER_BY_DIRECTION_ASC,
+            EBDateTime::createFromFormat(EBDateTime::getDateFormat(), '2014-02-15'),
+            1,
+            null,
+            null,
+            2,
+            10
+        );
+        $this->assertCount(7, $campaigns);
+
+        /** @var Request $request */
+        $request = $plugin->getReceivedRequests()[0];
+
+        $this->assertEquals(
+            // @codingStandardsIgnoreStart
+            'https://api.emailbidding.com/api/p/publishers/2/campaigns?key=thekey&secret=thesecret&orderField=updated_at&orderDirection=ASC&endDateGreaterThan=2014-02-15&country=1&page=2&pageResultsNumber=10',
+            // @codingStandardsIgnoreEnd
+            $request->getUrl()
+        );
+    }
+
+    /**
+     * @covers EBC\PublisherClient\EBC\PublisherClientInterface::getCampaignListApproval()
+     */
     public function testGetCampaignListApproval()
     {
         $client = new PublisherClient();
@@ -224,6 +288,9 @@ class PublisherClientTest extends TestCase
         );
     }
 
+    /**
+     * @covers EBC\PublisherClient\EBC\PublisherClientInterface::getLists()
+     */
     public function testGetLists()
     {
         $client = $this->getPublisherClient();
@@ -256,6 +323,9 @@ class PublisherClientTest extends TestCase
         );
     }
 
+    /**
+     * @covers EBC\PublisherClient\EBC\PublisherClientInterface::getListById()
+     */
     public function testGetListById()
     {
         $client = new PublisherClient();
@@ -369,6 +439,9 @@ class PublisherClientTest extends TestCase
         $this->assertInstanceOf('EBC\PublisherClient\PublisherList\PublisherList', $list);
     }*/
 
+    /**
+     * @covers EBC\PublisherClient\EBC\PublisherClientInterface::getListApprovalExceptionsById()
+     */
     public function testGetListApprovalExceptionsById()
     {
         $client = new PublisherClient();
@@ -390,6 +463,8 @@ class PublisherClientTest extends TestCase
     }
 
     /**
+     * @covers EBC\PublisherClient\EBC\PublisherClientInterface::updateListApprovalExceptions()
+     *
      * @expectedException \RuntimeException
      */
     public function testUpdateListApprovalExceptionsWrongStatusCode()
@@ -402,6 +477,8 @@ class PublisherClientTest extends TestCase
     }
 
     /**
+     * @covers EBC\PublisherClient\EBC\PublisherClientInterface::updateListApprovalExceptions()
+     *
      * @group now
      */
     public function testUpdateListApprovalExceptions()
@@ -467,6 +544,58 @@ class PublisherClientTest extends TestCase
         $this->assertInstanceOf('EBC\PublisherClient\ListApprovalExceptions\ListApprovalExceptions', $list);
     }*/
 
+
+
+    /**
+     * @covers EBC\PublisherClient\EBC\PublisherClientInterface::getCampaignCreativities()
+     */
+    public function testGetCampaignCreativities()
+    {
+        $client = $this->getPublisherClient();
+        $client->setPublisher(2, 'thekey', 'thesecret');
+        $plugin = new MockPlugin();
+        $campaignsJson = file_get_contents(__DIR__ . '/Model/creativities.json');
+
+        $plugin->addResponse(new Response(200, null, $campaignsJson));
+        $client->addSubscriber($plugin);
+
+        $campaignsArr = json_decode($campaignsJson, true)['items'];
+
+        $campaigns = $client->getCampaignCreativities(1);
+
+        $this->assertCount(1, $campaigns);
+        $pos = 0;
+
+        foreach ($campaigns as $campaign) {
+            $campaignArr =  $campaignsArr[$pos];
+
+            // fromName
+            $this->assertEquals($campaignArr['from_name'], $campaign->getFromName());
+            // subject
+            $this->assertEquals($campaignArr['subject'], $campaign->getSubject());
+            // bodyHtml
+            $this->assertEquals($campaignArr['body_html'], $campaign->getBodyHtml());
+
+            ++$pos;
+        }
+
+        /** @var Request $request */
+        $request = $plugin->getReceivedRequests()[0];
+        $this->assertEquals('GET', $request->getMethod());
+        /** @var Header $acceptHeader */
+        $acceptHeader = $request->getHeader('Accept');
+        $this->assertCount(1, $acceptHeader);
+        $this->assertEquals('application/json', $acceptHeader->getIterator()->current());
+
+        $this->assertEquals(
+            'https://api.emailbidding.com/api/p/publishers/2/campaigns/1/creativities?key=thekey&secret=thesecret',
+            $request->getUrl()
+        );
+    }
+
+    /**
+     * @covers EBC\PublisherClient\EBC\PublisherClientInterface::getListStats()
+     */
     public function testGetListStatsById()
     {
         $client = new PublisherClient();
@@ -488,6 +617,8 @@ class PublisherClientTest extends TestCase
     }
 
     /**
+     * Auxiliar method for asserting campaign
+     *
      * @param array     $campaignArr
      * @param Campaign  $campaign
      */

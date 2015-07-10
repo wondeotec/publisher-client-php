@@ -11,6 +11,7 @@
 
 namespace EBC\PublisherClient;
 
+use EBC\PublisherClient\Campaign\CampaignCount;
 use EBC\PublisherClient\Campaign\Creativities;
 use EBC\PublisherClient\PublisherList\PublisherList;
 use EBC\PublisherClient\PublisherList\PublisherLists;
@@ -58,22 +59,30 @@ interface PublisherClientInterface extends ClientInterface
     public function getCampaign($campaignId);
 
     /**
-     * Return creativity for one campaign
+     * Returns all accessible campaigns for the current publisher.
      *
-     * @param int $campaignId
+     * @param EBDateTime|null $endDateGreaterThan
+     * @param int|null        $country
+     * @param int|null        $parentCategory
+     * @param string|null     $campaignNamePattern
      *
-     * @return Creativities
+     * @return CampaignCount
      */
-    public function getCampaignCreativities($campaignId);
+    public function getCampaignsCount(
+        EBDateTime $endDateGreaterThan = null,
+        $country = null,
+        $parentCategory = null,
+        $campaignNamePattern = null
+    );
 
     /**
      * Returns all accessible campaigns for the current publisher.
      *
-     * @param string          $orderByField
-     * @param string          $orderByDirection
+     * @param string          $orderField
+     * @param string          $orderDirection
      * @param EBDateTime|null $endDateGreaterThan
      * @param int|null        $country
-     * @param int|null        $category
+     * @param int|null        $parentCategory
      * @param string|null     $campaignNamePattern
      * @param int|null        $page
      * @param int|null        $pageResultsNumber
@@ -81,11 +90,11 @@ interface PublisherClientInterface extends ClientInterface
      * @return Campaigns|Campaign[]
      */
     public function getCampaigns(
-        $orderByField,
-        $orderByDirection,
+        $orderField,
+        $orderDirection,
         EBDateTime $endDateGreaterThan = null,
         $country = null,
-        $category = null,
+        $parentCategory = null,
         $campaignNamePattern = null,
         $page = null,
         $pageResultsNumber = null
@@ -176,6 +185,15 @@ interface PublisherClientInterface extends ClientInterface
      * @return ListApprovalExceptions
      */
     public function updateListApprovalExceptions($id, array $approved, array $rejected);
+
+    /**
+     * Return creativity for one campaign
+     *
+     * @param int $campaignId
+     *
+     * @return Creativities
+     */
+    public function getCampaignCreativities($campaignId);
 
     /**
      * Get publisher lists stats (totals)

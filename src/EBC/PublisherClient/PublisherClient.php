@@ -105,12 +105,36 @@ class PublisherClient extends FastcClient implements PublisherClientInterface
     /**
      * {@inheritdoc}
      */
-    public function getCampaigns(
-        $orderByField,
-        $orderByDirection,
+    public function getCampaignsCount(
         EBDateTime $endDateGreaterThan = null,
         $country = null,
-        $category = null,
+        $parentCategory = null,
+        $campaignNamePattern = null
+    ) {
+        if ($endDateGreaterThan instanceof EBDateTime) {
+            $endDateGreaterThan = $endDateGreaterThan->formatAsDateString();
+        }
+
+        return $this->client->getCommand(
+            'getCampaignsCount',
+            array(
+                'endDateGreaterThan' => $endDateGreaterThan,
+                'country' => $country,
+                'parentCategory' => $parentCategory,
+                'campaignNamePattern' => $campaignNamePattern,
+            )
+        )->execute();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getCampaigns(
+        $orderField,
+        $orderDirection,
+        EBDateTime $endDateGreaterThan = null,
+        $country = null,
+        $parentCategory = null,
         $campaignNamePattern = null,
         $page = null,
         $pageResultsNumber = null
@@ -122,11 +146,11 @@ class PublisherClient extends FastcClient implements PublisherClientInterface
         return $this->client->getCommand(
             'getCampaigns',
             array(
-                'orderByField' => $orderByField,
-                'orderByDirection' => $orderByDirection,
+                'orderField' => $orderField,
+                'orderDirection' => $orderDirection,
                 'endDateGreaterThan' => $endDateGreaterThan,
                 'country' => $country,
-                'category' => $category,
+                'parentCategory' => $parentCategory,
                 'campaignNamePattern' => $campaignNamePattern,
                 'page' => $page,
                 'pageResultsNumber' => $pageResultsNumber,
