@@ -19,19 +19,40 @@ operations:
                 location: 'header'
                 default: 'application/vnd.emailbidding+json; version=1.2.2'
 
-    getCampaignCreativities:
+    getCampaignsCount:
         httpMethod: GET
-        uri: campaigns/{campaignId}/creativities
-        responseClass: 'EBC\PublisherClient\Campaign\Creativities'
-        summary: Returns the creativity for one campaign
+        uri: campaigns/count
+        responseClass: 'EBC\PublisherClient\Campaign\CampaignsCount'
+        summary: Returns the number of campaigns that publisher have access
         data:
             acceptedStatusCodes: 200
         parameters:
-            campaignId:
-                location: uri
-                description: Id of the campaign to use
+            endDateGreaterThan:
+                location: query
+                description: End date for campaign greater than (YYYY-MM-DD)
+                type: string
+                minLength: 10
+                maxLength: 10
+                required: false
+            country:
+                location: query
+                description: Campaigns' country
                 type: integer
-                required: true
+                required: false
+            parentCategory:
+                location: query
+                description: Campaigns' parent category
+                type: integer
+                required: false
+            campaignNamePattern:
+                location: query
+                description: Text to search campaigns by name
+                type: string
+                minLength: 3
+                required: false
+            accept:
+                location: 'header'
+                default: 'application/vnd.emailbidding+json; version=1.3.0'
 
     getCampaigns:
         httpMethod: GET
@@ -41,17 +62,16 @@ operations:
         data:
             acceptedStatusCodes: 200
         parameters:
-            orderBy:
+            orderField:
                 location: query
-                description: How to order the result set (created|updated)
+                description: Field to order the result set
                 type: string
                 minLength: 2
                 maxLength: 64
                 required: false
-                sentAs: order_by
-            order:
+            orderDirection:
                 location: query
-                description: Order asc|desc|ASC|DESC
+                description: Direction to order the result set: ASC|DESC
                 type: string
                 minLength: 3
                 maxLength: 4
@@ -68,19 +88,31 @@ operations:
                 description: Campaigns' country
                 type: integer
                 required: false
-            category:
+            parentCategory:
                 location: query
-                description: Campaigns' category
+                description: Campaigns' parent category
                 type: integer
                 required: false
-            limit:
+            campaignNamePattern:
                 location: query
-                description: Number of campaigns to get
+                description: Text to search campaigns by name
+                type: string
+                minLength: 3
+                required: false
+            page:
+                location: query
+                description: Results page number
+                type: integer
+                required: false
+            pageResultsNumber:
+                location: query
+                description: Number of results per page
                 type: integer
                 required: false
             accept:
                 location: 'header'
-                default: 'application/vnd.emailbidding+json; version=1.2.2'
+                default: 'application/vnd.emailbidding+json; version=1.3.0'
+
     getCampaignListApproval:
         httpMethod: GET
         uri: campaigns/{campaignId}/lists/{listId}
@@ -102,6 +134,7 @@ operations:
             accept:
                 location: 'header'
                 default: 'application/vnd.emailbidding+json; version=1.2.2'
+
     getLists:
         httpMethod: GET
         uri: lists
@@ -113,6 +146,7 @@ operations:
             accept:
                 location: 'header'
                 default: 'application/vnd.emailbidding+json; version=1.2.0'
+
     getListById:
         httpMethod: GET
         uri: lists/{id}
@@ -129,6 +163,7 @@ operations:
             accept:
                 location: 'header'
                 default: 'application/vnd.emailbidding+json; version=1.2.0'
+
     updateListById:
         httpMethod: PATCH
         uri: lists/{id}
@@ -194,6 +229,7 @@ operations:
             accept:
                 location: 'header'
                 default: 'application/vnd.emailbidding+json; version=1.2.0'
+
     getListsApprovalExceptions:
         httpMethod: GET
         uri: lists/approvals
@@ -205,6 +241,7 @@ operations:
             accept:
                 location: 'header'
                 default: 'application/vnd.emailbidding+json; version=1.2.0'
+
     getListApprovalExceptionsById:
         httpMethod: GET
         uri: lists/{id}/approvals
@@ -221,6 +258,7 @@ operations:
             accept:
                 location: 'header'
                 default: 'application/vnd.emailbidding+json; version=1.2.0'
+
     updateListApprovalExceptions:
         httpMethod: PATCH
         uri: lists/{id}/approvals
@@ -251,6 +289,21 @@ operations:
             accept:
                 location: 'header'
                 default: 'application/vnd.emailbidding+json; version=1.2.0'
+
+    getCampaignCreativities:
+        httpMethod: GET
+        uri: campaigns/{campaignId}/creativities
+        responseClass: 'EBC\PublisherClient\Campaign\Creativities'
+        summary: Returns the creativity for one campaign
+        data:
+            acceptedStatusCodes: 200
+        parameters:
+            campaignId:
+                location: uri
+                description: Id of the campaign to use
+                type: integer
+                required: true
+
     getListStats:
         httpMethod: GET
         uri: lists/stats

@@ -1,0 +1,4 @@
+EBC\PublisherClient\Campaign\CampaignsCount:
+    properties:
+        value:
+            type: integer
