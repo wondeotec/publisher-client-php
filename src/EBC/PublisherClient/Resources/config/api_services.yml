@@ -48,7 +48,6 @@ operations:
                 location: query
                 description: Text to search campaigns by name
                 type: string
-                minLength: 3
                 required: false
             accept:
                 location: 'header'
@@ -97,7 +96,6 @@ operations:
                 location: query
                 description: Text to search campaigns by name
                 type: string
-                minLength: 3
                 required: false
             page:
                 location: query

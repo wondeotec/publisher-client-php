@@ -154,11 +154,10 @@ class PublisherClientTest extends TestCase
     {
         $client = new PublisherClient();
         $client->setPublisher(1, 'key', 'secret');
-        $list = $client->getCampaignsCount();
+        $count = $client->getCampaignsCount(EBDateTime::now(), null, null, '%');
         $this->assertInstanceOf(
             'EBC\PublisherClient\Campaign\CampaignsCount',
-            $list,
-            'Not obtained list for list with external id "extIdList_1_publisher_1"'
+            $count
         );
     }*/
 

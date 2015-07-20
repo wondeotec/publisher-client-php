@@ -12,6 +12,7 @@
 namespace EBC\PublisherClient;
 
 use EBC\PublisherClient\Campaign\CampaignCount;
+use EBC\PublisherClient\Campaign\CampaignsCount;
 use EBC\PublisherClient\Campaign\Creativities;
 use EBC\PublisherClient\PublisherList\PublisherList;
 use EBC\PublisherClient\PublisherList\PublisherLists;
@@ -66,7 +67,7 @@ interface PublisherClientInterface extends ClientInterface
      * @param int|null        $parentCategory
      * @param string|null     $campaignNamePattern
      *
-     * @return CampaignCount
+     * @return CampaignsCount|false
      */
     public function getCampaignsCount(
         EBDateTime $endDateGreaterThan = null,
@@ -87,7 +88,7 @@ interface PublisherClientInterface extends ClientInterface
      * @param int|null        $page
      * @param int|null        $pageResultsNumber
      *
-     * @return Campaigns|Campaign[]
+     * @return Campaigns|Campaign[]|false
      */
     public function getCampaigns(
         $orderField,

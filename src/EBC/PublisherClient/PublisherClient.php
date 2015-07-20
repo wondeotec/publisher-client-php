@@ -115,15 +115,21 @@ class PublisherClient extends FastcClient implements PublisherClientInterface
             $endDateGreaterThan = $endDateGreaterThan->formatAsDateString();
         }
 
-        return $this->client->getCommand(
-            'getCampaignsCount',
-            array(
-                'endDateGreaterThan' => $endDateGreaterThan,
-                'country' => $country,
-                'parentCategory' => $parentCategory,
-                'campaignNamePattern' => $campaignNamePattern,
-            )
-        )->execute();
+        try {
+            return $this->client->getCommand(
+                'getCampaignsCount',
+                array(
+                    'endDateGreaterThan' => $endDateGreaterThan,
+                    'country' => $country,
+                    'parentCategory' => $parentCategory,
+                    'campaignNamePattern' => $campaignNamePattern,
+                )
+            )->execute();
+        } catch (\Exception $exception) {
+
+            // @TODO an object containing the errors should be returned
+            return false;
+        }
     }
 
     /**
@@ -143,19 +149,25 @@ class PublisherClient extends FastcClient implements PublisherClientInterface
             $endDateGreaterThan = $endDateGreaterThan->formatAsDateString();
         }
 
-        return $this->client->getCommand(
-            'getCampaigns',
-            array(
-                'orderField' => $orderField,
-                'orderDirection' => $orderDirection,
-                'endDateGreaterThan' => $endDateGreaterThan,
-                'country' => $country,
-                'parentCategory' => $parentCategory,
-                'campaignNamePattern' => $campaignNamePattern,
-                'page' => $page,
-                'pageResultsNumber' => $pageResultsNumber,
-            )
-        )->execute();
+        try {
+            return $this->client->getCommand(
+                'getCampaigns',
+                array(
+                    'orderField' => $orderField,
+                    'orderDirection' => $orderDirection,
+                    'endDateGreaterThan' => $endDateGreaterThan,
+                    'country' => $country,
+                    'parentCategory' => $parentCategory,
+                    'campaignNamePattern' => $campaignNamePattern,
+                    'page' => $page,
+                    'pageResultsNumber' => $pageResultsNumber,
+                )
+            )->execute();
+        } catch (\Exception $exception) {
+
+            // @TODO an object containing the errors should be returned
+            return false;
+        }
     }
 
     /**
