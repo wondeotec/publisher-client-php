@@ -1,5 +1,7 @@
 EBC\PublisherClient\PublisherList\PublisherList:
     properties:
+        id:
+            type: string
         name:
             type: string
         description:
