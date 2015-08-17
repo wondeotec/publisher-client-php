@@ -400,7 +400,6 @@ class PublisherClientTest extends TestCase
         $client->setPublisher(1, 'key', 'secret');
         $client->updateList(
             'extIdList_1_publisher_1',
-            'newExtIdList_1_publisher_1',
             'newName',
             'newDescription',
             'newFromName',
@@ -409,10 +408,11 @@ class PublisherClientTest extends TestCase
             2,
             array(),
             array(1 => 0.1),
-            array(1 => 0.1, 2 => 0.2)
+            array(1 => 0.1, 2 => 0.2),
+            true
         );
 
-        $list = $client->getListById('newExtIdList_1_publisher_1');
+        $list = $client->getListById('extIdList_1_publisher_1');
         $this->assertInstanceOf(
             'EBC\PublisherClient\PublisherList\PublisherList',
             $list,
