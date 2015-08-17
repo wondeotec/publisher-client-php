@@ -180,10 +180,6 @@ operations:
                 type: object
                 required: true
                 properties:
-                    id:
-                        location: json
-                        type: string
-                        required: true
                     name:
                         location: json
                         required: false
