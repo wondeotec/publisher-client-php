@@ -26,9 +26,7 @@ use Guzzle\Http\Message\Header;
 class PublisherClientTest extends TestCase
 {
     /**
-     * @covers EBC\PublisherClient\EBC\PublisherClientInterface::getCampaigns()
-     *
-     * @expectedException \JMS\Serializer\Exception\RuntimeException
+     * @covers EBC\PublisherClient\PublisherClientInterface::getCampaigns()
      */
     public function testMalformedJson()
     {
@@ -36,16 +34,17 @@ class PublisherClientTest extends TestCase
         $plugin = new MockPlugin();
         $plugin->addResponse(new Response(200, null, 'malformed JSON'));
         $client->addSubscriber($plugin);
-        $client->getCampaigns(
+
+        $result = $client->getCampaigns(
             PublisherClientInterface::CAMPAIGN_ORDER_BY_FIELD_NAME,
             PublisherClientInterface::CAMPAIGN_ORDER_BY_DIRECTION_ASC
         );
+
+        $this->assertFalse($result);
     }
 
     /**
-     * @covers EBC\PublisherClient\EBC\PublisherClientInterface::getCampaigns()
-     *
-     * @expectedException \Guzzle\Http\Exception\ClientErrorResponseException
+     * @covers EBC\PublisherClient\PublisherClientInterface::getCampaigns()
      */
     public function testClientErrorTransformedClientException()
     {
@@ -53,16 +52,17 @@ class PublisherClientTest extends TestCase
         $plugin = new MockPlugin();
         $plugin->addResponse(new Response(400));
         $client->addSubscriber($plugin);
-        $client->getCampaigns(
+
+        $result = $client->getCampaigns(
             PublisherClientInterface::CAMPAIGN_ORDER_BY_FIELD_NAME,
             PublisherClientInterface::CAMPAIGN_ORDER_BY_DIRECTION_ASC
         );
+
+        $this->assertFalse($result);
     }
 
     /**
-     * @covers EBC\PublisherClient\EBC\PublisherClientInterface::getCampaigns()
-     *
-     * @expectedException \Guzzle\Http\Exception\ServerErrorResponseException
+     * @covers EBC\PublisherClient\PublisherClientInterface::getCampaigns()
      */
     public function testServerErrorTransformedServerException()
     {
@@ -70,14 +70,17 @@ class PublisherClientTest extends TestCase
         $plugin = new MockPlugin();
         $plugin->addResponse(new Response(500));
         $client->addSubscriber($plugin);
-        $client->getCampaigns(
+
+        $result = $client->getCampaigns(
             PublisherClientInterface::CAMPAIGN_ORDER_BY_FIELD_NAME,
             PublisherClientInterface::CAMPAIGN_ORDER_BY_DIRECTION_ASC
         );
+
+        $this->assertFalse($result);
     }
 
     /**
-     * @covers EBC\PublisherClient\EBC\PublisherClientInterface::getCampaign()
+     * @covers EBC\PublisherClient\PublisherClientInterface::getCampaign()
      */
     public function testGetCampaignById()
     {
@@ -112,7 +115,7 @@ class PublisherClientTest extends TestCase
     }
 
     /**
-     * @covers EBC\PublisherClient\EBC\PublisherClientInterface::getCampaignsCount()
+     * @covers EBC\PublisherClient\PublisherClientInterface::getCampaignsCount()
      */
     public function testGetCampaignsCount()
     {
@@ -148,7 +151,7 @@ class PublisherClientTest extends TestCase
     }
 
     /**
-     * @covers EBC\PublisherClient\EBC\PublisherClientInterface::getCampaignsCount()
+     * @covers EBC\PublisherClient\PublisherClientInterface::getCampaignsCount()
      */
     /*public function testGetCampaignsCountReal()
     {
@@ -162,7 +165,7 @@ class PublisherClientTest extends TestCase
     }*/
 
     /**
-     * @covers EBC\PublisherClient\EBC\PublisherClientInterface::getCampaigns()
+     * @covers EBC\PublisherClient\PublisherClientInterface::getCampaigns()
      */
     public function testGetCampaigns()
     {
@@ -214,7 +217,7 @@ class PublisherClientTest extends TestCase
     }
 
     /**
-     * @covers EBC\PublisherClient\EBC\PublisherClientInterface::getCampaigns()
+     * @covers EBC\PublisherClient\PublisherClientInterface::getCampaigns()
      */
     public function testGetCampaignsFiltered()
     {
@@ -246,7 +249,7 @@ class PublisherClientTest extends TestCase
     }
 
     /**
-     * @covers EBC\PublisherClient\EBC\PublisherClientInterface::getCampaigns()
+     * @covers EBC\PublisherClient\PublisherClientInterface::getCampaigns()
      */
     public function testGetCampaignsWithPagination()
     {
@@ -280,7 +283,7 @@ class PublisherClientTest extends TestCase
     }
 
     /**
-     * @covers EBC\PublisherClient\EBC\PublisherClientInterface::getCampaignListApproval()
+     * @covers EBC\PublisherClient\PublisherClientInterface::getCampaignListApproval()
      */
     public function testGetCampaignListApproval()
     {
@@ -303,7 +306,7 @@ class PublisherClientTest extends TestCase
     }
 
     /**
-     * @covers EBC\PublisherClient\EBC\PublisherClientInterface::getLists()
+     * @covers EBC\PublisherClient\PublisherClientInterface::getLists()
      */
     public function testGetLists()
     {
@@ -338,7 +341,7 @@ class PublisherClientTest extends TestCase
     }
 
     /**
-     * @covers EBC\PublisherClient\EBC\PublisherClientInterface::getListById()
+     * @covers EBC\PublisherClient\PublisherClientInterface::getListById()
      */
     public function testGetListById()
     {
@@ -400,7 +403,6 @@ class PublisherClientTest extends TestCase
         $client->setPublisher(1, 'key', 'secret');
         $client->updateList(
             'extIdList_1_publisher_1',
-            'newExtIdList_1_publisher_1',
             'newName',
             'newDescription',
             'newFromName',
@@ -409,10 +411,11 @@ class PublisherClientTest extends TestCase
             2,
             array(),
             array(1 => 0.1),
-            array(1 => 0.1, 2 => 0.2)
+            array(1 => 0.1, 2 => 0.2),
+            true
         );
 
-        $list = $client->getListById('newExtIdList_1_publisher_1');
+        $list = $client->getListById('extIdList_1_publisher_1');
         $this->assertInstanceOf(
             'EBC\PublisherClient\PublisherList\PublisherList',
             $list,
@@ -454,7 +457,7 @@ class PublisherClientTest extends TestCase
     }*/
 
     /**
-     * @covers EBC\PublisherClient\EBC\PublisherClientInterface::getListApprovalExceptionsById()
+     * @covers EBC\PublisherClient\PublisherClientInterface::getListApprovalExceptionsById()
      */
     public function testGetListApprovalExceptionsById()
     {
@@ -477,7 +480,7 @@ class PublisherClientTest extends TestCase
     }
 
     /**
-     * @covers EBC\PublisherClient\EBC\PublisherClientInterface::updateListApprovalExceptions()
+     * @covers EBC\PublisherClient\PublisherClientInterface::updateListApprovalExceptions()
      *
      * @expectedException \RuntimeException
      */
@@ -491,7 +494,7 @@ class PublisherClientTest extends TestCase
     }
 
     /**
-     * @covers EBC\PublisherClient\EBC\PublisherClientInterface::updateListApprovalExceptions()
+     * @covers EBC\PublisherClient\PublisherClientInterface::updateListApprovalExceptions()
      */
     public function testUpdateListApprovalExceptions()
     {
@@ -559,7 +562,7 @@ class PublisherClientTest extends TestCase
 
 
     /**
-     * @covers EBC\PublisherClient\EBC\PublisherClientInterface::getCampaignCreativities()
+     * @covers EBC\PublisherClient\PublisherClientInterface::getCampaignCreativities()
      */
     public function testGetCampaignCreativities()
     {
@@ -606,7 +609,7 @@ class PublisherClientTest extends TestCase
     }
 
     /**
-     * @covers EBC\PublisherClient\EBC\PublisherClientInterface::getListStats()
+     * @covers EBC\PublisherClient\PublisherClientInterface::getListStats()
      */
     public function testGetListStatsById()
     {

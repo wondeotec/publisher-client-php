@@ -130,24 +130,22 @@ interface PublisherClientInterface extends ClientInterface
     /**
      * Set list definition
      *
-     * @param string    $id
-     * @param string    $newId
-     * @param string    $name
-     * @param string    $description
-     * @param string    $fromName
-     * @param string    $publicName
-     * @param int       $listTemplateId
-     * @param int       $approvalRulesId
-     * @param array     $approvalCategories
-     * @param array     $minPayoutParentCategories
-     * @param array     $minPayoutChildCategories
-     * @param boolean   $isEnabledForCPMBidding
+     * @param string $id
+     * @param string $name
+     * @param string $description
+     * @param string $fromName
+     * @param string $publicName
+     * @param int    $listTemplateId
+     * @param int    $approvalRulesId
+     * @param array  $approvalCategories
+     * @param array  $minPayoutParentCategories
+     * @param array  $minPayoutChildCategories
+     * @param bool   $isEnabledForCPMBidding
      *
      * @return PublisherList
      */
     public function updateList(
         $id,
-        $newId,
         $name,
         $description,
         $fromName,

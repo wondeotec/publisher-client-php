@@ -180,10 +180,6 @@ operations:
                 type: object
                 required: true
                 properties:
-                    id:
-                        location: json
-                        type: string
-                        required: true
                     name:
                         location: json
                         required: false
@@ -226,7 +222,7 @@ operations:
                         type: boolean
             accept:
                 location: 'header'
-                default: 'application/vnd.emailbidding+json; version=1.2.0'
+                default: 'application/vnd.emailbidding+json; version=1.3.1'
 
     getListsApprovalExceptions:
         httpMethod: GET
