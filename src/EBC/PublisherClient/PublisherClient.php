@@ -63,8 +63,8 @@ class PublisherClient extends FastcClient implements PublisherClientInterface
     public function setPublisher($publisherId, $key, $secret)
     {
         $this->client->getConfig()->setPath('publisherId', $publisherId)
-                                  ->setPath('request.options/query/key', $key)
-                                  ->setPath('request.options/query/secret', $secret);
+            ->setPath('request.options/query/key', $key)
+            ->setPath('request.options/query/secret', $secret);
 
         return $this;
     }
@@ -196,6 +196,7 @@ class PublisherClient extends FastcClient implements PublisherClientInterface
      */
     public function updateList(
         $id,
+        $newId,
         $name,
         $description,
         $fromName,
@@ -205,13 +206,15 @@ class PublisherClient extends FastcClient implements PublisherClientInterface
         array $approvalCategories,
         array $minPayoutParentCategories,
         array $minPayoutChildCategories,
-        $isEnabledForCPMBidding
+        $isEnabledForCPMBidding,
+        $isEnabledForCPMOBidding
     ) {
         return $this->client->getCommand(
             'updateListById',
             array(
                 'id' => $id,
                 'list_definition_update' => array(
+                    'id' => $newId,
                     'name' => $name,
                     'description' => $description,
                     'fromName' => $fromName,
@@ -221,7 +224,8 @@ class PublisherClient extends FastcClient implements PublisherClientInterface
                     'approvedCategories' => $approvalCategories,
                     'minPayoutParentCategories' => json_encode($minPayoutParentCategories),
                     'minPayoutChildCategories' => json_encode($minPayoutChildCategories),
-                    'isEnabledForCPMBidding' => $isEnabledForCPMBidding
+                    'isEnabledForCPMBidding' => $isEnabledForCPMBidding,
+                    'isEnabledForCPMOBidding' => $isEnabledForCPMOBidding,
                 )
             )
         )->execute();

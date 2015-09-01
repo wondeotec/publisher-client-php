@@ -108,6 +108,11 @@ class PublisherList
     protected $isEnabledForCPMBidding;
 
     /**
+     * @var boolean
+     */
+    protected $isEnabledForCPMOBidding;
+
+    /**
      * @return string
      */
     public function getId()
@@ -257,5 +262,13 @@ class PublisherList
     public function getIsEnabledForCPMBidding()
     {
         return $this->isEnabledForCPMBidding;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getIsEnabledForCPMOBidding()
+    {
+        return $this->isEnabledForCPMOBidding;
     }
 }
