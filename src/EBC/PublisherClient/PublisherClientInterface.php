@@ -131,7 +131,6 @@ interface PublisherClientInterface extends ClientInterface
      * Set list definition
      *
      * @param string    $id
-     * @param string    $newId
      * @param string    $name
      * @param string    $description
      * @param string    $fromName
@@ -148,7 +147,6 @@ interface PublisherClientInterface extends ClientInterface
      */
     public function updateList(
         $id,
-        $newId,
         $name,
         $description,
         $fromName,

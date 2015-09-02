@@ -196,7 +196,6 @@ class PublisherClient extends FastcClient implements PublisherClientInterface
      */
     public function updateList(
         $id,
-        $newId,
         $name,
         $description,
         $fromName,
@@ -214,7 +213,6 @@ class PublisherClient extends FastcClient implements PublisherClientInterface
             array(
                 'id' => $id,
                 'list_definition_update' => array(
-                    'id' => $newId,
                     'name' => $name,
                     'description' => $description,
                     'fromName' => $fromName,
