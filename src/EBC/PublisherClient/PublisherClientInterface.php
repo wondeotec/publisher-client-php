@@ -130,17 +130,18 @@ interface PublisherClientInterface extends ClientInterface
     /**
      * Set list definition
      *
-     * @param string $id
-     * @param string $name
-     * @param string $description
-     * @param string $fromName
-     * @param string $publicName
-     * @param int    $listTemplateId
-     * @param int    $approvalRulesId
-     * @param array  $approvalCategories
-     * @param array  $minPayoutParentCategories
-     * @param array  $minPayoutChildCategories
-     * @param bool   $isEnabledForCPMBidding
+     * @param string    $id
+     * @param string    $name
+     * @param string    $description
+     * @param string    $fromName
+     * @param string    $publicName
+     * @param int       $listTemplateId
+     * @param int       $approvalRulesId
+     * @param array     $approvalCategories
+     * @param array     $minPayoutParentCategories
+     * @param array     $minPayoutChildCategories
+     * @param boolean   $isEnabledForCPMBidding
+     * @param boolean   $isEnabledForCPMOBidding
      *
      * @return PublisherList
      */
@@ -155,7 +156,8 @@ interface PublisherClientInterface extends ClientInterface
         array $approvalCategories,
         array $minPayoutParentCategories,
         array $minPayoutChildCategories,
-        $isEnabledForCPMBidding
+        $isEnabledForCPMBidding,
+        $isEnabledForCPMOBidding
     );
 
     /**

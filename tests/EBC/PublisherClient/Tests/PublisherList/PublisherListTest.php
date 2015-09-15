@@ -46,6 +46,7 @@ class PublisherListTest extends TestCase
                 'min_payout_parent_categories' => array('1' => '0.10', '2' => '0.10'),
                 'min_payout_child_categories' => array('1' => '0.10', '2' => '0.10'),
                 'is_enabled_for_c_p_m_bidding' => true,
+                'is_enabled_for_c_p_m_o_bidding' => true
             ),
             self::CLASS_NAME
         );
@@ -74,5 +75,6 @@ class PublisherListTest extends TestCase
         $this->assertEquals(array('1' => '0.10', '2' => '0.10'), $list->getMinPayoutParentCategories());
         $this->assertEquals(array('1' => '0.10', '2' => '0.10'), $list->getMinPayoutChildCategories());
         $this->assertEquals(true, $list->getIsEnabledForCPMBidding());
+        $this->assertEquals(true, $list->getIsEnabledForCPMOBidding());
     }
 }

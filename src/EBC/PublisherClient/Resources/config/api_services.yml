@@ -220,6 +220,10 @@ operations:
                         location: json
                         required: false
                         type: boolean
+                    isEnabledForCPMOBidding:
+                        location: json
+                        required: false
+                        type: boolean
             accept:
                 location: 'header'
                 default: 'application/vnd.emailbidding+json; version=1.3.1'
