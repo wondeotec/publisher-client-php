@@ -78,6 +78,11 @@ class Campaign
     /**
      * @var bool
      */
+    protected $isProvenienceWhitelabel;
+
+    /**
+     * @var bool
+     */
     protected $isPaused;
 
     /**
@@ -163,7 +168,16 @@ class Campaign
     /**
      * @return bool
      */
-    public function isPaused() {
+    public function isProvenienceWhitelabel()
+    {
+        return $this->isProvenienceWhitelabel;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isPaused()
+    {
         return $this->isPaused;
     }
 }
